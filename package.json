@@ -1,0 +1,32 @@
+{
+  "name": "kursal",
+  "author": {
+    "email": "kubik@openvoxel.studio",
+    "name": "Kodeur_Kubik",
+    "url": "https://github.com/KodeurKubik"
+  },
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "bun run paper && bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "paper": "typst compile paper/kursal.typ static/kursal.pdf && echo 'Compiled paper!'"
+  },
+  "version": "0.0.0",
+  "dependencies": {
+    "@icons-pack/svelte-simple-icons": "^6.5.0",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.49.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tsconfig/svelte": "^5.0.6",
+    "lucide-svelte": "^0.562.0",
+    "svelte": "^5.46.0",
+    "svelte-check": "^4.3.5",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.0"
+  },
+  "private": true,
+  "type": "module"
+}

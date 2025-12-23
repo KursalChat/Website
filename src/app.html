@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/inter.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kursal - Private Peer-to-Peer Messaging</title>
+    <meta
+      name="description"
+      content="Kursal is a peer-to-peer, end-to-end encrypted messaging platform. Your conversations belong to you."
+    />
+    <meta name="theme-color" content="#0a0d14" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Kursal - Private Peer-to-Peer Messaging"
+    />
+    <meta
+      property="og:description"
+      content="Peer-to-peer, end-to-end encrypted messaging. No servers. No tracking. Just your private conversations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kursal" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="/icon.png" />
+    <meta property="og:image:alt" content="Kursal logo" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Kursal - Private Peer-to-Peer Messaging"
+    />
+    <meta
+      name="twitter:description"
+      content="Peer-to-peer, end-to-end encrypted messaging. No servers. No tracking. Just your private conversations."
+    />
+    <meta name="twitter:image" content="/icon.png" />
+
+    %sveltekit.head%
+  </head>
+
+  <body>
+    <div id="app">%sveltekit.body%</div>
+  </body>
+
+  <script
+    async
+    src="https://plausible.io/js/pa-P3STnTdmTIxQhUP1IuYhu.js"
+  ></script>
+  <script>
+    // Privacy-friendly analytics by Plausible
+    (window.plausible =
+      window.plausible ||
+      function () {
+        (plausible.q = plausible.q || []).push(arguments);
+      }),
+      (plausible.init =
+        plausible.init ||
+        function (i) {
+          plausible.o = i || {};
+        });
+    plausible.init();
+  </script>
+</html>

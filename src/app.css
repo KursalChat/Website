@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kursal-900: #0a0d14;
+  --color-kursal-800: #0f1319;
+  --color-kursal-700: #151a24;
+  --color-kursal-600: #1a2130;
+  --color-kursal-500: #232d42;
+  --color-kursal-400: #3b4a6b;
+  --color-kursal-300: #5a6d94;
+  --color-kursal-200: #8a9bbd;
+  --color-kursal-100: #bdc6db;
+  --color-kursal-50: #e8ecf4;
+
+  --color-accent-500: #5b8def;
+  --color-accent-400: #7ba3f7;
+  --color-accent-300: #a3c0fa;
+
+  --font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/inter.ttf") format("truetype");
+}
+
+:root {
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--color-kursal-50);
+  background-color: var(--color-kursal-900);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-kursal-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-kursal-500);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-kursal-400);
+}
