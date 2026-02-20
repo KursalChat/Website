@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FileText, Bell, Shield, Lock, Scale, Menu, X } from "lucide-svelte";
+  import { FileText, Bell, Shield, Lock, Scale, Menu, X, Activity } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { scrollTo } from "$lib/util";
   import { repository, PAPER_URL } from "$lib/const";
@@ -14,6 +14,12 @@
 
   function closeMobileMenu() {
     mobileMenuOpen = false;
+  }
+
+  function getNotified() {
+    closeMobileMenu();
+    if (location.pathname == "/") scrollTo("notify");
+    else location.href = "/#notify";
   }
 </script>
 
@@ -54,6 +60,13 @@
           <Scale size={16} />
           <span>Terms</span>
         </a>
+        <a
+          href="/progress"
+          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
+        >
+          <Activity size={16} />
+          <span>Progress</span>
+        </a>
       </div>
     </div>
 
@@ -78,7 +91,7 @@
       </a>
 
       <button
-        onclick={() => scrollTo("notify")}
+        onclick={getNotified}
         class="flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-3 md:px-4 py-2 rounded-lg font-medium transition-colors"
       >
         <Bell size={18} />
@@ -134,6 +147,14 @@
             <Scale size={16} />
             <span>Terms</span>
           </a>
+          <a
+            href="/progress"
+            onclick={closeMobileMenu}
+            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
+          >
+            <Activity size={16} />
+            <span>Progress</span>
+          </a>
 
           <div class="h-px bg-kursal-700 my-2"></div>
 
@@ -159,10 +180,7 @@
 
           <button
             type="button"
-            onclick={() => {
-              closeMobileMenu();
-              scrollTo("notify");
-            }}
+            onclick={getNotified}
             class="mt-2 flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-4 py-3 rounded-xl font-medium transition-colors"
           >
             <Bell size={18} />

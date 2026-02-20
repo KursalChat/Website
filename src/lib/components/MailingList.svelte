@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Mail, ArrowRight, Check } from "lucide-svelte";
-  import { LISTMONK_LIST_UUID, LISTMONK_URL } from "$lib/const";
+  import { LISTMONK_LIST_UUID, LISTMONK_URL, EXPECTEDTIME } from "$lib/const";
 
   let email = $state("");
   let status = $state<"idle" | "loading" | "success" | "error">("idle");
@@ -58,7 +58,7 @@
     >
       <Mail size={18} class="text-accent-400" />
       <span class="text-kursal-200 text-sm font-medium"
-        >Expected April 2026</span
+        >{EXPECTEDTIME}</span
       >
     </div>
 

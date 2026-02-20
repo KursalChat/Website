@@ -11,7 +11,7 @@
 </div>
 
 > [!IMPORTANT]
-> The Kursal app is not currently released. It is estimated to release in **April 2026**. \
+> The Kursal app is not currently released. It is estimated to release around **August 2026**. \
 > You can subscribe to our [**mailing list**](https://kursal.openvoxel.studio/#notify) to be notified when Kursal releases.
 
 ---
@@ -47,7 +47,7 @@ Here's a list of features we'd like to implement, which you can also find on our
 
 ## 📜 License
 
-© KursalChat - 2025
+© KursalChat - 2026
 
 Distributed under the **AGPL-3.0** License. See [LICENSE](LICENSE) for more information.
 

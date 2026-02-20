@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FileText, Lock, Mail, Scale, Shield } from "lucide-svelte";
+  import { FileText, Lock, Mail, Scale, Shield, Activity } from "lucide-svelte";
   import { repository, email, PAPER_URL } from "$lib/const";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
 </script>
@@ -49,6 +49,15 @@
             >
               <Mail size={16} />
               Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href="/progress"
+              class="text-kursal-300 hover:text-kursal-50 transition-colors flex items-center gap-2"
+            >
+              <Activity size={16} />
+              Progress
             </a>
           </li>
         </ul>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Bell, FileText, ArrowDown } from "lucide-svelte";
   import { scrollTo } from "$lib/util";
-  import { PAPER_URL } from "$lib/const";
+  import { PAPER_URL, EXPECTEDTIME } from "$lib/const";
 </script>
 
 <section
@@ -44,7 +44,7 @@
         class="inline-flex items-center gap-2 bg-accent-500/15 backdrop-blur-sm text-accent-400 px-4 py-2 rounded-full mb-8 text-sm font-medium border border-accent-500/20"
       >
         <Bell size={16} />
-        Expected April 2026
+        {EXPECTEDTIME}
       </div>
 
       <div class="flex items-center justify-center gap-4 md:gap-6 mb-8">

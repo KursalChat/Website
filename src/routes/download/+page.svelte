@@ -3,6 +3,7 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import { SiApple, SiLinux } from "@icons-pack/svelte-simple-icons";
+  import { EXPECTEDTIME } from "$lib/const";
 
   const platforms = [
     {
@@ -35,7 +36,7 @@
         class="inline-flex items-center gap-2 bg-accent-500/20 text-accent-400 px-4 py-2 rounded-full mb-6 text-sm font-medium"
       >
         <Clock size={16} />
-        Expected April 2026
+        {EXPECTEDTIME}
       </div>
 
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
