@@ -23,12 +23,12 @@
     align(center)[
       Erik LP. \
       #link("https://github.com/KodeurKubik", "Kodeur_Kubik") \
-      #link("mailto:kubik@openvoxel.studio")
+      #link("mailto:kubik@kursal.chat")
     ],
     align(center)[
       Armand H. \
       #link("https://github.com/Arlo1234", "Arlo") \
-      #link("mailto:arlo@openvoxel.studio")
+      #link("mailto:arlo@kursal.chat")
     ],
   )
 
@@ -40,7 +40,7 @@
 
 *Version*: 1.0 \
 *Date*: December 24, 2025 \
-*Website*: https://kursal.openvoxel.studio/
+*Website*: https://kursal.chat/
 
 = Introduction
 Messaging platforms have become the most widely adopted systems for online communication and file transfers. However, commonly used messengers either do not encrypt messages on their servers or implement end-to-end encryption imperfectly. Others compromise user privacy by collecting private user data and using closed-source clients. Even transparent systems are vulnerable. Governments could still access centralized hosting servers, block or filter content, censor users, or spy on them. This is where Kursal steps in as a potential solution: all messages, files, and calls are end-to-end encrypted and transit over a decentralized network hosted by volunteers.

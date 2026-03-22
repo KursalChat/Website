@@ -3,16 +3,16 @@
   
   <h2>Big Brother <i>was</i> watching you.</h2>
 
-[![Website](https://img.shields.io/badge/🌐_Website-6B8ECE?style=flat)](https://kursal.openvoxel.studio)
-[![Whitepaper](https://img.shields.io/badge/📄_Whitepaper-6B8ECE?style=flat)](https://kursal.openvoxel.studio/kursal.pdf)
+[![Website](https://img.shields.io/badge/🌐_Website-6B8ECE?style=flat)](https://kursal.chat)
+[![Whitepaper](https://img.shields.io/badge/📄_Whitepaper-6B8ECE?style=flat)](https://kursal.chat/kursal.pdf)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Status](https://img.shields.io/badge/Status-In_Development-orange.svg)]()
+[![Status](https://img.shields.io/badge/Status-In_Development-orange.svg)](https://kursal.chat/progress)
 
 </div>
 
 > [!IMPORTANT]
-> The Kursal app is not currently released. It is estimated to release around **August 2026**. \
-> You can subscribe to our [**mailing list**](https://kursal.openvoxel.studio/#notify) to be notified when Kursal releases.
+> The Kursal app is not currently released. It is estimated to release during **Summer 2026**. \
+> You can subscribe to our [**mailing list**](https://kursal.chat/#notify) to be notified when Kursal releases.
 
 ---
 
@@ -20,9 +20,7 @@
 
 Kursal is a **peer-to-peer**, **end-to-end encrypted** messaging platform. No servers, no tracking. Just your private communications.
 
-If you want to read a more technical description of Kursal, check out our [**Whitepaper**](https://kursal.openvoxel.studio/kursal.pdf)!
-
-> If the above whitepaper link does not work, view it [here](https://github.com/KursalChat/Website/blob/main/static/kursal.pdf).
+If you want to read a more technical description of Kursal, check out our [**Whitepaper**](https://kursal.chat/kursal.pdf)!
 
 ## 🤔 Why use Kursal?
 
@@ -41,8 +39,8 @@ We have a lot of exciting features in mind. Some of which are very hard for a sm
 
 Here's a list of features we'd like to implement, which you can also find on our [TODO list](https://github.com/orgs/KursalChat/projects/1):
 
-- **Offline messaging**: Due to it's decentralization, offline messaging can only be achieved by adding public "mailbox" nodes that would store encrypted messages while the receiver is offline.
-- **Groups**: A way to chat with multiple people at a time.
+- **Offline messaging**: Due to it's decentralization, offline messaging can be achieved by adding public "mailbox" nodes that would store encrypted messages while the receiver is offline.
+- **Groups**: A way to chat with multiple people at a time. Can always be useful ;)
 - **Broadcast channels**: Subscribe to community run broadcasting channels (like news).
 
 ## 📜 License

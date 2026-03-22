@@ -10,6 +10,7 @@
     Monitor,
     Users,
     Radio,
+    Keyboard,
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -49,17 +50,23 @@
         { label: "Contact Management", done: true },
         { label: "First Contact: OTP", done: true },
         { label: "First Contact: LTC", done: true },
-        { label: "First Contact: Nearby Share", done: false },
-        { label: "Messaging Pipeline", done: false },
-        { label: "Tauri Wrapper", done: false },
+        { label: "First Contact: Nearby Share", done: true },
+        { label: "Messaging Pipeline", done: true },
+        { label: "Tauri Wrapper", done: true },
         { label: "Local API Server", done: false },
       ],
     },
     {
       title: "Interface",
       description: "Designing and implementing the application interface.",
-      status: "future",
+      status: "in-progress",
       icon: Monitor,
+    },
+    {
+      title: "CLI",
+      description: "Setup Kursal relays using the command line!",
+      status: "in-progress",
+      icon: Keyboard,
     },
     {
       title: "Groups",
