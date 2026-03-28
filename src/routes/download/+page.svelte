@@ -3,7 +3,7 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import { SiApple, SiLinux } from "@icons-pack/svelte-simple-icons";
-  import { EXPECTEDTIME } from "$lib/const";
+  import { EXPECTEDTIME, SITE_ICON, SITE_URL } from "$lib/const";
 
   const platforms = [
     {
@@ -25,7 +25,38 @@
       description: "AppImage for most distributions",
     },
   ];
+
+  const pageUrl = `${SITE_URL}/download`;
 </script>
+
+<svelte:head>
+  <title>Download Kursal | Private Messaging App</title>
+  <meta
+    name="description"
+    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+  />
+  <link rel="canonical" href={pageUrl} />
+
+  <meta property="og:title" content="Download Kursal | Private Messaging App" />
+  <meta
+    property="og:description"
+    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={SITE_ICON} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta
+    name="twitter:title"
+    content="Download Kursal | Private Messaging App"
+  />
+  <meta
+    name="twitter:description"
+    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+  />
+  <meta name="twitter:image" content={SITE_ICON} />
+</svelte:head>
 
 <Navbar />
 

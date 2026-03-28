@@ -1,5 +1,7 @@
 export const email = "kursal@openvoxel.studio";
 export const repository = "https://github.com/KursalChat/Kursal";
+export const SITE_URL = "https://kursal.chat";
+export const SITE_ICON = "https://kursal.chat/icon.png";
 
 export const PAPER_URL = "/kursal.pdf";
 

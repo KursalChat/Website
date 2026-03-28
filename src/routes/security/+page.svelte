@@ -16,8 +16,42 @@
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { repository, email, PAPER_URL } from "$lib/const";
+  import {
+    repository,
+    email,
+    PAPER_URL,
+    SITE_URL,
+    SITE_ICON,
+  } from "$lib/const";
+
+  const pageUrl = `${SITE_URL}/security`;
 </script>
+
+<svelte:head>
+  <title>Security | Kursal</title>
+  <meta
+    name="description"
+    content="See the cryptographic protocols and security practices that power private messaging on Kursal."
+  />
+  <link rel="canonical" href={pageUrl} />
+
+  <meta property="og:title" content="Security | Kursal" />
+  <meta
+    property="og:description"
+    content="See the cryptographic protocols and security practices that power private messaging on Kursal."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={SITE_ICON} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Security | Kursal" />
+  <meta
+    name="twitter:description"
+    content="See the cryptographic protocols and security practices that power private messaging on Kursal."
+  />
+  <meta name="twitter:image" content={SITE_ICON} />
+</svelte:head>
 
 <Navbar />
 

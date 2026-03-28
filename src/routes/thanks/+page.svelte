@@ -8,7 +8,9 @@
   import { onMount } from "svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { repository, PAPER_URL } from "$lib/const";
+  import { repository, PAPER_URL, SITE_URL } from "$lib/const";
+
+  const pageUrl = `${SITE_URL}/thanks`;
 
   interface PlatformInfo {
     name: string;
@@ -49,6 +51,13 @@
     }
   });
 </script>
+
+<svelte:head>
+  <title>Thanks | Kursal</title>
+  <meta name="description" content="Thanks for your interest in Kursal!" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href={pageUrl} />
+</svelte:head>
 
 <Navbar />
 

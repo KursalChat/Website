@@ -14,6 +14,9 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
+  import { SITE_ICON, SITE_URL } from "$lib/const";
+
+  const pageUrl = `${SITE_URL}/progress`;
 
   const milestones: Milestone[] = [
     {
@@ -156,6 +159,32 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>Development Progress | Kursal</title>
+  <meta
+    name="description"
+    content="Follow the Kursal roadmap and milestone updates as we build private peer-to-peer messaging."
+  />
+  <link rel="canonical" href={pageUrl} />
+
+  <meta property="og:title" content="Development Progress | Kursal" />
+  <meta
+    property="og:description"
+    content="Follow the Kursal roadmap and milestone updates as we build private peer-to-peer messaging."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={SITE_ICON} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Development Progress | Kursal" />
+  <meta
+    name="twitter:description"
+    content="Follow the Kursal roadmap and milestone updates as we build private peer-to-peer messaging."
+  />
+  <meta name="twitter:image" content={SITE_ICON} />
+</svelte:head>
 
 <Navbar />
 

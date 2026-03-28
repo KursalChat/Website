@@ -11,8 +11,36 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { repository, email } from "$lib/const";
+  import { repository, email, SITE_URL, SITE_ICON } from "$lib/const";
+
+  const pageUrl = `${SITE_URL}/terms`;
 </script>
+
+<svelte:head>
+  <title>Terms of Service | Kursal</title>
+  <meta
+    name="description"
+    content="Read the Kursal terms of service for usage responsibilities and more."
+  />
+  <link rel="canonical" href={pageUrl} />
+
+  <meta property="og:title" content="Terms of Service | Kursal" />
+  <meta
+    property="og:description"
+    content="Read the Kursal terms of service for usage responsibilities and more."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={SITE_ICON} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Terms of Service | Kursal" />
+  <meta
+    name="twitter:description"
+    content="Read the Kursal terms of service for usage responsibilities and more."
+  />
+  <meta name="twitter:image" content={SITE_ICON} />
+</svelte:head>
 
 <Navbar />
 

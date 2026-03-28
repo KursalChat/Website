@@ -11,9 +11,37 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { repository } from "$lib/const";
+  import { repository, SITE_ICON, SITE_URL } from "$lib/const";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
+
+  const pageUrl = `${SITE_URL}/privacy`;
 </script>
+
+<svelte:head>
+  <title>Privacy Policy | Kursal</title>
+  <meta
+    name="description"
+    content="Kursal is built for privacy by design. Learn what data we do (not) collect."
+  />
+  <link rel="canonical" href={pageUrl} />
+
+  <meta property="og:title" content="Privacy Policy | Kursal" />
+  <meta
+    property="og:description"
+    content="Kursal is built for privacy by design. Learn what data we do (not) collect."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={SITE_ICON} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Privacy Policy | Kursal" />
+  <meta
+    name="twitter:description"
+    content="Kursal is built for privacy by design. Learn what data we do (not) collect."
+  />
+  <meta name="twitter:image" content={SITE_ICON} />
+</svelte:head>
 
 <Navbar />
 
