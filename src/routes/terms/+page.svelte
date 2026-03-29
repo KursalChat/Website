@@ -29,7 +29,6 @@
     property="og:description"
     content="Read the Kursal terms of service for usage responsibilities and more."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_ICON} />
 

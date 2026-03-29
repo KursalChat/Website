@@ -42,7 +42,6 @@
     property="og:description"
     content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_ICON} />
 

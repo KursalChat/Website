@@ -173,7 +173,6 @@
     property="og:description"
     content="Follow the Kursal roadmap and milestone updates as we build private peer-to-peer messaging."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_ICON} />
 

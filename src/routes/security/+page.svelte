@@ -40,7 +40,6 @@
     property="og:description"
     content="See the cryptographic protocols and security practices that power private messaging on Kursal."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_ICON} />
 

@@ -30,7 +30,6 @@
     property="og:description"
     content="Kursal is built for privacy by design. Learn what data we do (not) collect."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_ICON} />
 

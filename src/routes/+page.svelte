@@ -44,7 +44,6 @@
     property="og:description"
     content="Peer-to-peer, end-to-end encrypted messaging with no central servers and no tracking."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content={SITE_URL} />
   <meta property="og:image" content={SITE_ICON} />
   <meta property="og:image:alt" content="Kursal logo" />
