@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
     ArrowLeft,
+    ChevronRight,
     CircleCheckBig,
     LoaderCircle,
     Circle,
@@ -29,7 +30,8 @@
     },
     {
       title: "Prototype",
-      description: "Completed first working prototype - the core idea works!",
+      description:
+        "Completed the first working prototype - the core idea works!",
       date: "January 1, 2026",
       status: "completed",
       icon: FlaskConical,
@@ -37,7 +39,8 @@
     {
       title: "Internal API",
       description: "Building the core API layer that powers the app.",
-      status: "in-progress",
+      date: "April 7, 2026",
+      status: "completed",
       icon: Server,
       subtasks: [
         { label: "Workspace Scaffolding", done: true },
@@ -56,8 +59,14 @@
         { label: "First Contact: Nearby Share", done: true },
         { label: "Messaging Pipeline", done: true },
         { label: "Tauri Wrapper", done: true },
-        { label: "Local API Server", done: false },
       ],
+    },
+    {
+      title: "CLI",
+      description: "Set up Kursal relays using the command line!",
+      date: "April 7, 2026",
+      status: "completed",
+      icon: Keyboard,
     },
     {
       title: "Interface",
@@ -66,9 +75,9 @@
       icon: Monitor,
     },
     {
-      title: "CLI",
-      description: "Setup Kursal relays using the command line!",
-      status: "in-progress",
+      title: "Local API Server",
+      description: "Interact with the Kursal app via a built-in API.",
+      status: "future",
       icon: Keyboard,
     },
     {
@@ -79,7 +88,7 @@
     },
     {
       title: "Broadcast Channels",
-      description: "Broadcasting channels for communities announcement.",
+      description: "Broadcast channels for community announcements.",
       status: "future",
       icon: Radio,
     },
@@ -288,39 +297,58 @@
             {/if}
 
             {#if milestone.subtasks}
-              <div class="mt-3 space-y-2">
-                {#each milestone.subtasks as sub}
-                  <div class="flex items-center gap-2.5 text-sm">
-                    {#if sub.done}
-                      <CircleCheckBig
-                        size={15}
-                        class="text-green-400 shrink-0"
-                      />
-                      <span class="text-kursal-100">{sub.label}</span>
-                    {:else}
-                      <Circle size={15} class="text-kursal-400 shrink-0" />
-                      <span class="text-kursal-300">{sub.label}</span>
-                    {/if}
-                  </div>
-                {/each}
-              </div>
-              <!-- Subtasks -->
               {@const doneCount = milestone.subtasks.filter(
                 (s) => s.done,
               ).length}
-              <div class="mt-3 max-w-xs">
-                <div class="h-1.5 bg-kursal-700 rounded-full overflow-hidden">
+              {@const allDone = doneCount === milestone.subtasks.length}
+
+              <details class="mt-4 group" open={!allDone}>
+                <summary
+                  class="list-none cursor-pointer focus:outline-none mb-3"
+                >
                   <div
-                    class="h-full bg-accent-400/70 rounded-full transition-all duration-500"
-                    style="width: {milestone.subtasks.length > 0
-                      ? (doneCount / milestone.subtasks.length) * 100
-                      : 0}%"
-                  ></div>
+                    class="max-w-xs flex items-center gap-3 group-hover:opacity-80 transition-opacity"
+                  >
+                    <div
+                      class="text-kursal-400 transition-transform duration-200 group-open:rotate-90 shrink-0"
+                    >
+                      <ChevronRight size={18} />
+                    </div>
+                    <div class="flex-1 hover:opacity-100">
+                      <div
+                        class="h-1.5 bg-kursal-700 rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full bg-accent-400/70 rounded-full transition-all duration-500"
+                          style="width: {milestone.subtasks.length > 0
+                            ? (doneCount / milestone.subtasks.length) * 100
+                            : 0}%"
+                        ></div>
+                      </div>
+                      <p class="text-xs text-kursal-400 mt-1 font-medium">
+                        {doneCount} / {milestone.subtasks.length} subtasks
+                      </p>
+                    </div>
+                  </div>
+                </summary>
+
+                <div class="space-y-2 mb-2 pl-1">
+                  {#each milestone.subtasks as sub}
+                    <div class="flex items-center gap-2.5 text-sm">
+                      {#if sub.done}
+                        <CircleCheckBig
+                          size={15}
+                          class="text-green-400 shrink-0"
+                        />
+                        <span class="text-kursal-100">{sub.label}</span>
+                      {:else}
+                        <Circle size={15} class="text-kursal-400 shrink-0" />
+                        <span class="text-kursal-300">{sub.label}</span>
+                      {/if}
+                    </div>
+                  {/each}
                 </div>
-                <p class="text-xs text-kursal-400 mt-1">
-                  {doneCount} / {milestone.subtasks.length} subtasks
-                </p>
-              </div>
+              </details>
             {/if}
           </div>
         </div>

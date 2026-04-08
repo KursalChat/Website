@@ -7,25 +7,25 @@
   },
   "license": "AGPL-3.0-only",
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "bun run paper && bunx --bun vite build",
-    "preview": "bunx --bun vite preview",
+    "dev": "bunx vite",
+    "build": "bun run paper && bunx vite build",
+    "preview": "bunx vite preview",
     "paper": "typst compile paper/kursal.typ static/kursal.pdf && echo 'Compiled paper!'"
   },
   "version": "0.0.0",
   "dependencies": {
     "@icons-pack/svelte-simple-icons": "^7.2.0",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.55.0",
+    "@sveltejs/kit": "^2.57.0",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@tailwindcss/vite": "^4.2.2",
     "@tsconfig/svelte": "^5.0.8",
     "lucide-svelte": "^1.0.1",
-    "svelte": "^5.55.0",
-    "svelte-check": "^4.4.5",
+    "svelte": "^5.55.2",
+    "svelte-check": "^4.4.6",
     "tailwindcss": "^4.2.2",
     "typescript": "~6.0.2",
-    "vite": "^8.0.3"
+    "vite": "^8.0.7"
   },
   "private": true,
   "type": "module"

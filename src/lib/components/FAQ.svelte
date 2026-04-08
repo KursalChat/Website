@@ -16,7 +16,7 @@
     {
       question: "What's the business model?",
       answer:
-        'Nothing! Kursal isn\'t designed to make money as it is a personal project. We just wanted to experiment with decentralization and Rust and it is amazing! So nope, free forever! If you want to financially support us, you could check out <a href="https://ko-fi.com/openvoxel" target="_blank" class="underline">our Ko-Fi</a>.',
+        'Nothing! Kursal isn\'t designed to make money as it is a personal project. We just wanted to experiment with decentralization and Rust and it is amazing! So nope, free forever! If you want to financially support us, you could check out <a href="https://ko-fi.com/kursal" target="_blank" class="underline">our Ko-Fi</a>.',
     },
     {
       question: "What data do you collect?",
