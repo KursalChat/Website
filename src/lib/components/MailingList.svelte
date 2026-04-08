@@ -57,9 +57,7 @@
       class="inline-flex items-center gap-2 bg-kursal-700 px-4 py-2 rounded-full mb-6"
     >
       <Mail size={18} class="text-accent-400" />
-      <span class="text-kursal-200 text-sm font-medium"
-        >{EXPECTEDTIME}</span
-      >
+      <span class="text-kursal-200 text-sm font-medium">{EXPECTEDTIME}</span>
     </div>
 
     <h2 class="text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
@@ -70,6 +68,21 @@
       Get notified when Kursal launches it's first beta. As soon as this
       notification is sent, your email will be removed from our records.
     </p>
+
+    <div
+      class="bg-accent-500/10 border border-accent-500/30 rounded-xl p-4 mb-8 max-w-xl mx-auto"
+    >
+      <p class="text-accent-300 text-sm">
+        <strong class="text-accent-400">Prototype Launched!</strong> We just
+        released a very early-stage prototype. It is highly experimental and
+        very buggy, but you can
+        <a
+          href="/download"
+          class="underline font-medium hover:text-accent-200 transition-colors"
+          >download it here</a
+        >.
+      </p>
+    </div>
 
     {#if status === "success"}
       <div

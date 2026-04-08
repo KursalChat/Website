@@ -1,33 +1,94 @@
 <script lang="ts">
-  import { Monitor, Clock, Bell } from "lucide-svelte";
+  import {
+    Monitor,
+    Clock,
+    Bell,
+    TriangleAlert,
+    Download,
+    ChevronDown,
+    ExternalLink,
+  } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { SiApple, SiLinux } from "@icons-pack/svelte-simple-icons";
-  import { EXPECTEDTIME, SITE_ICON, SITE_URL } from "$lib/const";
+  import { SiApple, SiLinux, SiAndroid } from "@icons-pack/svelte-simple-icons";
+  import {
+    EXPECTEDTIME,
+    SITE_ICON,
+    SITE_URL,
+    DOWNLOAD_PREFIX,
+  } from "$lib/const";
+
+  type OSId = "mac" | "windows" | "linux" | "android";
 
   const platforms = [
     {
-      id: "mac",
+      id: "mac" as OSId,
       name: "macOS",
       icon: SiApple,
-      description: "For macOS 11 (Big Sur) and later",
+      description: "For macOS 14 and later",
+      links: [
+        { label: "Apple Silicon (DMG)", url: `${DOWNLOAD_PREFIX}/Kursal.dmg` },
+        { label: "Intel (DMG)", url: `${DOWNLOAD_PREFIX}/Kursal_x64.dmg` },
+      ],
     },
     {
-      id: "windows",
+      id: "windows" as OSId,
       name: "Windows",
       icon: Monitor, // thanks microsoft https://github.com/simple-icons/simple-icons/pull/10019
       description: "For Windows 10 and later",
+      links: [
+        {
+          label: "Setup (x64)",
+          url: `${DOWNLOAD_PREFIX}/Kursal_x64-setup.exe`,
+        },
+        { label: "Standalone (x64)", url: `${DOWNLOAD_PREFIX}/Kursal_x64.exe` },
+      ],
     },
     {
-      id: "linux",
+      id: "linux" as OSId,
       name: "Linux",
       icon: SiLinux,
-      description: "AppImage for most distributions",
+      description: "Various distributions",
+      links: [
+        { label: "AppImage", url: `${DOWNLOAD_PREFIX}/Kursal_x64.AppImage` },
+        { label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_x64.deb` },
+        { label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_x64.rpm` },
+        { label: "AppImage", url: `${DOWNLOAD_PREFIX}/Kursal_arm.AppImage` },
+        { label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_arm.deb` },
+        { label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_arm.rpm` },
+      ],
+    },
+    {
+      id: "android" as OSId,
+      name: "Android",
+      icon: SiAndroid,
+      description: "Requires Android 7.0 or later",
+      links: [{ label: "APK", url: `${DOWNLOAD_PREFIX}/Kursal.apk` }],
     },
   ];
 
+  let openDropdown = $state<string | null>(null);
+
+  function toggleDropdown(id: string, event: MouseEvent) {
+    event.stopPropagation();
+    if (openDropdown === id) {
+      openDropdown = null;
+    } else {
+      openDropdown = id;
+    }
+  }
+
+  function handleOutsideClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest(".linux-dropdown-container")) {
+      openDropdown = null;
+    }
+  }
+
   const pageUrl = `${SITE_URL}/download`;
 </script>
+
+<svelte:window onclick={handleOutsideClick} />
 
 <svelte:head>
   <title>Download Kursal | Private Messaging App</title>
@@ -73,42 +134,17 @@
         Download Kursal
       </h1>
       <p class="text-lg text-kursal-50 max-w-xl mx-auto">
-        Oh, you're here early! We're working as hard as we can on Kursal. Sign
-        up to be notified when it's ready.
+        Kursal is currently in a <strong>very early prototype stage</strong>.
+        Expect bugs, missing features, and instability! Download below or sign
+        up for a future stable release.
       </p>
     </div>
 
-    <div class="grid gap-6 opacity-60">
-      {#each platforms as platform}
-        <div
-          class="flex items-center gap-6 p-6 bg-kursal-800 rounded-2xl border border-kursal-700"
-        >
-          <div
-            class="w-16 h-16 bg-kursal-700 rounded-xl flex items-center justify-center"
-          >
-            <platform.icon size={32} class="text-kursal-400" />
-          </div>
-
-          <div class="flex-1">
-            <h2 class="text-xl font-semibold text-white">
-              {platform.name}
-            </h2>
-            <p class="text-kursal-100 text-sm mt-1">{platform.description}</p>
-          </div>
-
-          <div class="flex items-center gap-2 text-kursal-500">
-            <Clock size={20} />
-            <span class="font-medium">Soon</span>
-          </div>
-        </div>
-      {/each}
-    </div>
-
     <div
-      class="mt-12 p-8 bg-kursal-800 rounded-2xl border border-accent-500/30 text-center"
+      class="mb-12 p-8 bg-kursal-800 rounded-2xl border border-accent-500/30 text-center"
     >
       <h3 class="text-xl font-semibold text-white mb-2">
-        Get notified when we launch
+        Get notified when beta launches
       </h3>
       <p class="text-kursal-50 mb-6">
         Be the first to download Kursal when it's ready.
@@ -120,6 +156,148 @@
         <Bell size={18} />
         Sign up for updates
       </a>
+    </div>
+
+    <div
+      class="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex gap-3 items-start md:items-center"
+    >
+      <TriangleAlert class="text-red-400 shrink-0 mt-0.5 md:mt-0" size={20} />
+      <p class="text-red-200 text-sm leading-relaxed">
+        <strong>Early Prototype:</strong> This release is highly experimental
+        and meant for testing purposes. You will encounter bugs, missing
+        features, and potential data loss. Please report any issues on the
+        <a
+          href="https://github.com/KursalChat/Kursal-Prototype/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 underline hover:text-red-100 font-medium transition-colors"
+          >prototype GitHub <ExternalLink size={12} class="opacity-80" /></a
+        >.
+      </p>
+    </div>
+
+    <div class="grid gap-6">
+      {#each platforms as platform}
+        <div
+          class="flex flex-col md:flex-row md:items-center gap-6 p-6 bg-kursal-800 rounded-2xl border border-kursal-700 hover:border-accent-500/50 transition-colors"
+        >
+          <div class="flex items-center gap-6 flex-1">
+            <div
+              class="w-16 h-16 bg-kursal-700 rounded-xl flex items-center justify-center shrink-0"
+            >
+              <platform.icon size={32} class="text-kursal-400" />
+            </div>
+
+            <div>
+              <h2 class="text-xl font-semibold text-white">
+                {platform.name}
+              </h2>
+              <p class="text-kursal-100 text-sm mt-1">{platform.description}</p>
+            </div>
+          </div>
+
+          <div class="w-full md:w-auto relative">
+            {#if platform.id === "linux"}
+              <div class="flex flex-col gap-3 items-stretch md:items-end">
+                <div class="relative w-full md:w-auto linux-dropdown-container">
+                  <button
+                    onclick={(e) => toggleDropdown("linux-x64", e)}
+                    class="w-full md:w-[220px] inline-flex items-center justify-between gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
+                  >
+                    <div class="flex items-center justify-center w-full gap-2">
+                      <Download
+                        size={14}
+                        class="text-accent-400 text-opacity-80 absolute left-4"
+                      />
+                      x64 / AMD64
+                    </div>
+                    <ChevronDown
+                      size={14}
+                      class="text-kursal-400 transition-transform {openDropdown ===
+                      'linux-x64'
+                        ? 'rotate-180'
+                        : ''} absolute right-4"
+                    />
+                  </button>
+                  {#if openDropdown === "linux-x64"}
+                    <div
+                      class="absolute right-0 mt-2 w-full md:w-[220px] bg-kursal-800 border border-kursal-600 rounded-lg shadow-xl overflow-hidden z-10"
+                    >
+                      {#each platform.links.slice(0, 3) as link}
+                        <a
+                          href={link.url}
+                          class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                        >
+                          <Download
+                            size={14}
+                            class="text-accent-400 text-opacity-80 absolute left-4"
+                          />
+                          {link.label}
+                        </a>
+                      {/each}
+                    </div>
+                  {/if}
+                </div>
+
+                <div class="relative w-full md:w-auto linux-dropdown-container">
+                  <button
+                    onclick={(e) => toggleDropdown("linux-arm64", e)}
+                    class="w-full md:w-[220px] inline-flex items-center justify-between gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
+                  >
+                    <div class="flex items-center justify-center w-full gap-2">
+                      <Download
+                        size={14}
+                        class="text-accent-400 text-opacity-80 absolute left-4"
+                      />
+                      arm64
+                    </div>
+                    <ChevronDown
+                      size={14}
+                      class="text-kursal-400 transition-transform {openDropdown ===
+                      'linux-arm64'
+                        ? 'rotate-180'
+                        : ''} absolute right-4"
+                    />
+                  </button>
+                  {#if openDropdown === "linux-arm64"}
+                    <div
+                      class="absolute right-0 mt-2 w-full md:w-[220px] bg-kursal-800 border border-kursal-600 rounded-lg shadow-xl overflow-hidden z-10"
+                    >
+                      {#each platform.links.slice(3, 6) as link}
+                        <a
+                          href={link.url}
+                          class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                        >
+                          <Download
+                            size={14}
+                            class="text-accent-400 text-opacity-80 absolute left-4"
+                          />
+                          {link.label}
+                        </a>
+                      {/each}
+                    </div>
+                  {/if}
+                </div>
+              </div>
+            {:else}
+              <div class="flex flex-col gap-3 items-stretch md:items-end">
+                {#each platform.links as link}
+                  <a
+                    href={link.url}
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors w-full md:w-[220px]"
+                  >
+                    <Download
+                      size={14}
+                      class="text-accent-400 text-opacity-80"
+                    />
+                    {link.label}
+                  </a>
+                {/each}
+              </div>
+            {/if}
+          </div>
+        </div>
+      {/each}
     </div>
   </div>
 </main>
