@@ -30,6 +30,13 @@
     if (!file) return;
     fileURL = file.url;
 
+    window.plausible?.("File Download", {
+      props: {
+        platform: plat.name,
+        file: fileKey,
+      },
+    });
+
     window.location.href = fileURL;
   });
 </script>
