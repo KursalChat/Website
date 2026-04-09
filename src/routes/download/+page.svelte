@@ -1,6 +1,5 @@
 <script lang="ts">
   import {
-    Monitor,
     Clock,
     Bell,
     TriangleAlert,
@@ -10,62 +9,8 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { SiApple, SiLinux, SiAndroid } from "@icons-pack/svelte-simple-icons";
-  import {
-    EXPECTEDTIME,
-    SITE_ICON,
-    SITE_URL,
-    DOWNLOAD_PREFIX,
-  } from "$lib/const";
-
-  type OSId = "mac" | "windows" | "linux" | "android";
-
-  const platforms = [
-    {
-      id: "mac" as OSId,
-      name: "macOS",
-      icon: SiApple,
-      description: "For macOS 14 and later",
-      links: [
-        { label: "Apple Silicon (DMG)", url: `${DOWNLOAD_PREFIX}/Kursal.dmg` },
-        { label: "Intel (DMG)", url: `${DOWNLOAD_PREFIX}/Kursal_x64.dmg` },
-      ],
-    },
-    {
-      id: "windows" as OSId,
-      name: "Windows",
-      icon: Monitor, // thanks microsoft https://github.com/simple-icons/simple-icons/pull/10019
-      description: "For Windows 10 and later",
-      links: [
-        {
-          label: "Setup (x64)",
-          url: `${DOWNLOAD_PREFIX}/Kursal_x64-setup.exe`,
-        },
-        { label: "Standalone (x64)", url: `${DOWNLOAD_PREFIX}/Kursal_x64.exe` },
-      ],
-    },
-    {
-      id: "linux" as OSId,
-      name: "Linux",
-      icon: SiLinux,
-      description: "Various distributions",
-      links: [
-        { label: "AppImage", url: `${DOWNLOAD_PREFIX}/Kursal_x64.AppImage` },
-        { label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_x64.deb` },
-        { label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_x64.rpm` },
-        { label: "AppImage", url: `${DOWNLOAD_PREFIX}/Kursal_arm.AppImage` },
-        { label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_arm.deb` },
-        { label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_arm.rpm` },
-      ],
-    },
-    {
-      id: "android" as OSId,
-      name: "Android",
-      icon: SiAndroid,
-      description: "Requires Android 7.0 or later",
-      links: [{ label: "APK", url: `${DOWNLOAD_PREFIX}/Kursal.apk` }],
-    },
-  ];
+  import { EXPECTEDTIME, SITE_ICON, SITE_URL } from "$lib/const";
+  import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
 
@@ -83,6 +28,20 @@
     if (!target.closest(".linux-dropdown-container")) {
       openDropdown = null;
     }
+  }
+
+  function handleDownloadClick(
+    platformId: OSId,
+    linkId: string,
+    event: MouseEvent,
+  ) {
+    event.preventDefault();
+
+    const params = new URLSearchParams({
+      platform: platformId,
+      id: linkId,
+    });
+    window.location.href = `/thanks?${params.toString()}`;
   }
 
   const pageUrl = `${SITE_URL}/download`;
@@ -226,6 +185,8 @@
                       {#each platform.links.slice(0, 3) as link}
                         <a
                           href={link.url}
+                          onclick={(e) =>
+                            handleDownloadClick(platform.id, link.id, e)}
                           class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
@@ -266,6 +227,8 @@
                       {#each platform.links.slice(3, 6) as link}
                         <a
                           href={link.url}
+                          onclick={(e) =>
+                            handleDownloadClick(platform.id, link.id, e)}
                           class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
@@ -284,6 +247,8 @@
                 {#each platform.links as link}
                   <a
                     href={link.url}
+                    onclick={(e) =>
+                      handleDownloadClick(platform.id, link.id, e)}
                     class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors w-full md:w-[220px]"
                   >
                     <Download

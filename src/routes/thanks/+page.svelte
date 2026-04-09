@@ -1,54 +1,36 @@
 <script lang="ts">
   import {
     CircleCheckBig,
-    BookOpen,
-    MessageSquare,
     ArrowLeft,
+    BookOpen,
+    HandMetal,
   } from "lucide-svelte";
   import { onMount } from "svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { repository, PAPER_URL, SITE_URL } from "$lib/const";
+  import { PAPER_URL, repository, SITE_URL } from "$lib/const";
+  import { SiGithub } from "@icons-pack/svelte-simple-icons";
+  import { platforms } from "$lib/download";
 
   const pageUrl = `${SITE_URL}/thanks`;
 
-  interface PlatformInfo {
-    name: string;
-    downloadUrl: string | null;
-  }
-
-  const platforms: Record<string, PlatformInfo> = {
-    mac: { name: "macOS", downloadUrl: null },
-    windows: { name: "Windows", downloadUrl: null },
-    linux: { name: "Linux", downloadUrl: null },
-  };
-
-  function getPlatformFromUrl(): PlatformInfo | null {
-    if (typeof window === "undefined") return null;
-
-    const params = new URLSearchParams(window.location.search);
-    const platformKey = params.get("platform")?.toLowerCase();
-
-    if (!platformKey || !(platformKey in platforms)) return null;
-
-    return platforms[platformKey];
-  }
-
-  function triggerDownload(url: string) {
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  const platform = getPlatformFromUrl();
+  let platform = $state<string | null>(null);
+  let fileURL = $state<string | null>(null);
 
   onMount(() => {
-    if (platform?.downloadUrl) {
-      triggerDownload(platform.downloadUrl);
-    }
+    const params = new URLSearchParams(window.location.search);
+    const platformKey = params.get("platform")?.toLowerCase();
+    const fileKey = params.get("id")?.toLowerCase();
+
+    const plat = platforms.find((p) => p.id === platformKey);
+    if (!plat) return;
+    platform = plat.name;
+
+    const file = plat.links.find((l) => l.id === fileKey);
+    if (!file) return;
+    fileURL = file.url;
+
+    window.location.href = fileURL;
   });
 </script>
 
@@ -70,40 +52,27 @@
     </div>
 
     <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-      {#if platform}
-        Thanks for downloading!
-      {:else}
-        Thank you!
-      {/if}
+      Thanks for downloading Kursal
     </h1>
 
     <p class="text-lg text-kursal-50 mb-4">
       {#if platform}
-        Your download for <span class="text-white font-medium"
-          >{platform.name}</span
-        >
-        {#if platform.downloadUrl}
-          should start automatically.
-        {:else}
-          is not yet available.
-        {/if}
+        Your <span class="text-white font-medium">{platform}</span>
+        download should have started.
+
+        <a href={fileURL} class="text-accent-400 hover:underline"
+          >If not, click here</a
+        >.
       {:else}
-        Kursal is coming soon. Stay tuned for updates!
+        Hmm.. Seems you landed on this page with invalid parameters. Go check
+        the download page out and click from there!
       {/if}
     </p>
 
     <p class="text-kursal-100 mb-8">
-      {#if platform?.downloadUrl}
-        If the download doesn't start, <a
-          href={platform.downloadUrl}
-          class="text-accent-400 hover:underline"
-          >click here to download manually</a
-        >.
-      {:else}
-        <a href="/download" class="text-accent-400 hover:underline"
-          >View all available downloads</a
-        >.
-      {/if}
+      <a href="/download" class="text-accent-400 hover:underline"
+        >Wrong download? View all available downloads</a
+      >.
     </p>
 
     <div
@@ -133,23 +102,9 @@
             <span class="text-accent-400 font-semibold">2</span>
           </div>
           <div>
-            <h3 class="text-white font-medium">Create your account</h3>
-            <p class="text-kursal-200 text-sm">
-              Your encryption keys are generated locally on your device.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div
-            class="w-8 h-8 bg-accent-500/20 rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <span class="text-accent-400 font-semibold">3</span>
-          </div>
-          <div>
             <h3 class="text-white font-medium">Start chatting privately</h3>
             <p class="text-kursal-200 text-sm">
-              Share friend codes and enjoy end-to-end encrypted messaging.
+              Enjoy end-to-end encrypted messaging. As simple as that!
             </p>
           </div>
         </div>
@@ -172,8 +127,8 @@
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 bg-kursal-700 hover:bg-kursal-600 text-white px-6 py-3 rounded-xl font-medium transition-colors"
       >
-        <MessageSquare size={18} />
-        Join the Community
+        <SiGithub size={18} />
+        Star us on GitHub
       </a>
     </div>
 
