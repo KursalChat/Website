@@ -37,7 +37,9 @@
       },
     });
 
-    window.location.href = fileURL;
+    setTimeout(() => {
+      window.location.href = fileURL;
+    }, 150);
   });
 </script>
 

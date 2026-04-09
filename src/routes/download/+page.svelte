@@ -185,7 +185,7 @@
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="inline-flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                          class="flex w-full items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
                             size={14}
@@ -225,7 +225,7 @@
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="inline-flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                          class="flex w-full items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
                             size={14}
