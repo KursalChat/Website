@@ -6,6 +6,8 @@
     Download,
     ChevronDown,
     ExternalLink,
+    Copy,
+    Check,
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -13,6 +15,26 @@
   import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
+  let copiedState = $state<Record<string, boolean>>({});
+  let activeTerminalTab = $state<"mac-linux" | "windows">("mac-linux");
+
+  let activeTerminalCmd = $derived(
+    activeTerminalTab === "mac-linux"
+      ? "curl -fsSL https://kursal.chat | bash"
+      : "irm https://kursal.chat | iex",
+  );
+  let activeTerminalPrompt = $derived(
+    activeTerminalTab === "mac-linux" ? "$" : ">",
+  );
+
+  $effect(() => {
+    const ua = window.navigator.userAgent.toLowerCase();
+    if (ua.includes("win")) {
+      activeTerminalTab = "windows";
+    } else {
+      activeTerminalTab = "mac-linux";
+    }
+  });
 
   function toggleDropdown(id: string, event: MouseEvent) {
     event.stopPropagation();
@@ -42,6 +64,14 @@
       id: linkId,
     });
     window.location.href = `/thanks?${params.toString()}`;
+  }
+
+  function handleCopy(text: string, id: string) {
+    navigator.clipboard.writeText(text);
+    copiedState[id] = true;
+    setTimeout(() => {
+      copiedState[id] = false;
+    }, 2000);
   }
 
   const pageUrl = `${SITE_URL}/download`;
@@ -135,7 +165,75 @@
       </p>
     </div>
 
-    <div class="grid gap-6">
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-4">Install via Terminal</h2>
+
+      <div
+        class="bg-kursal-800 rounded-2xl border border-kursal-700 overflow-hidden"
+      >
+        <div class="flex bg-kursal-950/80 border-b border-kursal-700">
+          <button
+            onclick={() => (activeTerminalTab = "mac-linux")}
+            class="px-6 py-4 text-sm font-medium transition-all relative {activeTerminalTab ===
+            'mac-linux'
+              ? 'text-white bg-kursal-800'
+              : 'text-kursal-400 hover:text-kursal-200 hover:bg-kursal-800/50'}"
+          >
+            Mac / Linux
+            {#if activeTerminalTab === "mac-linux"}
+              <div
+                class="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-500"
+              ></div>
+            {/if}
+          </button>
+          <button
+            onclick={() => (activeTerminalTab = "windows")}
+            class="px-6 py-4 text-sm font-medium transition-all relative {activeTerminalTab ===
+            'windows'
+              ? 'text-white bg-kursal-800'
+              : 'text-kursal-400 hover:text-kursal-200 hover:bg-kursal-800/50'}"
+          >
+            Windows
+            {#if activeTerminalTab === "windows"}
+              <div
+                class="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-500"
+              ></div>
+            {/if}
+          </button>
+        </div>
+
+        <div class="p-6">
+          <div
+            class="flex items-center gap-3 bg-black/30 border border-kursal-700/50 rounded-lg p-3"
+          >
+            <code
+              class="text-white text-sm flex-1 font-mono overflow-x-auto whitespace-nowrap"
+            >
+              <span class="text-kursal-400 select-none mr-2"
+                >{activeTerminalPrompt}</span
+              >{activeTerminalCmd}
+            </code>
+            <button
+              onclick={() => handleCopy(activeTerminalCmd, activeTerminalTab)}
+              class="p-2 text-kursal-300 hover:bg-kursal-700 hover:text-white rounded-md transition-colors shrink-0"
+              title="Copy command"
+            >
+              {#if copiedState[activeTerminalTab]}
+                <Check size={16} class="text-green-400" />
+              {:else}
+                <Copy size={16} />
+              {/if}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="text-2xl font-bold text-white">Manual Downloads</h2>
+    </div>
+
+    <div class="grid gap-6 mb-12">
       {#each platforms as platform}
         <div
           class="flex flex-col md:flex-row md:items-center gap-6 p-6 bg-kursal-800 rounded-2xl border border-kursal-700 hover:border-accent-500/50 transition-colors"
