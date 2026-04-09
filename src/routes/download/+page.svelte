@@ -161,15 +161,13 @@
                 <div class="relative w-full md:w-auto linux-dropdown-container">
                   <button
                     onclick={(e) => toggleDropdown("linux-x64", e)}
-                    class="w-full md:w-[220px] inline-flex items-center justify-between gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
+                    class="relative w-full md:w-[220px] inline-flex items-center justify-center gap-2 px-4 py-2 pr-10 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
                   >
-                    <div class="flex items-center justify-center w-full gap-2">
-                      <Download
-                        size={14}
-                        class="text-accent-400 text-opacity-80 absolute left-4"
-                      />
-                      x64 / AMD64
-                    </div>
+                    <Download
+                      size={14}
+                      class="text-accent-400 text-opacity-80 shrink-0"
+                    />
+                    <span>x64 / AMD64</span>
                     <ChevronDown
                       size={14}
                       class="text-kursal-400 transition-transform {openDropdown ===
@@ -187,11 +185,11 @@
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                          class="inline-flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
                             size={14}
-                            class="text-accent-400 text-opacity-80 absolute left-4"
+                            class="text-accent-400 text-opacity-80 shrink-0"
                           />
                           {link.label}
                         </a>
@@ -203,15 +201,13 @@
                 <div class="relative w-full md:w-auto linux-dropdown-container">
                   <button
                     onclick={(e) => toggleDropdown("linux-arm64", e)}
-                    class="w-full md:w-[220px] inline-flex items-center justify-between gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
+                    class="relative w-full md:w-[220px] inline-flex items-center justify-center gap-2 px-4 py-2 pr-10 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-lg text-sm text-kursal-50 font-medium transition-colors"
                   >
-                    <div class="flex items-center justify-center w-full gap-2">
-                      <Download
-                        size={14}
-                        class="text-accent-400 text-opacity-80 absolute left-4"
-                      />
-                      arm64
-                    </div>
+                    <Download
+                      size={14}
+                      class="text-accent-400 text-opacity-80 shrink-0"
+                    />
+                    <span>arm64</span>
                     <ChevronDown
                       size={14}
                       class="text-kursal-400 transition-transform {openDropdown ===
@@ -229,11 +225,11 @@
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
+                          class="inline-flex items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 text-sm text-kursal-50 transition-colors"
                         >
                           <Download
                             size={14}
-                            class="text-accent-400 text-opacity-80 absolute left-4"
+                            class="text-accent-400 text-opacity-80 shrink-0"
                           />
                           {link.label}
                         </a>
