@@ -166,7 +166,9 @@
     </div>
 
     <div class="mb-12">
-      <h2 class="text-2xl font-bold text-white mb-4">Install via Terminal</h2>
+      <h2 class="text-2xl font-bold text-white mb-4">
+        Install via Terminal (Recommended)
+      </h2>
 
       <div
         class="bg-kursal-800 rounded-2xl border border-kursal-700 overflow-hidden"
@@ -231,6 +233,10 @@
 
     <div class="mb-6 flex items-center justify-between">
       <h2 class="text-2xl font-bold text-white">Manual Downloads</h2>
+      <p class="text-kursal-50 mb-6">
+        Because Kursal is not signed with a paid certificate, you will most
+        likely have to bypass your system protections to open Kursal.
+      </p>
     </div>
 
     <div class="grid gap-6 mb-12">
