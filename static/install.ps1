@@ -42,7 +42,6 @@ New-Item -ItemType Directory -Path $TMP_DIR | Out-Null
 $TMP_FILE = Join-Path $TMP_DIR $FILENAME
 
 dim "▸ Downloading $FILENAME"
-dim "  $DOWNLOAD_URL"
 
 try {
   $prev = $ProgressPreference
@@ -70,5 +69,5 @@ Write-Host "  Kursal installed successfully!" -ForegroundColor Green
 Write-Host ""
 dim "You can now launch Kursal from the Start Menu."
 Write-Host ""
-Write-Host "  Having issues? https://kursal.chat/support" -ForegroundColor DarkGray
+Write-Host "  Having issues? https://kursal.chat/issues" -ForegroundColor DarkGray
 Write-Host ""

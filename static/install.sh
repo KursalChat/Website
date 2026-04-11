@@ -87,7 +87,7 @@ TMP_DIR="$(mktemp -d)"
 TMP_FILE="$TMP_DIR/$FILENAME"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
-print_dim "▸ Downloading $FILENAME ($DOWNLOAD_URL)"
+print_dim "▸ Downloading $FILENAME"
 
 curl -fSL --progress-bar "$DOWNLOAD_URL" -o "$TMP_FILE" || {
   print_err "Download failed — check your connection or visit https://kursal.chat/download"
@@ -161,4 +161,4 @@ else
   printf "    ${bold}kursal${r}\n"
 fi
 
-printf "\n  ${dim}Having issues? https://kursal.chat/support${r}\n\n"
+printf "\n  ${dim}Having issues? https://kursal.chat/issues${r}\n\n"

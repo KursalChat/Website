@@ -231,9 +231,9 @@
       </div>
     </div>
 
-    <div class="mb-6 flex items-center justify-between">
+    <div class="mb-6 flex flex-col gap-3">
       <h2 class="text-2xl font-bold text-white">Manual Downloads</h2>
-      <p class="text-kursal-50 mb-6">
+      <p class="text-kursal-50">
         Because Kursal is not signed with a paid certificate, you will most
         likely have to bypass your system protections to open Kursal.
       </p>
