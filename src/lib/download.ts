@@ -45,7 +45,7 @@ export const platforms = [
     id: "linux" as OSId,
     name: "Linux",
     icon: SiLinux,
-    description: "Various distributions",
+    description: "Various distributions (does not work on Arch Linux yet)",
     links: [
       {
         id: "appimage_x64",

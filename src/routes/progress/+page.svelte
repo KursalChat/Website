@@ -12,6 +12,7 @@
     Users,
     Radio,
     Keyboard,
+    Rocket,
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -71,14 +72,20 @@
     {
       title: "Interface",
       description: "Designing and implementing the application interface.",
-      status: "in-progress",
+      status: "completed",
       icon: Monitor,
     },
     {
       title: "Local API Server",
       description: "Interact with the Kursal app via a built-in API.",
-      status: "future",
+      status: "in-progress",
       icon: Keyboard,
+    },
+    {
+      title: "First Public Release",
+      description: "First stable release of Kursal!",
+      status: "in-progress",
+      icon: Rocket,
     },
     {
       title: "Groups",

@@ -38,8 +38,8 @@
   ])
 ]
 
-*Version*: 1.1 \
-*Date*: April 13, 2026 \
+*Version*: 1.2 \
+*Date*: April 19, 2026 \
 *Website*: https://kursal.chat/
 
 = Introduction
@@ -66,11 +66,11 @@ Alice generates a one-time password (referred to as OTP) composed of 8 random wo
 Exchanging individual one-time passwords can be time-consuming. To simplify long-term contact management, Alice creates an object containing her peer ID, an initial PQXDH payload @signal-pqxdh, an ephemeral public key, a public Dilithium-5 @crystals-dilithium signing key as well as public addresses to reach Alice (direct IP or via relays). The PQXDH payload does not contain a one-time pre-key as this payload can be used multiple times by different users. The ephemeral key is kept in cache by Alice and deleted once the Long-Term Code (referred to as LTC) is renewed or invalidated. This object can then be encoded into a ".kursal" file (which is approximately 6 KB in size). After receiving the file, Bob decodes this object and completes the PQXDH protocol by sending the PQXDH payload, his public signing key and his public listening addresses to Alice. They can initiate a Double Ratchet @signal-doubleratchet extended by the ML-KEM Braid Protocol @signal-mlkembraid as described in @otp.
 
 == Nearby Share
-The Nearby Share process allows devices on the same local network to discover each other via multicast DNS (mDNS). To protect user privacy and prevent unsolicited key exchanges, this is a two step process:
+The Nearby Share process allows devices to discover each other over the same local network via multicast DNS (mDNS) or via Bluetooth (BLE). To protect user privacy and prevent unsolicited key exchanges, this is a two-step process:
 
-First, the discovery phase: devices broadcast a beacon containing a randomly generated ephemeral "adjective-animal" username (e.g., "Orange Mouse"). Users can identify each other using these temporary names.
+First, the discovery phase: devices broadcast a beacon containing a randomly generated, ephemeral "adjective-animal" username (e.g., "Orange Mouse"). Users can identify each other using these temporary names.
 
-Second, the handshake phase: one user initiates a connection, and the other must explicitly accept the request prompt. After mutual consent, the public keys and initial PQXDH payloads @signal-pqxdh are exchanged. This process could be extended with Bluetooth, but is not implemented in our first version of Kursal.
+Second, the handshake phase: one user initiates a connection, and the other must explicitly accept the request. After mutual consent, the public keys and initial PQXDH payloads @signal-pqxdh are exchanged. Both mDNS and Bluetooth are implemented in Kursal.
 
 == Security Code <security_code>
 Each security code is unique to each contact and should be verified as soon as the communication is established. It should match on both sides and if not, it very likely means a man-in-the-middle attack is happening. Security codes should *not* be verified by sending them over the chat because in the case of a man-in-the-middle attack, the attacker could impersonate this code as well.
