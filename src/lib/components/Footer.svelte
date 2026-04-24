@@ -16,6 +16,14 @@
           Peer-to-peer, end-to-end encrypted messaging. Your conversations
           belong to you, not to servers.
         </p>
+        <div class="mt-3">
+          <a
+            href={"mailto:" + email}
+            class="text-kursal-300 hover:text-kursal-50 transition-colors"
+          >
+            {email}
+          </a>
+        </div>
       </div>
 
       <div>

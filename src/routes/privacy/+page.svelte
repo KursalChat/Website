@@ -175,8 +175,8 @@
                 href="https://plausible.io/"
                 target="_blank"
                 class="underline">Plausible</a
-              >, a privacy-friendly tracking platform (which will be self-hosted
-              in a near future).
+              >, a privacy-friendly tracking platform, which is self-hosted in
+              our case.
               <br /><br />
               If you sign up for our mailing list, your email is stored solely for
               the purpose of sending you updates. It is self-hosted and stored in
