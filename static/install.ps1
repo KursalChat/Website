@@ -8,15 +8,15 @@ $ErrorActionPreference = 'Stop'
 
 $KURSAL_BASE_URL = "https://app.kursal.chat"
 
-function ok($msg)   { Write-Host "  " -NoNewline; Write-Host "✓" -NoNewline -ForegroundColor Green;  Write-Host "  $msg" }
-function warn($msg) { Write-Host "  " -NoNewline; Write-Host "⚠" -NoNewline -ForegroundColor Yellow; Write-Host "  $msg" }
-function err($msg)  { Write-Host "  " -NoNewline; Write-Host "✗  $msg" -ForegroundColor Red; exit 1 }
+function ok($msg)   { Write-Host "  " -NoNewline; Write-Host "v" -NoNewline -ForegroundColor Green;  Write-Host "  $msg" }
+function warn($msg) { Write-Host "  " -NoNewline; Write-Host "!" -NoNewline -ForegroundColor Yellow; Write-Host "  $msg" }
+function err($msg)  { Write-Host "  " -NoNewline; Write-Host "x  $msg" -ForegroundColor Red; exit 1 }
 function dim($msg)  { Write-Host "  $msg" -ForegroundColor DarkGray }
 
 Clear-Host
-Write-Host "   _  __                               _ "         -ForegroundColor White
+Write-Host "   _  __                               _ "        -ForegroundColor White
 Write-Host "  | |/ /  _   _   _ __   ___    __ _  | |"        -ForegroundColor White
-Write-Host "  | ' /  | | | | | '__| / __|  / _` | | |"        -ForegroundColor White
+Write-Host "  | ' /  | | | | | '__| / __|  / _' | | |"        -ForegroundColor White
 Write-Host "  | . \  | |_| | | |    \__ \ | (_| | | |"        -ForegroundColor White
 Write-Host "  |_|\_\  \__,_| |_|    |___/  \__,_| |_|"        -ForegroundColor White
 Write-Host ""
@@ -41,7 +41,7 @@ $TMP_DIR = Join-Path $env:TEMP ("kursal-" + [System.IO.Path]::GetRandomFileName(
 New-Item -ItemType Directory -Path $TMP_DIR | Out-Null
 $TMP_FILE = Join-Path $TMP_DIR $FILENAME
 
-dim "▸ Downloading $FILENAME"
+dim "> Downloading $FILENAME"
 
 try {
   $prev = $ProgressPreference
@@ -53,7 +53,7 @@ try {
 }
 
 ok "Download complete"
-dim "▸ Running installer"
+dim "> Running installer"
 
 $proc = Start-Process -FilePath $TMP_FILE -ArgumentList "/S" -Wait -PassThru
 
