@@ -16,7 +16,7 @@ function dim($msg)  { Write-Host "  $msg" -ForegroundColor DarkGray }
 Clear-Host
 Write-Host "   _  __                               _ "        -ForegroundColor White
 Write-Host "  | |/ /  _   _   _ __   ___    __ _  | |"        -ForegroundColor White
-Write-Host "  | ' /  | | | | | '__| / __|  / _' | | |"        -ForegroundColor White
+Write-Host "  | ' /  | | | | | '__| / __|  / _  | | |"        -ForegroundColor White
 Write-Host "  | . \  | |_| | | |    \__ \ | (_| | | |"        -ForegroundColor White
 Write-Host "  |_|\_\  \__,_| |_|    |___/  \__,_| |_|"        -ForegroundColor White
 Write-Host ""

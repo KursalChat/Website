@@ -36,7 +36,7 @@ print_dim()  { printf "  ${dim}%s${r}\n" "$1"; }
 printf "\n"
 printf "  ${bold} _  __                               _ ${r}\n"
 printf "  ${bold}| |/ /  _   _   _ __   ___    __ _  | |${r}\n"
-printf "  ${bold}| ' /  | | | | | '__| / __|  / _\` | | |${r}\n"
+printf "  ${bold}| ' /  | | | | | '__| / __|  / _  | | |${r}\n"
 printf "  ${bold}| . \\  | |_| | | |    \\__ \\ | (_| | | |${r}\n"
 printf "  ${bold}|_|\\_\\  \\__,_| |_|    |___/  \\__,_| |_|${r}\n"
 printf "\n"
