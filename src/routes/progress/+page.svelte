@@ -13,6 +13,7 @@
     Radio,
     Keyboard,
     Rocket,
+    MessageCircle,
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -70,16 +71,24 @@
       icon: Keyboard,
     },
     {
+      title: "Local API Server",
+      description: "Interact with the Kursal app via a built-in API.",
+      status: "completed",
+      date: "May 1st, 2026",
+      icon: Keyboard,
+    },
+    {
       title: "Interface",
       description: "Designing and implementing the application interface.",
       status: "completed",
+      date: "May 3rd, 2026",
       icon: Monitor,
     },
     {
-      title: "Local API Server",
-      description: "Interact with the Kursal app via a built-in API.",
+      title: "Offline messaging",
+      description: "Send and receive messages when contacts are offline.",
       status: "in-progress",
-      icon: Keyboard,
+      icon: MessageCircle,
     },
     {
       title: "First Public Release",
