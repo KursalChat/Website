@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Kursal API",
-    "description": "",
+    "description": "An API for interacting with Kursal. You can enable the API Server in your app in \"Settings > Advanced > Local API Server > Enable.\"",
     "contact": {
       "name": "Kodeur_Kubik",
       "email": "kubik@kursal.chat"
@@ -11,7 +11,7 @@
       "name": "AGPL-3.0-only",
       "identifier": "AGPL-3.0-only"
     },
-    "version": "0.0.1-alpha.17"
+    "version": "0.0.1-alpha.18"
   },
   "paths": {
     "/contact/{contact_id}": {
@@ -91,7 +91,31 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Blocked contact"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/contact/{contact_id}/profile": {
@@ -180,7 +204,31 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Unblocked contact"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/contacts": {
@@ -266,6 +314,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid file path",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
           }
         }
       }
@@ -309,6 +387,36 @@
         "responses": {
           "200": {
             "description": "Accepted file"
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
           }
         }
       }
@@ -331,6 +439,26 @@
                     "format": "int32",
                     "minimum": 0
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
                 }
               }
             }
@@ -366,6 +494,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid LTC payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
                 }
               }
             }
@@ -411,7 +569,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Sent message",
+            "description": "Got messages",
             "content": {
               "application/json": {
                 "schema": {
@@ -419,6 +577,26 @@
                   "items": {
                     "$ref": "#/components/schemas/MessageResponse"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
                 }
               }
             }
@@ -458,6 +636,26 @@
               "text/plain": {
                 "schema": {
                   "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
                 }
               }
             }
@@ -753,16 +951,46 @@
           {
             "name": "method",
             "in": "path",
-            "description": "Connection method (bluetooth or mdns)",
+            "description": "Connection method",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/APINearbyConnectMethod"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Connected"
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
           }
         }
       }
@@ -817,6 +1045,26 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
           }
         }
       }
@@ -837,6 +1085,26 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
           }
         }
       }
@@ -854,6 +1122,37 @@
               "text/plain": {
                 "schema": {
                   "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_rotate_peer_id",
+        "responses": {
+          "200": {
+            "description": "Peer ID rotated"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIError"
                 }
               }
             }
@@ -922,19 +1221,6 @@
         }
       }
     },
-    "/self_peer_id": {
-      "delete": {
-        "tags": [
-          "Self"
-        ],
-        "operationId": "api_self_rotate_peer_id",
-        "responses": {
-          "200": {
-            "description": "Peer ID rotated"
-          }
-        }
-      }
-    },
     "/typing/{contact_id}": {
       "post": {
         "tags": [
@@ -962,6 +1248,17 @@
   },
   "components": {
     "schemas": {
+      "APIError": {
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "APIFile": {
         "type": "object",
         "required": [
@@ -1017,6 +1314,13 @@
             "type": "string"
           }
         }
+      },
+      "APINearbyConnectMethod": {
+        "type": "string",
+        "enum": [
+          "mdns",
+          "bluetooth"
+        ]
       },
       "APISelfProfile": {
         "type": "object",
