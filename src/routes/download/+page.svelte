@@ -15,6 +15,7 @@
   import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
+  let latestVersion = $state<string | null>(null);
   let copiedState = $state<Record<string, boolean>>({});
   let activeTerminalTab = $state<"mac-linux" | "windows">("mac-linux");
 
@@ -34,6 +35,8 @@
     } else {
       activeTerminalTab = "mac-linux";
     }
+
+    fetchVersion();
   });
 
   function toggleDropdown(id: string, event: MouseEvent) {
@@ -75,6 +78,15 @@
   }
 
   const pageUrl = `${SITE_URL}/download`;
+
+  async function fetchVersion() {
+    const res = await fetch(
+      "https://api.github.com/repos/KursalChat/Kursal-Prototype/releases/latest",
+    );
+
+    const release = await res.json();
+    latestVersion = release.tag_name;
+  }
 </script>
 
 <svelte:window onclick={handleOutsideClick} />
@@ -121,6 +133,12 @@
 
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
         Download Kursal
+        {#if latestVersion}
+          <span
+            class="inline-flex items-center text-xs font-bold tracking-wide bg-accent-500/10 text-accent-400 border border-accent-500/20 px-2.5 py-0.5 rounded-full align-middle ml-2 -mt-2"
+            >{latestVersion}</span
+          >
+        {/if}
       </h1>
       <p class="text-lg text-kursal-50 max-w-xl mx-auto">
         Kursal is currently in a <strong>very early prototype stage</strong>.

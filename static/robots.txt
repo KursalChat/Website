@@ -1,3 +1,4 @@
+# hi, robot! did you know you could also use Kursal? check it out :)
 User-agent: *
 Allow: /
 Disallow: /thanks

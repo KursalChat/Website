@@ -1,0 +1,1267 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Kursal API",
+    "description": "",
+    "contact": {
+      "name": "Kodeur_Kubik",
+      "email": "kubik@kursal.chat"
+    },
+    "license": {
+      "name": "AGPL-3.0-only",
+      "identifier": "AGPL-3.0-only"
+    },
+    "version": "0.0.1-alpha.17"
+  },
+  "paths": {
+    "/contact/{contact_id}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_get",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetched contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ContactResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_remove",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Removed contact"
+          }
+        }
+      }
+    },
+    "/contact/{contact_id}/block": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_block",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Blocked contact",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/contact/{contact_id}/profile": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_share_profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APISelfProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Shared profile"
+          }
+        }
+      }
+    },
+    "/contact/{contact_id}/security_code": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_security_code",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Got security code"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_security_code_confirm",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated security code"
+          }
+        }
+      }
+    },
+    "/contact/{contact_id}/unblock": {
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_unblock",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Unblocked contact",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contacts",
+        "responses": {
+          "200": {
+            "description": "Got contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContactResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/blocked": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "api_contact_blocked_list",
+        "responses": {
+          "200": {
+            "description": "Listed blocked contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContactResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{contact_id}": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_files_send",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIFile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sent file",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIFileDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{contact_id}/{offer_id}": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_files_accept",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "description": "Offer ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIFile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted file"
+          }
+        }
+      }
+    },
+    "/ltc/export": {
+      "post": {
+        "tags": [
+          "LTC"
+        ],
+        "operationId": "api_ltc_export",
+        "responses": {
+          "200": {
+            "description": "Exported LTC",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ltc/import": {
+      "post": {
+        "tags": [
+          "LTC"
+        ],
+        "operationId": "api_ltc_import",
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Imported LTC",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/{contact_id}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_messages_get",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Message count",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Before a certain message",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sent message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_messages_send",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIMessageSend"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sent message",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/{contact_id}/{message_id}": {
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_message_delete",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Message ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted message"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_message_edit",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Message ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIMessageEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Edited message"
+          }
+        }
+      }
+    },
+    "/messages/{contact_id}/{message_id}/local": {
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_message_delete_local",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Message ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted message locally"
+          }
+        }
+      }
+    },
+    "/messages/{contact_id}/{message_id}/reactions/{emoji}": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_message_reaction_add",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Message ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emoji",
+            "in": "path",
+            "description": "Emoji",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sent reaction"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_message_reaction_remove",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Message ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emoji",
+            "in": "path",
+            "description": "Emoji",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Removed reaction"
+          }
+        }
+      }
+    },
+    "/nearby": {
+      "get": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_get",
+        "responses": {
+          "200": {
+            "description": "Got Nearby peers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NearbyPeerResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nearby/start": {
+      "post": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_start",
+        "responses": {
+          "200": {
+            "description": "Started Nearby",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nearby/stop": {
+      "post": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_stop",
+        "responses": {
+          "200": {
+            "description": "Stopped Nearby"
+          }
+        }
+      }
+    },
+    "/nearby/{peer_id}/accept": {
+      "post": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_accept",
+        "parameters": [
+          {
+            "name": "peer_id",
+            "in": "path",
+            "description": "Peer ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Accepted Nearby connection"
+          }
+        }
+      }
+    },
+    "/nearby/{peer_id}/connect/{method}": {
+      "post": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_connect",
+        "parameters": [
+          {
+            "name": "peer_id",
+            "in": "path",
+            "description": "Peer ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "in": "path",
+            "description": "Connection method (bluetooth or mdns)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Connected"
+          }
+        }
+      }
+    },
+    "/nearby/{peer_id}/decline": {
+      "post": {
+        "tags": [
+          "Nearby"
+        ],
+        "operationId": "api_nearby_decline",
+        "parameters": [
+          {
+            "name": "peer_id",
+            "in": "path",
+            "description": "Peer ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Declined Nearby connection"
+          }
+        }
+      }
+    },
+    "/otp/fetch": {
+      "post": {
+        "tags": [
+          "OTP"
+        ],
+        "operationId": "api_otp_fetch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpResponse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Fetched OTP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otp/generate": {
+      "post": {
+        "tags": [
+          "OTP"
+        ],
+        "operationId": "api_otp_generate",
+        "responses": {
+          "200": {
+            "description": "Generated OTP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/self/peer_id": {
+      "get": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_get_peer_id",
+        "responses": {
+          "200": {
+            "description": "Peer ID",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/self/profile": {
+      "get": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_get_profile",
+        "responses": {
+          "200": {
+            "description": "User profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APISelfProfile"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_post_profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APISelfProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated"
+          }
+        }
+      }
+    },
+    "/self/user_id": {
+      "get": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_get_user_id",
+        "responses": {
+          "200": {
+            "description": "User ID",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/self_peer_id": {
+      "delete": {
+        "tags": [
+          "Self"
+        ],
+        "operationId": "api_self_rotate_peer_id",
+        "responses": {
+          "200": {
+            "description": "Peer ID rotated"
+          }
+        }
+      }
+    },
+    "/typing/{contact_id}": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "api_typing",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "description": "Contact ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Typing indicator sent"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIFile": {
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "APIFileDetails": {
+        "type": "object",
+        "required": [
+          "name",
+          "size"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          }
+        }
+      },
+      "APIMessageEdit": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "APIMessageSend": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "reply_to": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "APISelfProfile": {
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "properties": {
+          "avatar": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          "username": {
+            "type": "string"
+          }
+        }
+      },
+      "ContactResponse": {
+        "type": "object",
+        "required": [
+          "userId",
+          "displayName",
+          "peerId",
+          "knownAddresses",
+          "verified",
+          "profileShared",
+          "blocked",
+          "createdAt"
+        ],
+        "properties": {
+          "avatarBytes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          "blocked": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "knownAddresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "peerId": {
+            "type": "string"
+          },
+          "profileShared": {
+            "type": "boolean"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FileDetailsDto": {
+        "type": "object",
+        "required": [
+          "filename",
+          "sizeBytes"
+        ],
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          }
+        }
+      },
+      "MessageResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "contactId",
+          "direction",
+          "content",
+          "status",
+          "timestamp",
+          "edited",
+          "reactions"
+        ],
+        "properties": {
+          "contactId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "edited": {
+            "type": "boolean"
+          },
+          "fileDetails": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/FileDetailsDto"
+              }
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReactionResponse"
+            }
+          },
+          "replyTo": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          }
+        }
+      },
+      "NearbyOrigin": {
+        "type": "string",
+        "enum": [
+          "Bluetooth",
+          "mDNS"
+        ]
+      },
+      "NearbyPeerResponse": {
+        "type": "object",
+        "required": [
+          "peerId",
+          "sessionName",
+          "origin"
+        ],
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/NearbyOrigin"
+          },
+          "peerId": {
+            "type": "string"
+          },
+          "sessionName": {
+            "type": "string"
+          }
+        }
+      },
+      "OtpResponse": {
+        "type": "object",
+        "required": [
+          "otp"
+        ],
+        "properties": {
+          "otp": {
+            "type": "string"
+          }
+        }
+      },
+      "ReactionResponse": {
+        "type": "object",
+        "required": [
+          "emoji",
+          "userId"
+        ],
+        "properties": {
+          "emoji": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Self",
+      "description": "Current user identity & profile"
+    },
+    {
+      "name": "OTP",
+      "description": "One-time password operations"
+    },
+    {
+      "name": "LTC",
+      "description": "Long-term credential import/export"
+    },
+    {
+      "name": "Nearby",
+      "description": "Nearby peer discovery & connection"
+    },
+    {
+      "name": "Contacts",
+      "description": "Contact management & blocking"
+    },
+    {
+      "name": "Messages",
+      "description": "Manage messages"
+    }
+  ]
+}

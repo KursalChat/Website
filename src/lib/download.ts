@@ -1,4 +1,9 @@
-import { SiAndroid, SiApple, SiIos, SiLinux } from "@icons-pack/svelte-simple-icons";
+import {
+  SiAndroid,
+  SiApple,
+  SiIos,
+  SiLinux,
+} from "@icons-pack/svelte-simple-icons";
 import { DOWNLOAD_PREFIX } from "./const";
 import { Monitor } from "lucide-svelte";
 

@@ -1,0 +1,8 @@
+# hello, human.
+User-agent: Brain
+Allow: /
+
+Credits:
+- Kodeur_Kubik (https://github.com/KodeurKubik) - coding & paper
+- Arlo (https://github.com/Arlo-real) - paper
+- ChoosingBerry (https://youtube.com/@ChoosingBerry) - Art

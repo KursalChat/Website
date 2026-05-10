@@ -1,5 +1,14 @@
 <script lang="ts">
-  import { FileText, Bell, Shield, Lock, Scale, Menu, X, Activity } from "lucide-svelte";
+  import {
+    FileText,
+    Bell,
+    Shield,
+    Lock,
+    Scale,
+    Menu,
+    X,
+    Activity,
+  } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { scrollTo } from "$lib/util";
   import { repository, PAPER_URL } from "$lib/const";
@@ -40,6 +49,13 @@
 
       <div class="hidden md:flex items-center gap-1">
         <a
+          href="/progress"
+          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
+        >
+          <Activity size={16} />
+          <span>Progress</span>
+        </a>
+        <a
           href="/security"
           class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
         >
@@ -59,13 +75,6 @@
         >
           <Scale size={16} />
           <span>Terms</span>
-        </a>
-        <a
-          href="/progress"
-          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
-        >
-          <Activity size={16} />
-          <span>Progress</span>
         </a>
       </div>
     </div>
@@ -124,6 +133,14 @@
       <div class="max-w-6xl mx-auto px-4 md:px-6 py-3">
         <div class="flex flex-col gap-1">
           <a
+            href="/progress"
+            onclick={closeMobileMenu}
+            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
+          >
+            <Activity size={16} />
+            <span>Progress</span>
+          </a>
+          <a
             href="/security"
             onclick={closeMobileMenu}
             class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
@@ -146,14 +163,6 @@
           >
             <Scale size={16} />
             <span>Terms</span>
-          </a>
-          <a
-            href="/progress"
-            onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
-          >
-            <Activity size={16} />
-            <span>Progress</span>
           </a>
 
           <div class="h-px bg-kursal-700 my-2"></div>
