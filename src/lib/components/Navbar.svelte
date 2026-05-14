@@ -43,7 +43,7 @@
         href="/"
         class="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity"
       >
-        <img src="/icon.png" alt="Kursal" class="w-8 h-8" />
+        <img fetchpriority="high" src="/icon.png" alt="Kursal" class="w-8 h-8" />
         <span class="text-xl font-semibold text-kursal-50">Kursal</span>
       </a>
 

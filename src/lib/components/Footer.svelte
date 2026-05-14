@@ -9,7 +9,7 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="col-span-2 md:col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <img src="/icon.png" alt="Kursal" class="w-8 h-8" />
+          <img fetchpriority="high" src="/icon.png" alt="Kursal" class="w-8 h-8" />
           <span class="text-xl font-semibold text-kursal-50">Kursal Chat</span>
         </div>
         <p class="text-kursal-300 max-w-md">

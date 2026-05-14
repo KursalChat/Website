@@ -228,7 +228,12 @@
       <div
         class="w-20 h-20 bg-accent-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6"
       >
-        <img src="/icon.png" alt="Kursal" class="w-18 h-18" />
+        <img
+          fetchpriority="high"
+          src="/icon.png"
+          alt="Kursal"
+          class="w-18 h-18"
+        />
       </div>
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
         Development Progress

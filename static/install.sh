@@ -116,7 +116,7 @@ case "$INSTALL_METHOD" in
     cp -R "$APP_SRC" "$DEST"
     hdiutil detach -quiet "$MOUNT_POINT" || true
 
-    xattr -d com.apple.quarantine "$DEST" 2>/dev/null || true
+    xattr -dr com.apple.quarantine "$DEST" 2>/dev/null || true
 
     print_ok "Installed to $DEST"
     ;;

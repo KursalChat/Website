@@ -1,6 +1,6 @@
 <script lang="ts">
   import Navbar from "$lib/components/Navbar.svelte";
-  import { SITE_ICON, SITE_URL } from "$lib/const";
+  import { repository, SITE_ICON, SITE_URL } from "$lib/const";
 
   import Hero from "$lib/components/Hero.svelte";
   import EncryptionAnimation from "$lib/components/EncryptionAnimation.svelte";
@@ -18,7 +18,7 @@
     name: "Kursal",
     url: SITE_URL,
     logo: SITE_ICON,
-    sameAs: ["https://github.com/KursalChat/Kursal"],
+    sameAs: [repository],
   };
 
   const websiteSchema = {
