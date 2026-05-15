@@ -86,13 +86,15 @@
     },
     {
       title: "Offline messaging",
-      description: "Send and receive messages when contacts are offline.",
+      description:
+        "Send and receive messages when contacts are offline. Prototype worked the first time on May 13th!!",
       status: "in-progress",
       icon: MessageCircle,
     },
     {
       title: "First Public Release",
-      description: "First stable release of Kursal!",
+      description:
+        "First stable release of Kursal! Planned to be August 20th 2026! Public beta will be available before this date :)",
       status: "in-progress",
       icon: Rocket,
     },
