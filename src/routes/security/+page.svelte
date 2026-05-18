@@ -18,7 +18,6 @@
   import Footer from "$lib/components/Footer.svelte";
   import {
     repository,
-    email,
     PAPER_URL,
     SITE_URL,
     SITE_ICON,
@@ -174,7 +173,7 @@
                 an issue on GitHub:
               </p>
               <a
-                href={repository + "/issues"}
+                href="/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 bg-kursal-700 hover:bg-kursal-600 text-kursal-100 px-4 py-2 rounded-lg transition-colors"
@@ -199,6 +198,8 @@
               <div class="mb-6">
                 <a
                   href="/vulnerability"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-4 py-2 rounded-lg transition-colors"
                 >
                   <Bug size={18} />

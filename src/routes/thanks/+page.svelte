@@ -1,10 +1,5 @@
 <script lang="ts">
-  import {
-    CircleCheckBig,
-    ArrowLeft,
-    BookOpen,
-    HandMetal,
-  } from "lucide-svelte";
+  import { CircleCheckBig, ArrowLeft, BookOpen } from "lucide-svelte";
   import { onMount } from "svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -23,12 +18,12 @@
     const fileKey = params.get("id")?.toLowerCase();
 
     const plat = platforms.find((p) => p.id === platformKey);
-    if (!plat) return;
+    if (!plat || !fileKey) return;
     platform = plat.name;
 
     const file = plat.links.find((l) => l.id === fileKey);
     if (!file) return;
-    fileURL = file.url;
+    fileURL = file?.url;
 
     window.plausible?.("File Download", {
       props: {
@@ -38,7 +33,9 @@
     });
 
     setTimeout(() => {
-      window.location.href = fileURL;
+      if (fileURL) {
+        window.location.href = fileURL;
+      }
     }, 150);
   });
 </script>
