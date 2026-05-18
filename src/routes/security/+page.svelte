@@ -188,38 +188,49 @@
               <h3
                 class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
               >
-                <Mail size={20} class="text-red-400" />
-                Security Vulnerabilities
+                <Shield size={20} class="text-red-400" />
+                Found a Vulnerability?
               </h3>
-              <p class="text-kursal-100 mb-4">
-                For security-sensitive issues that could compromise user privacy
-                or safety, please contact us directly:
+              <p class="text-kursal-100 mb-5">
+                If you've discovered a security issue that might impact user
+                privacy or safety, we'd greatly appreciate your help in
+                reporting it.
               </p>
-              <div
-                class="bg-kursal-900/50 border border-kursal-700 rounded-lg p-4 mb-4"
-              >
-                <a href={"mailto:" + email} class="text-accent-400 font-mono"
-                  >{email}</a
+              <div class="mb-6">
+                <a
+                  href="/vulnerability"
+                  class="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-4 py-2 rounded-lg transition-colors"
                 >
+                  <Bug size={18} />
+                  Submit Vulnerability Report
+                </a>
               </div>
-              <div class="space-y-2">
-                <div class="flex items-center gap-3 text-kursal-50">
-                  <div class="w-1.5 h-1.5 rounded-full bg-accent-500"></div>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3 text-kursal-100 text-sm">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-accent-500 mt-1.5 shrink-0"
+                  ></div>
                   <span
-                    >Include detailed steps to reproduce the vulnerability</span
+                    >Please provide detailed steps so we can reproduce and
+                    verify the issue.</span
                   >
                 </div>
-                <div class="flex items-center gap-3 text-kursal-50">
-                  <div class="w-1.5 h-1.5 rounded-full bg-accent-500"></div>
+                <div class="flex items-start gap-3 text-kursal-100 text-sm">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-accent-500 mt-1.5 shrink-0"
+                  ></div>
                   <span
-                    >Allow 90 days to address the issue before public disclosure</span
+                    >We kindly ask for 90 days to release a fix before public
+                    disclosure.</span
                   >
                 </div>
-                <div class="flex items-center gap-3 text-kursal-50">
-                  <div class="w-1.5 h-1.5 rounded-full bg-accent-500"></div>
+                <div class="flex items-start gap-3 text-kursal-100 text-sm">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-accent-500 mt-1.5 shrink-0"
+                  ></div>
                   <span
-                    >We aim to acknowledge receipt within 48 hours, though
-                    response times may vary as we're a small team</span
+                    >We're a small team, but we'll try our best to acknowledge
+                    your report within 48 hours.</span
                   >
                 </div>
               </div>

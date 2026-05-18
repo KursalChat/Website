@@ -22,7 +22,7 @@
   let activeTerminalCmd = $derived(
     activeTerminalTab === "mac-linux"
       ? "curl -fsSL https://kursal.chat | bash"
-      : "irm https://kursal.chat | iex",
+      : 'powershell -c "irm kursal.chat | iex"',
   );
   let activeTerminalPrompt = $derived(
     activeTerminalTab === "mac-linux" ? "$" : ">",

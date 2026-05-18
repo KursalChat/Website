@@ -1,6 +1,6 @@
 # ──────────────────────────────────────────────
 #  Kursal installer
-#  Usage: irm https://kursal.chat | iex
+#  Usage: powershell -c "irm kursal.chat | iex"
 # ──────────────────────────────────────────────
 
 param()

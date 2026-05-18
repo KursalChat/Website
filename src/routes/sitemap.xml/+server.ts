@@ -4,9 +4,10 @@ export const prerender = true;
 
 const pages = [
   { path: "/", changefreq: "weekly", priority: 1.0 },
+  { path: "/api", changefreq: "weekly", priority: 0.8 },
   { path: "/download", changefreq: "weekly", priority: 0.9 },
-  { path: "/progress", changefreq: "weekly", priority: 0.9 },
   { path: "/privacy", changefreq: "monthly", priority: 0.7 },
+  { path: "/progress", changefreq: "weekly", priority: 0.9 },
   { path: "/security", changefreq: "monthly", priority: 0.7 },
   { path: "/terms", changefreq: "monthly", priority: 0.6 },
 ];

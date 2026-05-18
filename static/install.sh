@@ -53,7 +53,7 @@ case "$OS" in
   Linux)  PLATFORM="linux" ;;
   *)
     print_err "Unsupported OS: $OS"
-    print_dim "On Windows, run: irm https://kursal.chat | iex"
+    print_dim "On Windows, see https://app.kursal.chat"
     exit 1
     ;;
 esac
