@@ -16,12 +16,7 @@
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import {
-    repository,
-    PAPER_URL,
-    SITE_URL,
-    SITE_ICON,
-  } from "$lib/const";
+  import { repository, PAPER_URL, SITE_URL, SITE_ICON } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/security`;
 </script>
@@ -115,16 +110,7 @@
                 class="text-xl font-semibold text-white mb-3 flex items-center gap-2"
               >
                 <RefreshCw size={20} class="text-accent-400" />
-                Sesame
-                <a
-                  href="https://signal.org/docs/specifications/sesame/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-kursal-400 hover:text-accent-400 transition-colors"
-                >
-                  <ExternalLink size={16} />
-                </a>
-                + Double Ratchet
+                Double Ratchet
                 <a
                   href="https://signal.org/docs/specifications/doubleratchet/"
                   target="_blank"
@@ -133,11 +119,19 @@
                 >
                   <ExternalLink size={16} />
                 </a>
+                + ML-KEM Braid
+                <a
+                  href="https://signal.org/docs/specifications/mlkembraid/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-kursal-400 hover:text-accent-400 transition-colors"
+                >
+                  <ExternalLink size={16} />
+                </a>
               </h3>
               <p class="text-kursal-50">
-                All message exchanges use the Sesame algorithm with Double
-                Ratchet, providing both forward secrecy and post-compromise
-                security.
+                All message exchanges use the Double Ratchet algorithm,
+                providing both forward secrecy and post-compromise security.
               </p>
             </div>
           </div>

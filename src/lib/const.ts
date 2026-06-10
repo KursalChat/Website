@@ -1,5 +1,5 @@
 export const email = "hello@kursal.chat";
-export const repository = "https://github.com/KursalChat/Kursal";
+export const repository = "https://kursal.chat/repository";
 export const SITE_URL = "https://kursal.chat";
 export const SITE_ICON = "https://kursal.chat/icon.png";
 
