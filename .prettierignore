@@ -1,0 +1,7 @@
+build
+.svelte-kit
+node_modules
+static
+paper
+*.pdf
+bun.lock

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { Mail, ArrowRight, Check } from "lucide-svelte";
+  import { ArrowRight, Check } from "lucide-svelte";
   import { LISTMONK_LIST_UUID, LISTMONK_URL, EXPECTEDTIME } from "$lib/const";
+  import { reveal } from "$lib/reveal";
 
   let email = $state("");
   let status = $state<"idle" | "loading" | "success" | "error">("idle");
@@ -47,20 +48,16 @@
   }
 </script>
 
-<section id="notify" class="py-16 bg-kursal-900 relative overflow-hidden">
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-accent-500/8 via-transparent to-transparent rounded-full blur-3xl pointer-events-none"
-  ></div>
-
-  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+<section id="notify" class="py-20 bg-kursal-800 border-y border-kursal-700">
+  <div class="max-w-2xl mx-auto px-6 text-center" use:reveal>
     <div
-      class="inline-flex items-center gap-2 bg-kursal-700 px-4 py-2 rounded-full mb-6"
+      class="inline-flex items-center gap-2 font-mono text-sm text-kursal-300 mb-6"
     >
-      <Mail size={18} class="text-accent-400" />
-      <span class="text-kursal-200 text-sm font-medium">{EXPECTEDTIME}</span>
+      <span class="h-2 w-2 rounded-full bg-accent-500"></span>
+      {EXPECTEDTIME}
     </div>
 
-    <h2 class="text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
+    <h2 class="font-mono text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
       One Release, One Email
     </h2>
 
@@ -70,15 +67,17 @@
     </p>
 
     <div
-      class="bg-accent-500/10 border border-accent-500/30 rounded-xl p-4 mb-8 max-w-xl mx-auto"
+      class="bg-accent-500/[0.07] border-l-2 border-accent-500 rounded-sm p-4 mb-8 max-w-xl mx-auto text-left"
     >
-      <p class="text-accent-300 text-sm">
-        <strong class="text-accent-400">Prototype Launched!</strong> We just
-        released a very early-stage prototype. It is highly experimental and
+      <p class="text-kursal-200 text-sm leading-relaxed">
+        <span class="font-mono text-accent-400 font-semibold"
+          >Prototype Launched!</span
+        >
+        We just released a very early-stage prototype. It is highly experimental and
         very buggy, but you can
         <a
           href="/download"
-          class="underline font-medium hover:text-accent-200 transition-colors"
+          class="text-accent-400 underline underline-offset-2 font-medium hover:text-accent-300 transition-colors"
           >download it here</a
         >.
       </p>
@@ -86,13 +85,13 @@
 
     {#if status === "success"}
       <div
-        class="bg-green-900/30 border border-green-700 rounded-xl p-6 max-w-md mx-auto"
+        class="bg-kursal-900 border border-accent-500/40 rounded-sm p-6 max-w-md mx-auto text-left font-mono"
       >
-        <div class="flex items-center justify-center gap-3 text-green-400">
-          <Check size={24} />
+        <div class="flex items-center gap-3 text-accent-400">
+          <Check size={22} />
           <span class="text-lg font-medium">You're on the list!</span>
         </div>
-        <p class="text-green-300/80 mt-2 text-sm">
+        <p class="text-kursal-300 mt-3 text-sm leading-relaxed">
           Please click the confirmation email you've received. Check your spam
           :p
           <br /><br />
@@ -102,41 +101,44 @@
     {:else}
       <form onsubmit={handleSubmit} class="max-w-md mx-auto">
         <div class="flex flex-col sm:flex-row gap-3">
-          <div class="flex-1 relative">
-            <Mail
-              size={18}
-              class="absolute left-4 top-1/2 -translate-y-1/2 text-kursal-400"
-            />
+          <div class="flex-1 relative font-mono">
+            <span
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-accent-500 select-none"
+              aria-hidden="true">&gt;</span
+            >
             <input
               type="email"
               bind:value={email}
-              placeholder="Enter your email"
-              class="w-full pl-11 pr-4 py-3 bg-kursal-700 border border-kursal-600 rounded-xl text-kursal-50 placeholder:text-kursal-400 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              placeholder="enter your email"
+              aria-label="Email address"
+              class="w-full pl-9 pr-4 py-3 bg-kursal-900 border border-kursal-600 rounded-sm text-kursal-50 placeholder:text-kursal-500 focus:outline-none focus:border-accent-500 transition-colors"
               disabled={status === "loading"}
             />
           </div>
           <button
             type="submit"
             disabled={status === "loading"}
-            class="px-6 py-3 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2"
+            class="font-mono px-6 py-3 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-kursal-950 font-semibold rounded-sm transition-colors flex items-center justify-center gap-2"
           >
             {#if status === "loading"}
               <div
-                class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
+                class="w-5 h-5 border-2 border-kursal-950/30 border-t-kursal-950 rounded-full animate-spin"
               ></div>
             {:else}
-              <span>Notify Me</span>
+              <span>[ Notify Me ]</span>
               <ArrowRight size={18} />
             {/if}
           </button>
         </div>
 
         {#if status === "error"}
-          <p class="text-red-400 text-sm mt-2 text-left">{errorMessage}</p>
+          <p class="font-mono text-party-400 text-sm mt-2 text-left">
+            ! {errorMessage}
+          </p>
         {/if}
       </form>
 
-      <p class="text-kursal-400 text-sm mt-4">
+      <p class="font-mono text-kursal-400 text-xs mt-4">
         Unsubscribe anytime via the confirmation email.
       </p>
     {/if}

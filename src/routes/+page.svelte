@@ -70,11 +70,11 @@
 
   <EncryptionAnimation />
 
-  <MailingList />
-
   <DecentralisationAnimation />
 
   <Features />
+
+  <MailingList />
 
   <FAQ />
 

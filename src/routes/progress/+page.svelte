@@ -1,6 +1,5 @@
 <script lang="ts">
   import {
-    ArrowLeft,
     ChevronRight,
     CircleCheckBig,
     LoaderCircle,
@@ -15,8 +14,7 @@
     Rocket,
     MessageCircle,
   } from "lucide-svelte";
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Footer from "$lib/components/Footer.svelte";
+  import DocPage from "$lib/components/DocPage.svelte";
   import { SITE_ICON, SITE_URL } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/progress`;
@@ -145,9 +143,9 @@
   function statusBg(status: Milestone["status"]) {
     switch (status) {
       case "completed":
-        return "bg-green-400/20 border-green-400/40";
+        return "bg-green-400/15 border-green-400/40";
       case "in-progress":
-        return "bg-accent-500/20 border-accent-500/40";
+        return "bg-accent-500/15 border-accent-500/40";
       case "future":
         return "bg-kursal-700/50 border-kursal-600";
     }
@@ -156,7 +154,7 @@
   function lineColor(status: Milestone["status"]) {
     switch (status) {
       case "completed":
-        return "bg-green-400/60";
+        return "bg-green-400/50";
       case "in-progress":
         return "bg-accent-500/40";
       case "future":
@@ -212,172 +210,137 @@
   <meta name="twitter:image" content={SITE_ICON} />
 </svelte:head>
 
-<Navbar />
-
-<main class="min-h-screen pt-24 pb-16 bg-kursal-900">
-  <div class="max-w-3xl mx-auto px-6">
-    <a
-      href="/"
-      onclick={() => window.scrollTo(0, 0)}
-      class="inline-flex items-center gap-2 text-kursal-400 hover:text-kursal-300 transition-colors mb-8"
-    >
-      <ArrowLeft size={18} />
-      Back to home
-    </a>
-
-    <!-- Header -->
-    <div class="text-center mb-14">
-      <div
-        class="w-20 h-20 bg-accent-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6"
+<DocPage
+  file="progress.log"
+  title="Development Progress"
+  stamp="Live"
+  subtitle="Follow along as we build Kursal: from paper to production."
+>
+  <div class="mb-10">
+    <div class="flex justify-between font-mono text-sm text-kursal-300 mb-2">
+      <span>{completedCount} of {totalCount} milestones completed</span>
+      <span class="text-accent-400"
+        >{Math.round((completedCount / totalCount) * 100)}%</span
       >
-        <img
-          fetchpriority="high"
-          src="/icon.png"
-          alt="Kursal"
-          class="w-18 h-18"
-        />
-      </div>
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Development Progress
-      </h1>
-      <p class="text-xl text-kursal-100 max-w-2xl mx-auto">
-        Follow along as we build Kursal: from paper to production.
-      </p>
-
-      <!-- Overall progress bar -->
-      <div class="mt-8 max-w-md mx-auto">
-        <div class="flex justify-between text-sm text-kursal-200 mb-2">
-          <span>{completedCount} of {totalCount} milestones completed</span>
-          <span>{Math.round((completedCount / totalCount) * 100)}%</span>
-        </div>
-        <div class="h-2 bg-kursal-700 rounded-full overflow-hidden">
-          <div
-            class="h-full bg-gradient-to-r from-green-400 to-accent-400 rounded-full transition-all duration-700"
-            style="width: {(completedCount / totalCount) * 100}%"
-          ></div>
-        </div>
-      </div>
     </div>
+    <div class="h-2 bg-kursal-700 overflow-hidden rounded-sm">
+      <div
+        class="h-full bg-gradient-to-r from-green-400 to-accent-400 transition-all duration-700"
+        style="width: {(completedCount / totalCount) * 100}%"
+      ></div>
+    </div>
+  </div>
 
-    <!-- Timeline -->
-    <div class="relative">
-      {#each milestones as milestone, i}
-        <div class="relative flex gap-6 pb-12 last:pb-0">
-          <!-- Timeline line & dot -->
-          <div class="flex flex-col items-center">
-            <div
-              class="w-11 h-11 rounded-full border-2 flex items-center justify-center shrink-0 {statusBg(
-                milestone.status,
-              )}"
-            >
-              {#if milestone.status === "completed"}
-                <CircleCheckBig size={20} class="text-green-400" />
-              {:else if milestone.status === "in-progress"}
-                <LoaderCircle
-                  size={20}
-                  class="text-accent-400 animate-spin"
-                  style="animation-duration: 3s"
-                />
-              {:else}
-                <Circle size={20} class="text-kursal-400" />
-              {/if}
-            </div>
-            {#if i < milestones.length - 1}
-              <div class="w-0.5 grow mt-2 {lineColor(milestone.status)}"></div>
+  <!-- Timeline -->
+  <div class="relative">
+    {#each milestones as milestone, i}
+      <div class="relative flex gap-5 pb-10 last:pb-0">
+        <!-- Timeline marker & line -->
+        <div class="flex flex-col items-center">
+          <div
+            class="w-10 h-10 rounded-sm border-2 flex items-center justify-center shrink-0 {statusBg(
+              milestone.status,
+            )}"
+          >
+            {#if milestone.status === "completed"}
+              <CircleCheckBig size={18} class="text-green-400" />
+            {:else if milestone.status === "in-progress"}
+              <LoaderCircle
+                size={18}
+                class="text-accent-400 animate-spin"
+                style="animation-duration: 3s"
+              />
+            {:else}
+              <Circle size={18} class="text-kursal-400" />
             {/if}
           </div>
+          {#if i < milestones.length - 1}
+            <div class="w-px grow mt-2 {lineColor(milestone.status)}"></div>
+          {/if}
+        </div>
 
-          <!-- Content -->
-          <div class="pt-1.5 pb-2 min-w-0">
-            <div class="flex flex-wrap items-center gap-3 mb-1">
-              <h3
-                class="text-xl font-semibold text-white flex items-center gap-2"
-              >
-                <svelte:component
-                  this={milestone.icon}
-                  size={20}
-                  class={statusColor(milestone.status)}
-                />
-                {milestone.title}
-              </h3>
+        <!-- Content -->
+        <div class="pt-1 pb-2 min-w-0">
+          <div class="flex flex-wrap items-center gap-3 mb-1">
+            <h3
+              class="font-mono text-lg font-semibold text-kursal-50 flex items-center gap-2"
+            >
+              <milestone.icon size={18} class={statusColor(milestone.status)} />
+              {milestone.title}
+            </h3>
+            {#if milestone.status !== "completed"}
               <span
-                class="text-xs font-medium px-2.5 py-0.5 rounded-full {badgeClass(
+                class="font-mono text-xs font-medium px-2 py-0.5 rounded-sm {badgeClass(
                   milestone.status,
                 )}"
               >
                 {badgeLabel(milestone.status)}
               </span>
-            </div>
-
-            {#if milestone.date}
-              <p class="text-sm text-kursal-300 mb-2">{milestone.date}</p>
-            {/if}
-
-            {#if milestone.description}
-              <p class="text-kursal-100 text-sm leading-relaxed">
-                {milestone.description}
-              </p>
-            {/if}
-
-            {#if milestone.subtasks}
-              {@const doneCount = milestone.subtasks.filter(
-                (s) => s.done,
-              ).length}
-              {@const allDone = doneCount === milestone.subtasks.length}
-
-              <details class="mt-4 group" open={!allDone}>
-                <summary
-                  class="list-none cursor-pointer focus:outline-none mb-3"
-                >
-                  <div
-                    class="max-w-xs flex items-center gap-3 group-hover:opacity-80 transition-opacity"
-                  >
-                    <div
-                      class="text-kursal-400 transition-transform duration-200 group-open:rotate-90 shrink-0"
-                    >
-                      <ChevronRight size={18} />
-                    </div>
-                    <div class="flex-1 hover:opacity-100">
-                      <div
-                        class="h-1.5 bg-kursal-700 rounded-full overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-accent-400/70 rounded-full transition-all duration-500"
-                          style="width: {milestone.subtasks.length > 0
-                            ? (doneCount / milestone.subtasks.length) * 100
-                            : 0}%"
-                        ></div>
-                      </div>
-                      <p class="text-xs text-kursal-400 mt-1 font-medium">
-                        {doneCount} / {milestone.subtasks.length} subtasks
-                      </p>
-                    </div>
-                  </div>
-                </summary>
-
-                <div class="space-y-2 mb-2 pl-1">
-                  {#each milestone.subtasks as sub}
-                    <div class="flex items-center gap-2.5 text-sm">
-                      {#if sub.done}
-                        <CircleCheckBig
-                          size={15}
-                          class="text-green-400 shrink-0"
-                        />
-                        <span class="text-kursal-100">{sub.label}</span>
-                      {:else}
-                        <Circle size={15} class="text-kursal-400 shrink-0" />
-                        <span class="text-kursal-300">{sub.label}</span>
-                      {/if}
-                    </div>
-                  {/each}
-                </div>
-              </details>
             {/if}
           </div>
-        </div>
-      {/each}
-    </div>
-  </div>
-</main>
 
-<Footer />
+          {#if milestone.date}
+            <p class="font-mono text-xs text-kursal-500 mb-2">
+              {milestone.date}
+            </p>
+          {/if}
+
+          {#if milestone.description}
+            <p class="text-kursal-300 text-sm leading-relaxed">
+              {milestone.description}
+            </p>
+          {/if}
+
+          {#if milestone.subtasks}
+            {@const doneCount = milestone.subtasks.filter((s) => s.done).length}
+            {@const allDone = doneCount === milestone.subtasks.length}
+
+            <details class="mt-4 group" open={!allDone}>
+              <summary class="list-none cursor-pointer focus:outline-none mb-3">
+                <div
+                  class="max-w-xs flex items-center gap-3 group-hover:opacity-80 transition-opacity"
+                >
+                  <div
+                    class="text-kursal-400 transition-transform duration-200 group-open:rotate-90 shrink-0"
+                  >
+                    <ChevronRight size={16} />
+                  </div>
+                  <div class="flex-1">
+                    <div class="h-1.5 bg-kursal-700 overflow-hidden rounded-sm">
+                      <div
+                        class="h-full bg-accent-400/70 transition-all duration-500"
+                        style="width: {milestone.subtasks.length > 0
+                          ? (doneCount / milestone.subtasks.length) * 100
+                          : 0}%"
+                      ></div>
+                    </div>
+                    <p class="font-mono text-xs text-kursal-400 mt-1">
+                      {doneCount} / {milestone.subtasks.length} subtasks
+                    </p>
+                  </div>
+                </div>
+              </summary>
+
+              <div class="space-y-2 mb-2 pl-1">
+                {#each milestone.subtasks as sub}
+                  <div class="flex items-center gap-2.5 font-mono text-sm">
+                    {#if sub.done}
+                      <CircleCheckBig
+                        size={14}
+                        class="text-green-400 shrink-0"
+                      />
+                      <span class="text-kursal-300">{sub.label}</span>
+                    {:else}
+                      <Circle size={14} class="text-kursal-400 shrink-0" />
+                      <span class="text-kursal-400">{sub.label}</span>
+                    {/if}
+                  </div>
+                {/each}
+              </div>
+            </details>
+          {/if}
+        </div>
+      </div>
+    {/each}
+  </div>
+</DocPage>

@@ -7,25 +7,32 @@
   },
   "license": "AGPL-3.0-only",
   "scripts": {
-    "dev": "bunx vite",
-    "build": "bunx vite build",
-    "preview": "bunx vite preview",
+    "dev": "vite",
+    "build": "bun run format && vite build",
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "paper": "typst compile paper/kursal.typ static/kursal.pdf && echo 'Compiled paper!'"
   },
   "dependencies": {
     "@icons-pack/svelte-simple-icons": "^7.2.0",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.65.0",
+    "@sveltejs/kit": "^2.66.0",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.1",
     "@tsconfig/svelte": "^5.0.8",
     "lucide-svelte": "^1.0.1",
     "svelte": "^5.56.3",
     "svelte-check": "^4.6.0",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^4.3.1",
     "typescript": "~6.0.3",
     "vite": "^8.0.16"
   },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.8.4",
+    "prettier-plugin-svelte": "^4.1.1",
+    "prettier-plugin-tailwindcss": "^0.8.0"
+  }
 }

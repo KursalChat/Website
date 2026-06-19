@@ -5,6 +5,8 @@ export const prerender = true;
 const pages = [
   { path: "/", changefreq: "weekly", priority: 1.0 },
   { path: "/api", changefreq: "weekly", priority: 0.8 },
+  { path: "/compare", changefreq: "monthly", priority: 0.8 },
+  { path: "/credits", changefreq: "monthly", priority: 0.5 },
   { path: "/download", changefreq: "weekly", priority: 0.9 },
   { path: "/privacy", changefreq: "monthly", priority: 0.7 },
   { path: "/progress", changefreq: "weekly", priority: 0.9 },

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { ChevronDown } from "lucide-svelte";
   import { slide } from "svelte/transition";
+  import { reveal } from "$lib/reveal";
 
   const faqs = [
     {
@@ -32,21 +32,18 @@
     },
   ] as { question: string; answer: string }[];
 
-  let openIndex = $state<number | null>(null);
+  let openIndex = $state<number | null>(0);
 
   function toggle(index: number) {
     openIndex = openIndex === index ? null : index;
   }
 </script>
 
-<section id="faq" class="py-24 bg-kursal-900 relative overflow-hidden">
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-accent-500/5 via-transparent to-transparent rounded-full blur-3xl pointer-events-none"
-  ></div>
-
-  <div class="max-w-3xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
+<section id="faq" class="py-24 bg-kursal-900">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12" use:reveal>
+      <p class="font-mono text-sm text-accent-400 mb-4">~/faq</p>
+      <h2 class="font-mono text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
         Frequently Asked Questions
       </h2>
       <p class="text-kursal-300 text-lg max-w-2xl mx-auto">
@@ -55,28 +52,35 @@
       </p>
     </div>
 
-    <div class="space-y-3">
+    <div class="space-y-2.5">
       {#each faqs as faq, index}
         <div
-          class="bg-kursal-800/80 rounded-2xl border border-kursal-700 overflow-hidden transition-colors duration-200 hover:border-kursal-500"
+          use:reveal={{ delay: index * 50 }}
+          class="bg-kursal-800 rounded-sm border border-kursal-700 overflow-hidden transition-colors duration-200 hover:border-kursal-600"
+          class:border-accent-500={openIndex === index}
         >
           <button
             onclick={() => toggle(index)}
-            class="w-full px-6 py-5 flex items-center justify-between text-left cursor-pointer"
+            class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer"
           >
-            <span class="text-kursal-50 font-medium pr-4">{faq.question}</span>
-            <div
-              class="shrink-0 w-8 h-8 bg-kursal-700 rounded-lg flex items-center justify-center transition-all duration-300"
-              class:rotate-180={openIndex === index}
+            <span class="flex items-baseline gap-2.5 min-w-0">
+              <span class="font-mono text-accent-400 shrink-0">Q:</span>
+              <span class="text-kursal-50 font-medium">{faq.question}</span>
+            </span>
+            <span
+              class="font-mono text-lg text-accent-400 shrink-0 select-none w-6 text-center"
+              aria-hidden="true">{openIndex === index ? "−" : "+"}</span
             >
-              <ChevronDown size={18} class="text-accent-400" />
-            </div>
           </button>
 
           {#if openIndex === index}
-            <div transition:slide={{ duration: 200 }} class="px-6 pb-5">
-              <p class="text-kursal-300 leading-relaxed">
-                {@html faq.answer}
+            <div transition:slide={{ duration: 200 }} class="px-5 pb-5">
+              <p
+                class="answer text-kursal-300 leading-relaxed pl-[1.9rem] border-l border-kursal-700 ml-[0.1rem]"
+              >
+                <span class="font-mono text-accent-400/70 -ml-[1.9rem] pr-2"
+                  >A:</span
+                >{@html faq.answer}
               </p>
             </div>
           {/if}
@@ -85,3 +89,14 @@
     </div>
   </div>
 </section>
+
+<style>
+  .answer :global(a) {
+    color: var(--color-accent-400);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .answer :global(a:hover) {
+    color: var(--color-accent-300);
+  }
+</style>

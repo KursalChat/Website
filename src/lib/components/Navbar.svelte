@@ -8,6 +8,7 @@
     Menu,
     X,
     Activity,
+    GitCompare,
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { scrollTo } from "$lib/util";
@@ -30,86 +31,82 @@
     if (location.pathname == "/") scrollTo("notify");
     else location.href = "/#notify";
   }
+
+  const navLinks = [
+    { href: "/compare", label: "compare", icon: GitCompare },
+    { href: "/progress", label: "progress", icon: Activity },
+    { href: "/security", label: "security", icon: Shield },
+    { href: "/privacy", label: "privacy", icon: Lock },
+  ];
 </script>
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 bg-kursal-900/80 backdrop-blur-lg border-b border-kursal-700"
+  class="fixed top-0 left-0 right-0 z-50 bg-kursal-900/95 backdrop-blur-sm border-b border-kursal-700 font-mono"
 >
   <div
-    class="max-w-6xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between"
+    class="max-w-6xl mx-auto px-4 md:px-6 py-3.5 flex items-center justify-between"
   >
     <div class="flex items-center gap-4 md:gap-8">
       <a
         href="/"
-        class="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity"
+        class="flex items-center gap-2 md:gap-2.5 hover:opacity-80 transition-opacity"
       >
-        <img fetchpriority="high" src="/icon.png" alt="Kursal" class="w-8 h-8" />
-        <span class="text-xl font-semibold text-kursal-50">Kursal</span>
+        <img
+          fetchpriority="high"
+          src="/icon.png"
+          alt="Kursal"
+          class="w-7 h-7"
+        />
+        <span class="text-lg font-semibold text-kursal-50 tracking-tight"
+          >kursal<span class="text-accent-500">:~$</span></span
+        >
       </a>
 
-      <div class="hidden md:flex items-center gap-1">
-        <a
-          href="/progress"
-          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
-        >
-          <Activity size={16} />
-          <span>Progress</span>
-        </a>
-        <a
-          href="/security"
-          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
-        >
-          <Shield size={16} />
-          <span>Security</span>
-        </a>
-        <a
-          href="/privacy"
-          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
-        >
-          <Lock size={16} />
-          <span>Privacy</span>
-        </a>
-        <a
-          href="/terms"
-          class="flex items-center gap-1.5 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-1.5 rounded-lg hover:bg-kursal-800"
-        >
-          <Scale size={16} />
-          <span>Terms</span>
-        </a>
+      <div class="hidden md:flex items-center gap-0.5 text-sm">
+        {#each navLinks as link}
+          <a
+            href={link.href}
+            class="flex items-center gap-1.5 text-kursal-300 hover:text-accent-400 transition-colors px-3 py-1.5 rounded-sm hover:bg-kursal-800"
+          >
+            <span class="text-kursal-500">~/</span><span>{link.label}</span>
+          </a>
+        {/each}
       </div>
     </div>
 
-    <div class="flex items-center gap-3 md:gap-6">
+    <div class="flex items-center gap-3 md:gap-5 text-sm">
       <a
         href={PAPER_URL}
         target="_blank"
-        class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors"
+        class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors"
       >
-        <FileText size={18} />
-        <span class="hidden sm:inline">Paper</span>
+        <FileText size={17} />
+        <span class="hidden sm:inline">paper</span>
       </a>
 
       <a
         href={repository}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors"
+        class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors"
       >
-        <SiGithub size={18} />
-        <span class="hidden sm:inline">GitHub</span>
+        <SiGithub size={17} />
+        <span class="hidden sm:inline">github</span>
       </a>
 
       <button
         onclick={getNotified}
-        class="flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-3 md:px-4 py-2 rounded-lg font-medium transition-colors"
+        class="flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-3 md:px-3.5 py-1.5 rounded-sm font-medium transition-colors"
       >
-        <Bell size={18} />
-        <span class="hidden sm:inline">Get Notified</span>
+        <span class="text-kursal-500 group-hover:text-kursal-950">[</span>
+        <span class="hidden sm:inline">get notified</span>
+        <Bell size={15} class="sm:hidden" />
+        <span class="text-kursal-500">]</span>
       </button>
 
       <button
         type="button"
-        class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-kursal-800 text-kursal-200 hover:text-kursal-50 transition-colors"
+        class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-sm hover:bg-kursal-800 text-kursal-200 hover:text-kursal-50 transition-colors"
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-nav"
@@ -127,43 +124,21 @@
   {#if mobileMenuOpen}
     <div
       id="mobile-nav"
-      class="md:hidden border-t border-kursal-700 bg-kursal-900/95"
+      class="md:hidden border-t border-kursal-700 bg-kursal-900 text-sm"
       transition:slide={{ duration: 160 }}
     >
       <div class="max-w-6xl mx-auto px-4 md:px-6 py-3">
-        <div class="flex flex-col gap-1">
-          <a
-            href="/progress"
-            onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
-          >
-            <Activity size={16} />
-            <span>Progress</span>
-          </a>
-          <a
-            href="/security"
-            onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
-          >
-            <Shield size={16} />
-            <span>Security</span>
-          </a>
-          <a
-            href="/privacy"
-            onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
-          >
-            <Lock size={16} />
-            <span>Privacy</span>
-          </a>
-          <a
-            href="/terms"
-            onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
-          >
-            <Scale size={16} />
-            <span>Terms</span>
-          </a>
+        <div class="flex flex-col gap-0.5">
+          {#each navLinks as link}
+            <a
+              href={link.href}
+              onclick={closeMobileMenu}
+              class="flex items-center gap-2 text-kursal-300 hover:text-accent-400 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
+            >
+              <link.icon size={16} class="text-kursal-500" />
+              <span class="text-kursal-500">~/</span><span>{link.label}</span>
+            </a>
+          {/each}
 
           <div class="h-px bg-kursal-700 my-2"></div>
 
@@ -171,29 +146,30 @@
             href={PAPER_URL}
             target="_blank"
             onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
+            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
           >
             <FileText size={18} />
-            <span>Paper</span>
+            <span>paper</span>
           </a>
           <a
             href={repository}
             target="_blank"
             rel="noopener noreferrer"
             onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-lg hover:bg-kursal-800"
+            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
           >
             <SiGithub size={18} />
-            <span>GitHub</span>
+            <span>github</span>
           </a>
 
           <button
             type="button"
             onclick={getNotified}
-            class="mt-2 flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-4 py-3 rounded-xl font-medium transition-colors"
+            class="mt-2 flex items-center justify-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2.5 rounded-sm font-medium transition-colors"
           >
-            <Bell size={18} />
-            <span>Get Notified</span>
+            <span class="text-kursal-500">[</span>
+            <span>get notified</span>
+            <span class="text-kursal-500">]</span>
           </button>
         </div>
       </div>

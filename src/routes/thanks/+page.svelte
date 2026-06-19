@@ -52,21 +52,24 @@
 <main class="min-h-screen pt-24 pb-16 bg-kursal-900 flex items-center">
   <div class="max-w-2xl mx-auto px-6 text-center">
     <div
-      class="w-20 h-20 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-8"
+      class="w-16 h-16 bg-accent-500/15 border border-accent-500/40 rounded-sm flex items-center justify-center mx-auto mb-8"
     >
-      <CircleCheckBig size={48} class="text-green-400" />
+      <CircleCheckBig size={36} class="text-accent-400" />
     </div>
 
-    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+    <p class="font-mono text-sm text-accent-400 mb-3">~/thanks</p>
+    <h1 class="font-mono text-4xl md:text-5xl font-bold text-kursal-50 mb-4">
       Thanks for downloading Kursal
     </h1>
 
-    <p class="text-lg text-kursal-50 mb-4">
+    <p class="text-lg text-kursal-200 mb-4 leading-relaxed">
       {#if platform}
-        Your <span class="text-white font-medium">{platform}</span>
+        Your <span class="font-mono text-accent-400">{platform}</span>
         download should have started.
 
-        <a href={fileURL} class="text-accent-400 hover:underline"
+        <a
+          href={fileURL}
+          class="text-accent-400 underline underline-offset-2 hover:text-accent-300"
           >If not, click here</a
         >.
       {:else}
@@ -75,41 +78,45 @@
       {/if}
     </p>
 
-    <p class="text-kursal-100 mb-8">
-      <a href="/download" class="text-accent-400 hover:underline"
+    <p class="text-kursal-300 mb-8">
+      <a
+        href="/download"
+        class="text-accent-400 underline underline-offset-2 hover:text-accent-300"
         >Wrong download? View all available downloads</a
       >.
     </p>
 
     <div
-      class="bg-kursal-800 rounded-2xl border border-kursal-700 p-8 text-left mb-8"
+      class="bg-kursal-800 rounded-sm border border-kursal-700 p-7 text-left mb-8"
     >
-      <h2 class="text-xl font-semibold text-white mb-6">Getting Started</h2>
+      <h2 class="font-mono text-sm text-accent-400 mb-6">
+        <span class="text-kursal-500">#</span> Getting Started
+      </h2>
 
-      <div class="space-y-4">
+      <div class="space-y-5">
         <div class="flex gap-4">
-          <div
-            class="w-8 h-8 bg-accent-500/20 rounded-full flex items-center justify-center flex-shrink-0"
+          <span class="font-mono text-accent-400 font-semibold shrink-0 pt-0.5"
+            >01</span
           >
-            <span class="text-accent-400 font-semibold">1</span>
-          </div>
           <div>
-            <h3 class="text-white font-medium">Install the application</h3>
-            <p class="text-kursal-200 text-sm">
+            <h3 class="font-mono text-kursal-50 font-medium">
+              Install the application
+            </h3>
+            <p class="text-kursal-300 text-sm mt-1">
               Open the downloaded file and follow the installation instructions.
             </p>
           </div>
         </div>
 
         <div class="flex gap-4">
-          <div
-            class="w-8 h-8 bg-accent-500/20 rounded-full flex items-center justify-center flex-shrink-0"
+          <span class="font-mono text-accent-400 font-semibold shrink-0 pt-0.5"
+            >02</span
           >
-            <span class="text-accent-400 font-semibold">2</span>
-          </div>
           <div>
-            <h3 class="text-white font-medium">Start chatting privately</h3>
-            <p class="text-kursal-200 text-sm">
+            <h3 class="font-mono text-kursal-50 font-medium">
+              Start chatting privately
+            </h3>
+            <p class="text-kursal-300 text-sm mt-1">
               Enjoy end-to-end encrypted messaging. As simple as that!
             </p>
           </div>
@@ -117,11 +124,11 @@
       </div>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <div class="flex flex-col sm:flex-row gap-3 justify-center font-mono">
       <a
         href={PAPER_URL}
         target="_blank"
-        class="inline-flex items-center justify-center gap-2 bg-kursal-700 hover:bg-kursal-600 text-white px-6 py-3 rounded-xl font-medium transition-colors"
+        class="inline-flex items-center justify-center gap-2 border border-kursal-600 hover:border-accent-500 bg-kursal-800 hover:bg-kursal-700 text-kursal-100 px-6 py-3 rounded-sm font-medium transition-colors"
       >
         <BookOpen size={18} />
         Read the Whitepaper
@@ -131,7 +138,7 @@
         href={repository}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2 bg-kursal-700 hover:bg-kursal-600 text-white px-6 py-3 rounded-xl font-medium transition-colors"
+        class="inline-flex items-center justify-center gap-2 border border-kursal-600 hover:border-accent-500 bg-kursal-800 hover:bg-kursal-700 text-kursal-100 px-6 py-3 rounded-sm font-medium transition-colors"
       >
         <SiGithub size={18} />
         Star us on GitHub
@@ -141,7 +148,7 @@
     <div class="mt-12">
       <a
         href="/"
-        class="inline-flex items-center gap-2 text-kursal-400 hover:text-kursal-300 transition-colors"
+        class="inline-flex items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors"
       >
         <ArrowLeft size={18} />
         Back to home

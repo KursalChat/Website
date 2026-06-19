@@ -8,6 +8,7 @@
     Wifi,
     WifiOff,
   } from "lucide-svelte";
+  import { reveal } from "$lib/reveal";
 
   let scrollProgress = $state(0);
   let containerElement: HTMLElement;
@@ -141,32 +142,37 @@
 <section
   id="decentralisation"
   bind:this={containerElement}
-  class="relative h-[300vh]"
+  class="relative h-[240vh]"
 >
   <div
-    class="sticky top-0 h-screen flex items-center justify-center overflow-hidden transition-colors duration-700 pt-16"
-    style="background: {phase === 'failure'
-      ? 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.12) 0%, rgba(10, 13, 20, 1) 70%)'
-      : 'radial-gradient(ellipse at center, rgba(91, 141, 239, 0.12) 0%, rgba(10, 13, 20, 1) 70%)'}"
+    class="sticky top-0 h-screen flex items-center justify-center overflow-hidden transition-colors duration-700 pt-16 bg-kursal-900"
   >
+    <!-- CRT lines -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.035]"
+      style="background-image: repeating-linear-gradient(to bottom, var(--color-kursal-50) 0px, var(--color-kursal-50) 1px, transparent 1px, transparent 3px);"
+    ></div>
+
     <div class="max-w-6xl w-full px-4 md:px-6 relative z-10">
-      <div class="text-center mb-2 md:mb-4">
+      <div class="text-center mb-2 md:mb-4" use:reveal>
         <div
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 transition-all duration-500 {phase ===
+          class="inline-flex items-center gap-2 font-mono text-sm mb-4 transition-colors duration-500 {phase ===
           'failure'
-            ? 'bg-red-500/20 text-red-400'
-            : 'bg-accent-500/20 text-accent-400'}"
+            ? 'text-party-400'
+            : 'text-accent-400'}"
         >
           {#if phase === "failure"}
-            <WifiOff size={20} />
-            <span class="font-medium">Node Offline</span>
+            <WifiOff size={18} />
+            <span>Node Offline</span>
           {:else}
-            <Wifi size={20} />
-            <span class="font-medium">Network Active</span>
+            <Wifi size={18} />
+            <span>Network Active</span>
           {/if}
         </div>
 
-        <h2 class="text-2xl md:text-4xl font-bold text-kursal-50 mb-3">
+        <h2
+          class="font-mono text-2xl md:text-4xl font-bold text-kursal-50 mb-3"
+        >
           {#if phase === "healthy"}
             Decentralized Network
           {:else if phase === "failure"}
@@ -174,7 +180,7 @@
           {:else if phase === "recovery"}
             <span class="text-accent-400">New Node Joining...</span>
           {:else}
-            <span class="text-green-400">Network Still Up</span>
+            <span class="text-accent-400">Network Still Up</span>
           {/if}
         </h2>
         <p class="text-kursal-300 text-sm md:text-lg max-w-xl mx-auto">
@@ -205,12 +211,12 @@
                 y1={fromPos.y}
                 x2={toPos.x}
                 y2={toPos.y}
-                stroke="rgba(91, 141, 239, {conn.opacity * 0.6})"
+                stroke="rgba(77, 141, 255, {conn.opacity * 0.55})"
                 stroke-width="0.3"
                 class="transition-all duration-500"
               />
               {#if conn.opacity > 0.5}
-                <circle r="0.8" fill="rgba(91, 141, 239, {conn.opacity})">
+                <circle r="0.8" fill="rgba(77, 141, 255, {conn.opacity})">
                   <animateMotion
                     dur="2s"
                     repeatCount="indefinite"
@@ -227,69 +233,68 @@
             class="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
             style="left: {node.x}%; top: {node.y}%; opacity: {node.status ===
             'dead'
-              ? 0.3
+              ? 0.5
               : node.status === 'joining'
                 ? 0.7
                 : 1}; scale: {node.status === 'joining' ? 0.8 : 1}"
           >
             <div
-              class="absolute -inset-3 rounded-full blur-xl transition-all duration-500 {node.status ===
+              class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-sm flex items-center justify-center transition-all duration-500 {node.status ===
               'failing'
-                ? 'bg-red-500/50'
+                ? 'bg-party-500/20 border-2 border-party-500 animate-pulse'
                 : node.status === 'dead'
-                  ? 'bg-kursal-600/30'
+                  ? 'bg-kursal-800 border-2 border-party-600/40'
                   : node.status === 'joining'
-                    ? 'bg-green-500/40'
-                    : 'bg-accent-500/30'}"
-            ></div>
-
-            <div
-              class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all duration-500 {node.status ===
-              'failing'
-                ? 'bg-red-500 shadow-lg shadow-red-500/50 animate-pulse'
-                : node.status === 'dead'
-                  ? 'bg-kursal-600'
-                  : node.status === 'joining'
-                    ? 'bg-green-500 shadow-lg shadow-green-500/50'
-                    : 'bg-kursal-700 border-2 border-accent-500/50 shadow-lg shadow-accent-500/20'}"
+                    ? 'bg-accent-500/20 border-2 border-accent-500'
+                    : 'bg-kursal-800 border-2 border-accent-500/50'}"
             >
               {#if node.icon === "server"}
                 <Server
                   class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
                   'dead'
-                    ? 'text-kursal-400'
-                    : 'text-white'}"
+                    ? 'text-kursal-500'
+                    : node.status === 'failing'
+                      ? 'text-party-400'
+                      : 'text-accent-400'}"
                 />
               {:else if node.icon === "phone"}
                 <Smartphone
                   class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
                   'dead'
-                    ? 'text-kursal-400'
-                    : 'text-white'}"
+                    ? 'text-kursal-500'
+                    : node.status === 'joining'
+                      ? 'text-accent-400'
+                      : 'text-accent-400'}"
                 />
               {:else if node.icon === "laptop"}
                 <Laptop
                   class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
                   'dead'
-                    ? 'text-kursal-400'
-                    : 'text-white'}"
+                    ? 'text-kursal-500'
+                    : 'text-accent-400'}"
                 />
               {:else if node.icon === "monitor"}
                 <Monitor
                   class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
                   'dead'
-                    ? 'text-kursal-400'
-                    : 'text-white'}"
+                    ? 'text-kursal-500'
+                    : 'text-accent-400'}"
                 />
               {/if}
 
               {#if node.status === "dead"}
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-full h-0.5 bg-red-500 rotate-45 absolute"></div>
                   <div
-                    class="w-full h-0.5 bg-red-500 -rotate-45 absolute"
+                    class="w-full h-0.5 bg-party-500 rotate-45 absolute"
+                  ></div>
+                  <div
+                    class="w-full h-0.5 bg-party-500 -rotate-45 absolute"
                   ></div>
                 </div>
+                <span
+                  class="stamp text-party-500 text-[0.5rem] absolute -bottom-5 left-1/2 -translate-x-1/2 -rotate-6 whitespace-nowrap"
+                  >Offline</span
+                >
               {/if}
             </div>
           </div>
@@ -297,13 +302,11 @@
       </div>
 
       <div class="flex justify-center mt-8">
-        <div class="w-48 h-1.5 bg-kursal-700 rounded-full overflow-hidden">
+        <div class="w-48 h-1 bg-kursal-700 overflow-hidden">
           <div
-            class="h-full rounded-full {phase === 'failure'
-              ? 'bg-red-500'
-              : phase === 'restored'
-                ? 'bg-green-500'
-                : 'bg-accent-500'}"
+            class="h-full transition-colors duration-300 {phase === 'failure'
+              ? 'bg-party-500'
+              : 'bg-accent-500'}"
             style="width: {scrollProgress *
               100}%; transition: width 0.05s linear, background-color 0.3s ease"
           ></div>
