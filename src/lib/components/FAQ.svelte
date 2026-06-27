@@ -21,7 +21,7 @@
     {
       question: "What data do you collect?",
       answer:
-        'We collect absolutely nothing. No analytics, no crash reports, no metadata about who you talk to or when. We literally can\'t see your messages even if we wanted to: that\'s the whole point.<br />The only things we can see are the public bug reports you can open on our <a href="https://github.com/KursalChat/Kursal" target="_blank" class="underline">repository</a> and the emails you subscribe to our mailing list. Check out our <a href="/privacy" class="underline">Privacy Policy</a> for more infos!',
+        'We collect absolutely nothing. No analytics and no metadata about who you talk to or when. We literally can\'t see your messages even if we wanted to: that\'s the whole point.<br />The only things we can see are the crash and bug reports you optionally decide to send to help improve the app. Check out our <a href="/privacy" class="underline">Privacy Policy</a> for more infos!',
     },
     {
       question: "Why Kursal? and technical infos",

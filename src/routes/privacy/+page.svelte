@@ -67,7 +67,36 @@
     </ul>
   </DocSection>
 
-  <DocSection n="03" title="Data Peers Could Collect">
+  <DocSection n="03" title="Data We Collect">
+    <p>
+      The Kursal app itself collects nothing. The only data we ever hold is what
+      you explicitly hand us:
+    </p>
+    <ul class="font-mono text-sm space-y-2 mt-1">
+      <li class="flex gap-2.5">
+        <span class="text-accent-500 shrink-0">+</span>
+        <span class="text-kursal-200"
+          >Email addresses, only if you subscribe to our newsletter on this
+          website</span
+        >
+      </li>
+      <li class="flex gap-2.5">
+        <span class="text-accent-500 shrink-0">+</span>
+        <span class="text-kursal-200"
+          >Crash reports, only if you send one from the pop-up after a
+          crash</span
+        >
+      </li>
+    </ul>
+    <p class="mt-3">
+      Both are self-hosted on our own servers in Germany. We never share, sell,
+      or otherwise hand off this data to anyone. You can unsubscribe from the
+      newsletter at any time via the confirmation email, or reach us by email if
+      you need help.
+    </p>
+  </DocSection>
+
+  <DocSection n="04" title="Data Peers Could Collect">
     <p>
       Your encrypted messages go through public relays. Those relays can track
       some limited informations about you:
@@ -93,7 +122,7 @@
     </ul>
   </DocSection>
 
-  <DocSection n="04" title="How Kursal Works">
+  <DocSection n="05" title="How Kursal Works">
     <p>
       All encryption happens locally on your device. Messages are transmitted
       directly between peers using end-to-end encryption. There is no central
@@ -102,7 +131,7 @@
     </p>
   </DocSection>
 
-  <DocSection n="05" title="Website Data">
+  <DocSection n="06" title="Website Data">
     <p>
       This website does not use cookies but tracks the number of visitors using
       <a
@@ -112,16 +141,9 @@
         >Plausible</a
       >, a privacy-friendly tracking platform, which is self-hosted in our case.
     </p>
-    <p>
-      If you sign up for our mailing list, your email is stored solely for the
-      purpose of sending you updates. It is self-hosted and stored in Germany.
-      You can unsubscribe at any time via the confirmation email. We will never
-      distribute or sell your email! If you can't find the unsubscription link
-      or need assistance, you can always reach us on our email for help.
-    </p>
   </DocSection>
 
-  <DocSection n="06" title="Open Source">
+  <DocSection n="07" title="Open Source">
     <p>
       Kursal is fully open source. You can audit our code at any time to verify
       our privacy claims. We encourage security researchers to review our

@@ -1,9 +1,9 @@
 export const email = "hello@kursal.chat";
-export const repository = "https://kursal.chat/repository";
 export const SITE_URL = "https://kursal.chat";
-export const SITE_ICON = "https://kursal.chat/icon.png";
+export const repository = `${SITE_URL}/repository`;
+export const SITE_ICON = `${SITE_URL}/icon.png`;
 
-export const PAPER_URL = "/kursal.pdf";
+export const PAPER_URL = `${SITE_URL}/kursal.pdf`;
 
 export const LISTMONK_URL = "https://mail.kursal.chat";
 export const LISTMONK_LIST_UUID = "51120ca8-96d6-424f-aef0-011cf505d351";
