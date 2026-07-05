@@ -90,7 +90,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 print_dim "▸ Downloading $FILENAME"
 
 curl -fSL --progress-bar "$DOWNLOAD_URL" -o "$TMP_FILE" || {
-  print_err "Download failed — check your connection or visit https://kursal.chat/download"
+  print_err "Download failed. Check your connection or visit https://kursal.chat/download"
   exit 1
 }
 

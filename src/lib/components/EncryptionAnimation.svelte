@@ -200,8 +200,7 @@
     </div>
 
     <p class="font-mono text-xs text-kursal-500 text-center mt-5">
-      // keys live only on these two devices — relays just carry the sealed
-      packet
+      // keys live only on these two devices: relays just carry a sealed packet
     </p>
   </div>
 </section>

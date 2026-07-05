@@ -72,7 +72,7 @@ export const platforms = [
     id: "android" as OSId,
     name: "Android",
     icon: SiAndroid,
-    description: "Requires Android 7.0 or later",
+    description: "Requires Android 8.0 or later",
     links: [{ id: "apk", label: "APK", url: `${DOWNLOAD_PREFIX}/Kursal.apk` }],
   },
   {

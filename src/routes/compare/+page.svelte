@@ -19,7 +19,7 @@
     {
       key: "noServers",
       label: "No central servers",
-      note: "Matrix is federated — but most people use one main homeserver, so it's centralized in practice.",
+      note: "Matrix runs across many independently operated servers, but most people use one main homeserver.",
     },
     {
       key: "noAccount",
@@ -44,17 +44,17 @@
     {
       key: "offline",
       label: "Works while you're offline",
-      note: "Kursal's offline message delivery is in active development.",
+      note: "Kursal's offline message system has been implemented recently and needs testing.",
     },
     {
       key: "groupChats",
       label: "Group chats",
-      note: "Planned — group conversations are on the Kursal roadmap.",
+      note: "Planned! Group conversations are on the Kursal roadmap.",
     },
     {
       key: "calls",
       label: "Voice & video calls",
-      note: "Planned for a future release.",
+      note: "Only audio calls are supported. Video and screenshares are planned.",
     },
   ] as const;
 
@@ -75,7 +75,7 @@
       postQuantum: true,
       offline: "partial",
       groupChats: false,
-      calls: false,
+      calls: "partial",
     },
     {
       name: "Signal",
@@ -123,7 +123,7 @@
       name: "Matrix",
       e2ee: true,
       openSource: true,
-      noServers: "partial",
+      noServers: true,
       noAccount: "partial",
       noMetadata: "partial",
       independent: true,
@@ -200,7 +200,7 @@
 {#snippet row(feature: Feature, isLast: boolean)}
   <tr>
     <td
-      class="sticky left-0 z-10 bg-kursal-900 py-3 pr-3 text-left text-kursal-200 border-b border-kursal-700/70"
+      class="sticky left-0 z-10 bg-kursal-850 py-3 pr-3 text-left text-kursal-200 border-b border-kursal-700/70"
     >
       <span class="inline-flex items-center gap-1.5">
         {feature.label}
@@ -251,7 +251,7 @@
 <DocPage
   file="compare.md"
   title="How Kursal compares"
-  subtitle="Same goal as the best private messengers — without the servers, accounts, or trust in a company."
+  subtitle="Same goal as the best private messengers. Without the servers, accounts, or trust in a company."
 >
   <div class="overflow-x-auto">
     <table
@@ -259,7 +259,7 @@
     >
       <thead>
         <tr>
-          <th class="w-[34%] sticky left-0 z-20 bg-kursal-900"></th>
+          <th class="w-[34%] sticky left-0 z-20 bg-kursal-850"></th>
           {#each apps as app}
             <th
               class="py-3 px-2 font-semibold border-b border-kursal-700 {app.highlight
@@ -278,7 +278,7 @@
 
         <tr>
           <td
-            class="sticky left-0 z-10 bg-kursal-900 pt-8 pb-3 pr-3 align-middle text-left"
+            class="sticky left-0 z-10 bg-kursal-850 pt-8 pb-3 pr-3 align-middle text-left"
           >
             <span
               class="font-mono text-xs uppercase tracking-widest text-kursal-500"

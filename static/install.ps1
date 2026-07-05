@@ -28,7 +28,7 @@ Write-Host ""
 $arch = $env:PROCESSOR_ARCHITECTURE
 switch ($arch) {
   "AMD64" { $ARCH_TAG = "x64" }
-  "ARM64" { err "ARM64 is not yet supported on Windows — stay tuned!" }
+  "ARM64" { err "ARM64 is not yet supported on Windows. Open an issue if you want to see it." }
   default { err "Unsupported architecture: $arch" }
 }
 
@@ -49,7 +49,7 @@ try {
   Invoke-WebRequest -Uri $DOWNLOAD_URL -OutFile $TMP_FILE -UseBasicParsing
   $ProgressPreference = $prev
 } catch {
-  err "Download failed — check your connection or visit https://app.kursal.chat"
+  err "Download failed. Check your connection or visit https://app.kursal.chat"
 }
 
 ok "Download complete"

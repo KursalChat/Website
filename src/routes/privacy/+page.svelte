@@ -83,8 +83,7 @@
       <li class="flex gap-2.5">
         <span class="text-accent-500 shrink-0">+</span>
         <span class="text-kursal-200"
-          >Crash reports, only if you send one from the pop-up after a
-          crash</span
+          >Crash reports, only if you send one from the pop-up after a crash</span
         >
       </li>
     </ul>

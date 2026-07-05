@@ -65,7 +65,7 @@
 
       <div class="p-4">
         {#if researchers.length === 0}
-          <p class="text-kursal-500">0 reports — the list is empty</p>
+          <p class="text-kursal-500">0 reports. The list is empty</p>
         {:else}
           <ul class="space-y-3.5">
             {#each researchers as r}

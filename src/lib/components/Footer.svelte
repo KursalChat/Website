@@ -72,15 +72,6 @@
           </li>
           <li>
             <a
-              href={"mailto:" + email}
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
-            >
-              <Mail size={15} />
-              Contact
-            </a>
-          </li>
-          <li>
-            <a
               href="/compare"
               class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
             >

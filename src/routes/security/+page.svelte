@@ -36,7 +36,7 @@
 <DocPage
   file="security.md"
   title="Security"
-  stamp="Hardened"
+  stamp="Open-Source"
   subtitle="Our mission is to protect your privacy through proven cryptographic protocols and transparent security practices."
 >
   <DocSection n="01" title="Cryptographic Protocols">

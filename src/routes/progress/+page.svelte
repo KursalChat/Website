@@ -13,6 +13,7 @@
     Keyboard,
     Rocket,
     MessageCircle,
+    Phone,
   } from "lucide-svelte";
   import DocPage from "$lib/components/DocPage.svelte";
   import { SITE_ICON, SITE_URL } from "$lib/const";
@@ -37,43 +38,11 @@
       icon: FlaskConical,
     },
     {
-      title: "Internal API",
-      description: "Building the core API layer that powers the app.",
-      date: "April 7, 2026",
-      status: "completed",
-      icon: Server,
-      subtasks: [
-        { label: "Workspace Scaffolding", done: true },
-        { label: "Core Dependencies", done: true },
-        { label: "Error Types", done: true },
-        { label: "Storage Layer", done: true },
-        { label: "Identity Layer", done: true },
-        { label: "Crypto Layer", done: true },
-        { label: "Message Types", done: true },
-        { label: "Network Layer", done: true },
-        { label: "Peer ID Rotation", done: true },
-        { label: "DHT Rendezvous", done: true },
-        { label: "Contact Management", done: true },
-        { label: "First Contact: OTP", done: true },
-        { label: "First Contact: LTC", done: true },
-        { label: "First Contact: Nearby Share", done: true },
-        { label: "Messaging Pipeline", done: true },
-        { label: "Tauri Wrapper", done: true },
-      ],
-    },
-    {
-      title: "CLI",
-      description: "Set up Kursal relays using the command line!",
-      date: "April 7, 2026",
-      status: "completed",
-      icon: Keyboard,
-    },
-    {
       title: "Local API Server",
       description: "Interact with the Kursal app via a built-in API.",
       status: "completed",
       date: "May 1st, 2026",
-      icon: Keyboard,
+      icon: Server,
     },
     {
       title: "Interface",
@@ -81,6 +50,13 @@
       status: "completed",
       date: "May 3rd, 2026",
       icon: Monitor,
+    },
+    {
+      title: "Calls",
+      description: "Implemented audio calls.",
+      status: "completed",
+      date: "July 5th, 2026",
+      icon: Phone,
     },
     {
       title: "Offline messaging",
@@ -92,7 +68,7 @@
     {
       title: "First Public Release",
       description:
-        "First stable release of Kursal! Planned to be August 20th 2026! Public beta will be available before this date :)",
+        "First v0.1 release of Kursal! Planned to be August 20th 2026! Public beta will be available before this date :)",
       status: "in-progress",
       icon: Rocket,
     },

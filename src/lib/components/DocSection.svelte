@@ -10,7 +10,9 @@
   } = $props();
 </script>
 
-<section class="py-7 border-t border-kursal-700/60 first:border-t-0 first:pt-1">
+<section
+  class="py-7 border-t border-kursal-700/60 [header+&]:border-t-0 [header+&]:pt-1"
+>
   <div class="flex gap-4 md:gap-6">
     <span
       class="font-mono text-accent-500 text-sm pt-1.5 select-none shrink-0 w-7 text-right"
