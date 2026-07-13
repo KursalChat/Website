@@ -3,7 +3,7 @@
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import DocPage from "$lib/components/DocPage.svelte";
   import DocSection from "$lib/components/DocSection.svelte";
-  import { repository, PAPER_URL, SITE_URL, SITE_ICON } from "$lib/const";
+  import { repository, PAPER_URL, SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/security`;
 </script>
@@ -22,15 +22,15 @@
     content="See the cryptographic protocols and security practices that power private messaging on Kursal."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Security | Kursal" />
   <meta
     name="twitter:description"
     content="See the cryptographic protocols and security practices that power private messaging on Kursal."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <DocPage

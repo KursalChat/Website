@@ -2,7 +2,7 @@
   import { Bug, ShieldCheck } from "lucide-svelte";
   import DocPage from "$lib/components/DocPage.svelte";
   import DocSection from "$lib/components/DocSection.svelte";
-  import { SITE_URL, SITE_ICON } from "$lib/const";
+  import { SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/credits`;
 
@@ -30,15 +30,15 @@
     content="A thank-you to the security researchers who responsibly disclosed vulnerabilities and helped keep Kursal safe."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Security Acknowledgments | Kursal" />
   <meta
     name="twitter:description"
     content="A thank-you to the security researchers who responsibly disclosed vulnerabilities and helped keep Kursal safe."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <DocPage

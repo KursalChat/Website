@@ -11,6 +11,7 @@
     GitCompare,
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
+  import { page } from "$app/state";
   import { scrollTo } from "$lib/util";
   import { repository, PAPER_URL } from "$lib/const";
 
@@ -64,11 +65,20 @@
 
       <div class="hidden md:flex items-center gap-0.5 text-sm">
         {#each navLinks as link}
+          {@const active = page.url.pathname === link.href}
           <a
             href={link.href}
-            class="flex items-center gap-1.5 text-kursal-300 hover:text-accent-400 transition-colors px-3 py-1.5 rounded-sm hover:bg-kursal-800"
+            aria-current={active ? "page" : undefined}
+            class="group flex items-center gap-1.5 transition-colors px-3 py-1.5 rounded-sm {active
+              ? 'text-accent-400 bg-kursal-800'
+              : 'text-kursal-300 hover:text-accent-400 hover:bg-kursal-800'}"
           >
-            <span class="text-kursal-500">~/</span><span>{link.label}</span>
+            <span
+              class="text-kursal-500 transition-colors group-hover:text-accent-500/70"
+              >~/</span
+            ><span>{link.label}</span>{#if active}<span
+                class="text-accent-500/70 select-none">*</span
+              >{/if}
           </a>
         {/each}
       </div>
@@ -96,12 +106,18 @@
 
       <button
         onclick={getNotified}
-        class="flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-3 md:px-3.5 py-1.5 rounded-sm font-medium transition-colors"
+        class="group flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-3 md:px-3.5 py-1.5 rounded-sm font-medium transition-colors"
       >
-        <span class="text-kursal-500 group-hover:text-kursal-950">[</span>
+        <span
+          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:-translate-x-0.5"
+          >[</span
+        >
         <span class="hidden sm:inline">get notified</span>
         <Bell size={15} class="sm:hidden" />
-        <span class="text-kursal-500">]</span>
+        <span
+          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:translate-x-0.5"
+          >]</span
+        >
       </button>
 
       <button
@@ -130,13 +146,23 @@
       <div class="max-w-6xl mx-auto px-4 md:px-6 py-3">
         <div class="flex flex-col gap-0.5">
           {#each navLinks as link}
+            {@const active = page.url.pathname === link.href}
             <a
               href={link.href}
               onclick={closeMobileMenu}
-              class="flex items-center gap-2 text-kursal-300 hover:text-accent-400 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
+              aria-current={active ? "page" : undefined}
+              class="group flex items-center gap-2 transition-colors px-3 py-2 rounded-sm {active
+                ? 'text-accent-400 bg-kursal-800'
+                : 'text-kursal-300 hover:text-accent-400 hover:bg-kursal-800'}"
             >
-              <link.icon size={16} class="text-kursal-500" />
-              <span class="text-kursal-500">~/</span><span>{link.label}</span>
+              <link.icon
+                size={16}
+                class={active ? "text-accent-500" : "text-kursal-500"}
+              />
+              <span
+                class="text-kursal-500 transition-colors group-hover:text-accent-500/70"
+                >~/</span
+              ><span>{link.label}</span>
             </a>
           {/each}
 
@@ -165,11 +191,17 @@
           <button
             type="button"
             onclick={getNotified}
-            class="mt-2 flex items-center justify-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2.5 rounded-sm font-medium transition-colors"
+            class="group mt-2 flex items-center justify-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2.5 rounded-sm font-medium transition-colors"
           >
-            <span class="text-kursal-500">[</span>
+            <span
+              class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:-translate-x-0.5"
+              >[</span
+            >
             <span>get notified</span>
-            <span class="text-kursal-500">]</span>
+            <span
+              class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:translate-x-0.5"
+              >]</span
+            >
           </button>
         </div>
       </div>

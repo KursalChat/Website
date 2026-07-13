@@ -2,7 +2,7 @@
   import { Check, Minus, X, Info } from "lucide-svelte";
   import { slide } from "svelte/transition";
   import DocPage from "$lib/components/DocPage.svelte";
-  import { SITE_URL, SITE_ICON } from "$lib/const";
+  import { SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/compare`;
 
@@ -170,15 +170,15 @@
     content="How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Compare | Kursal" />
   <meta
     name="twitter:description"
     content="How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 {#snippet mark(v: Mark, strong: boolean)}
@@ -202,23 +202,32 @@
     <td
       class="sticky left-0 z-10 bg-kursal-850 py-3 pr-3 text-left text-kursal-200 border-b border-kursal-700/70"
     >
-      <span class="inline-flex items-center gap-1.5">
-        {feature.label}
-        {#if feature.note}
-          <button
-            type="button"
-            onclick={() => toggleNote(feature.key)}
-            aria-label="Why?"
-            aria-expanded={activeNote === feature.key}
-            class="shrink-0 transition-colors hover:text-accent-400 {activeNote ===
+      {#if feature.note}
+        <button
+          type="button"
+          onclick={() => toggleNote(feature.key)}
+          aria-expanded={activeNote === feature.key}
+          class="inline-flex items-center gap-1.5 text-left transition-colors hover:text-accent-400 {activeNote ===
+          feature.key
+            ? 'text-accent-400'
+            : ''}"
+        >
+          <span
+            class="underline decoration-dotted underline-offset-4 {activeNote ===
             feature.key
+              ? 'decoration-accent-400/60'
+              : 'decoration-kursal-600'}">{feature.label}</span
+          >
+          <Info
+            size={13}
+            class="shrink-0 {activeNote === feature.key
               ? 'text-accent-400'
               : 'text-kursal-500'}"
-          >
-            <Info size={13} />
-          </button>
-        {/if}
-      </span>
+          />
+        </button>
+      {:else}
+        <span class="inline-flex items-center gap-1.5">{feature.label}</span>
+      {/if}
     </td>
     {#each apps as app}
       <td

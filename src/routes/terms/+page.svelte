@@ -2,7 +2,7 @@
   import { TriangleAlert } from "lucide-svelte";
   import DocPage from "$lib/components/DocPage.svelte";
   import DocSection from "$lib/components/DocSection.svelte";
-  import { repository, email, SITE_URL, SITE_ICON } from "$lib/const";
+  import { repository, email, SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/terms`;
 </script>
@@ -21,15 +21,15 @@
     content="Read the Kursal terms of service for usage responsibilities and more."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Terms of Service | Kursal" />
   <meta
     name="twitter:description"
     content="Read the Kursal terms of service for usage responsibilities and more."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <DocPage

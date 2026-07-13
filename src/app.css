@@ -131,6 +131,29 @@ body {
   line-height: 1;
 }
 
+::view-transition-old(root) {
+  animation: vt-clear 70ms linear both;
+}
+
+::view-transition-new(root) {
+  animation: vt-redraw 180ms steps(12) both;
+}
+
+@keyframes vt-clear {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-redraw {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -159,5 +182,9 @@ body {
   }
   .caret {
     opacity: 1;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Navbar from "$lib/components/Navbar.svelte";
-  import { repository, SITE_ICON, SITE_URL } from "$lib/const";
+  import { repository, SITE_ICON, SITE_OG, SITE_URL } from "$lib/const";
 
   import Hero from "$lib/components/Hero.svelte";
   import EncryptionAnimation from "$lib/components/EncryptionAnimation.svelte";
@@ -45,10 +45,13 @@
     content="Peer-to-peer, end-to-end encrypted messaging with no central servers and no tracking."
   />
   <meta property="og:url" content={SITE_URL} />
-  <meta property="og:image" content={SITE_ICON} />
-  <meta property="og:image:alt" content="Kursal logo" />
+  <meta property="og:image" content={SITE_OG} />
+  <meta
+    property="og:image:alt"
+    content="Kursal — Big Brother was watching you."
+  />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
     content="Kursal | Private Peer-to-Peer Messaging"
@@ -57,7 +60,7 @@
     name="twitter:description"
     content="Peer-to-peer, end-to-end encrypted messaging with no central servers and no tracking."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 
   {@html `<script type="application/ld+json">${JSON.stringify(organizationSchema)}</script>`}
   {@html `<script type="application/ld+json">${JSON.stringify(websiteSchema)}</script>`}

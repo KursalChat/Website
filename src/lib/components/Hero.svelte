@@ -103,31 +103,43 @@
           onclick={() => scrollTo("notify")}
           class="group inline-flex items-center justify-center gap-2.5 bg-accent-500 hover:bg-accent-400 text-kursal-950 px-7 py-3.5 rounded-sm font-semibold text-base transition-colors"
         >
-          <span class="text-kursal-950/50">[</span>
+          <span
+            class="text-kursal-950/50 transition-transform group-hover:-translate-x-0.5"
+            >[</span
+          >
           <Bell size={18} class="group-hover:animate-wiggle" />
           Get Notified at Launch
-          <span class="text-kursal-950/50">]</span>
+          <span
+            class="text-kursal-950/50 transition-transform group-hover:translate-x-0.5"
+            >]</span
+          >
         </button>
 
         <a
           href={PAPER_URL}
           target="_blank"
-          class="inline-flex items-center justify-center gap-2.5 border border-kursal-600 hover:border-accent-500 bg-kursal-800/60 hover:bg-kursal-800 text-kursal-100 px-7 py-3.5 rounded-sm font-semibold text-base transition-colors"
+          class="group inline-flex items-center justify-center gap-2.5 border border-kursal-600 hover:border-accent-500 bg-kursal-800/60 hover:bg-kursal-800 text-kursal-100 px-7 py-3.5 rounded-sm font-semibold text-base transition-colors"
         >
-          <span class="text-accent-500">[</span>
+          <span
+            class="text-accent-500 transition-transform group-hover:-translate-x-0.5"
+            >[</span
+          >
           <FileText size={18} />
           Read the Paper
-          <span class="text-accent-500">]</span>
+          <span
+            class="text-accent-500 transition-transform group-hover:translate-x-0.5"
+            >]</span
+          >
         </a>
       </div>
 
       <div class="mt-16">
         <button
           onclick={() => scrollTo("animation")}
-          class="inline-flex flex-col items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors cursor-pointer animate-bounce"
+          class="inline-flex flex-col items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors cursor-pointer"
         >
           <span>learn more</span>
-          <ArrowDown size={18} />
+          <span class="tick"><ArrowDown size={18} /></span>
         </button>
       </div>
     </div>
@@ -150,5 +162,19 @@
 
   :global(.group:hover .group-hover\:animate-wiggle) {
     animation: wiggle 0.5s ease-in-out;
+  }
+
+  .tick {
+    animation: tick 1.4s steps(1) infinite;
+  }
+
+  @keyframes tick {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
   }
 </style>

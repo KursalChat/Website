@@ -148,7 +148,7 @@ $"memory" = 256 "MiB"$, $"iterations" = 2$, $"parallelism" = 1$. The high memory
     // [Intel Core \ i5-12400F], [629.3ms \ 52.6ms (threaded)], "19.01",
     // nite
 
-    // [Intel Core \ i5-10310U], [2234ms \ 280ms (threaded)], "3.57",
+    [Intel Core \ i5-10310U], [1536ms \ 192.5ms (threaded)], "5.20",
     // koschi
   ),
   caption: [Hashing Benchmark: 1000 iterations],

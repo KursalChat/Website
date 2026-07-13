@@ -2,7 +2,7 @@
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import DocPage from "$lib/components/DocPage.svelte";
   import DocSection from "$lib/components/DocSection.svelte";
-  import { repository, SITE_ICON, SITE_URL } from "$lib/const";
+  import { repository, SITE_OG, SITE_URL } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/privacy`;
 </script>
@@ -21,15 +21,15 @@
     content="Kursal is built for privacy by design. Learn what data we do (not) collect."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Privacy Policy | Kursal" />
   <meta
     name="twitter:description"
     content="Kursal is built for privacy by design. Learn what data we do (not) collect."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <DocPage

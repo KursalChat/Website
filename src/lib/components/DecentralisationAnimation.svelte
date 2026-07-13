@@ -7,6 +7,8 @@
     Monitor,
     Wifi,
     WifiOff,
+    Lock,
+    Check,
   } from "lucide-svelte";
   import { reveal } from "$lib/reveal";
 
@@ -61,9 +63,9 @@
 
     for (const node of initialNodes) {
       if (node.id === failingNodeId) {
-        if (scrollProgress < 0.25) {
+        if (scrollProgress < 0.3) {
           result.push({ ...node, status: "active" });
-        } else if (scrollProgress < 0.4) {
+        } else if (scrollProgress < 0.5) {
           result.push({ ...node, status: "failing" });
         } else {
           result.push({ ...node, status: "dead" });
@@ -73,10 +75,10 @@
       }
     }
 
-    if (scrollProgress > 0.55) {
+    if (scrollProgress > 0.62) {
       result.push({
         ...newNode,
-        status: scrollProgress > 0.7 ? "active" : "joining",
+        status: scrollProgress > 0.75 ? "active" : "joining",
       });
     }
 
@@ -91,10 +93,10 @@
         from === failingNodeId || to === failingNodeId;
 
       if (involvesFailingNode) {
-        if (scrollProgress < 0.25) {
+        if (scrollProgress < 0.3) {
           result.push({ from, to, opacity: 1 });
-        } else if (scrollProgress < 0.4) {
-          const fadeProgress = (scrollProgress - 0.25) / 0.15;
+        } else if (scrollProgress < 0.5) {
+          const fadeProgress = (scrollProgress - 0.3) / 0.2;
           result.push({ from, to, opacity: 1 - fadeProgress });
         }
       } else {
@@ -102,8 +104,8 @@
       }
     }
 
-    if (scrollProgress > 0.6) {
-      const fadeProgress = Math.min(1, (scrollProgress - 0.6) / 0.2);
+    if (scrollProgress > 0.66) {
+      const fadeProgress = Math.min(1, (scrollProgress - 0.66) / 0.2);
       for (const [from, to] of newConnections) {
         result.push({ from, to, opacity: fadeProgress });
       }
@@ -118,11 +120,50 @@
   }
 
   let phase = $derived.by(() => {
-    if (scrollProgress < 0.25) return "healthy";
-    if (scrollProgress < 0.55) return "failure";
-    if (scrollProgress < 0.75) return "recovery";
+    if (scrollProgress < 0.3) return "healthy";
+    if (scrollProgress < 0.62) return "failure";
+    if (scrollProgress < 0.8) return "recovery";
     return "restored";
   });
+
+  const smooth = (x: number) => {
+    const c = Math.max(0, Math.min(1, x));
+    return c * c * (3 - 2 * c);
+  };
+
+  const packetPath = [
+    {
+      from: { x: 20, y: 30 },
+      to: { x: 39.5, y: 23.5 },
+      start: 0.05,
+      end: 0.3,
+    },
+    {
+      from: { x: 39.5, y: 23.5 },
+      to: { x: 20, y: 30 },
+      start: 0.3,
+      end: 0.5,
+    },
+    { from: { x: 20, y: 30 }, to: { x: 35, y: 60 }, start: 0.5, end: 0.62 },
+    { from: { x: 35, y: 60 }, to: { x: 65, y: 65 }, start: 0.62, end: 0.74 },
+    { from: { x: 65, y: 65 }, to: { x: 80, y: 35 }, start: 0.74, end: 0.88 },
+  ];
+
+  let packet = $derived.by(() => {
+    for (const seg of packetPath) {
+      if (scrollProgress <= seg.end) {
+        const t = smooth((scrollProgress - seg.start) / (seg.end - seg.start));
+        return {
+          x: seg.from.x + (seg.to.x - seg.from.x) * t,
+          y: seg.from.y + (seg.to.y - seg.from.y) * t,
+        };
+      }
+    }
+    return { x: 80, y: 35 };
+  });
+
+  let rerouting = $derived(scrollProgress >= 0.3 && scrollProgress < 0.5);
+  let delivered = $derived(scrollProgress > 0.88);
 
   onMount(() => {
     const handleScroll = () => {
@@ -142,7 +183,7 @@
 <section
   id="decentralisation"
   bind:this={containerElement}
-  class="relative h-[240vh]"
+  class="relative h-[300vh]"
 >
   <div
     class="sticky top-0 h-screen flex items-center justify-center overflow-hidden transition-colors duration-700 pt-16 bg-kursal-900"
@@ -163,7 +204,7 @@
         >
           {#if phase === "failure"}
             <WifiOff size={18} />
-            <span>Node Offline</span>
+            <span>Relay Seized</span>
           {:else}
             <Wifi size={18} />
             <span>Network Active</span>
@@ -176,7 +217,7 @@
           {#if phase === "healthy"}
             Decentralized Network
           {:else if phase === "failure"}
-            Node Went Offline
+            A Relay Got Seized
           {:else if phase === "recovery"}
             <span class="text-accent-400">New Node Joining...</span>
           {:else}
@@ -187,7 +228,7 @@
           {#if phase === "healthy"}
             Data flows encrypted through a resilient mesh
           {:else if phase === "failure"}
-            A node went down, but the network keeps running
+            A relay was taken down, but your packet just reroutes
           {:else if phase === "recovery"}
             New nodes join automatically to maintain resilience
           {:else}
@@ -293,12 +334,35 @@
                 </div>
                 <span
                   class="stamp text-party-500 text-[0.5rem] absolute -bottom-5 left-1/2 -translate-x-1/2 -rotate-6 whitespace-nowrap"
-                  >Offline</span
+                  >Seized</span
                 >
               {/if}
             </div>
           </div>
         {/each}
+
+        <div
+          class="absolute -translate-x-1/2 z-10 transition-transform duration-300 {delivered
+            ? '-translate-y-[170%]'
+            : '-translate-y-1/2'}"
+          style="left: {packet.x}%; top: {packet.y}%"
+        >
+          <div
+            class="flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[0.65rem] sm:text-xs bg-kursal-950 border whitespace-nowrap {delivered
+              ? 'border-accent-500 text-accent-400'
+              : rerouting
+                ? 'border-party-500/70 text-party-400 shadow-[0_0_18px_-4px] shadow-party-500/50'
+                : 'border-accent-500/60 text-accent-400 shadow-[0_0_18px_-4px] shadow-accent-500/50'}"
+          >
+            {#if delivered}
+              <Check size={12} />
+              delivered
+            {:else}
+              <Lock size={12} />
+              8f3a c21d
+            {/if}
+          </div>
+        </div>
       </div>
 
       <div class="flex justify-center mt-8">

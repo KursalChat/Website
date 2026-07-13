@@ -11,7 +11,7 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { EXPECTEDTIME, SITE_ICON, SITE_URL } from "$lib/const";
+  import { EXPECTEDTIME, SITE_OG, SITE_URL } from "$lib/const";
   import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
@@ -28,13 +28,25 @@
     activeTerminalTab === "mac-linux" ? "$" : ">",
   );
 
+  let detectedOS = $state<OSId | null>(null);
+
+  let sortedPlatforms = $derived(
+    detectedOS
+      ? [...platforms].sort((a, b) =>
+          a.id === detectedOS ? -1 : b.id === detectedOS ? 1 : 0,
+        )
+      : platforms,
+  );
+
   $effect(() => {
     const ua = window.navigator.userAgent.toLowerCase();
-    if (ua.includes("win")) {
-      activeTerminalTab = "windows";
-    } else {
-      activeTerminalTab = "mac-linux";
-    }
+    if (/iphone|ipad|ipod/.test(ua)) detectedOS = "ios";
+    else if (ua.includes("android")) detectedOS = "android";
+    else if (ua.includes("win")) detectedOS = "windows";
+    else if (ua.includes("mac")) detectedOS = "mac";
+    else if (ua.includes("linux")) detectedOS = "linux";
+
+    activeTerminalTab = detectedOS === "windows" ? "windows" : "mac-linux";
 
     fetchVersion();
   });
@@ -105,9 +117,9 @@
     content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
   />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_ICON} />
+  <meta property="og:image" content={SITE_OG} />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
     content="Download Kursal | Private Messaging App"
@@ -116,7 +128,7 @@
     name="twitter:description"
     content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
   />
-  <meta name="twitter:image" content={SITE_ICON} />
+  <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <Navbar />
@@ -263,9 +275,12 @@
     </div>
 
     <div class="grid gap-6 mb-12">
-      {#each platforms as platform}
+      {#each sortedPlatforms as platform (platform.id)}
+        {@const detected = platform.id === detectedOS}
         <div
-          class="flex flex-col md:flex-row md:items-center gap-6 p-6 bg-kursal-800 rounded-sm border border-kursal-700 hover:border-accent-500/50 transition-colors"
+          class="flex flex-col md:flex-row md:items-center gap-6 p-6 bg-kursal-800 rounded-sm border transition-colors {detected
+            ? 'border-accent-500/60'
+            : 'border-kursal-700 hover:border-accent-500/50'}"
         >
           <div class="flex items-center gap-6 flex-1">
             <div
@@ -275,8 +290,16 @@
             </div>
 
             <div>
-              <h2 class="font-mono text-lg font-semibold text-kursal-50">
+              <h2
+                class="font-mono text-lg font-semibold text-kursal-50 flex items-center gap-2.5"
+              >
                 {platform.name}
+                {#if detected}
+                  <span
+                    class="font-mono text-[0.65rem] font-medium tracking-wide text-accent-400 border border-accent-500/40 rounded-sm px-1.5 py-0.5"
+                    >detected</span
+                  >
+                {/if}
               </h2>
               <p class="text-kursal-300 text-sm mt-1">{platform.description}</p>
             </div>

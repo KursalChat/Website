@@ -39,11 +39,17 @@
 
       <a
         href="/"
-        class="inline-flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2 rounded-sm font-medium transition-colors"
+        class="group inline-flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2 rounded-sm font-medium transition-colors"
       >
-        <span class="text-kursal-500">[</span>
+        <span
+          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:-translate-x-0.5"
+          >[</span
+        >
         cd ~
-        <span class="text-kursal-500">]</span>
+        <span
+          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:translate-x-0.5"
+          >]</span
+        >
       </a>
     </div>
   </div>

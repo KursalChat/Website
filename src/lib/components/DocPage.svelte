@@ -8,12 +8,14 @@
     title,
     subtitle = "",
     stamp = "",
+    command = "cat",
     children,
   }: {
     file: string;
     title: string;
     subtitle?: string;
     stamp?: string;
+    command?: string;
     children?: import("svelte").Snippet;
   } = $props();
 </script>
@@ -25,9 +27,12 @@
     <a
       href="/"
       onclick={() => window.scrollTo(0, 0)}
-      class="inline-flex items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors mb-6"
+      class="group inline-flex items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors mb-6"
     >
-      <ArrowLeft size={16} />
+      <ArrowLeft
+        size={16}
+        class="transition-transform group-hover:-translate-x-0.5"
+      />
       cd ~
     </a>
 
@@ -40,7 +45,7 @@
       >
         <span class="flex items-center gap-2 min-w-0">
           <span class="text-accent-500 shrink-0">$</span>
-          <span class="truncate">cat ~/{file}</span>
+          <span class="truncate">{command} ~/{file}</span>
         </span>
         {#if stamp}
           <span

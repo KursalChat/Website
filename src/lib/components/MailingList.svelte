@@ -62,7 +62,7 @@
     </h2>
 
     <p class="text-kursal-300 text-lg mb-8 max-w-xl mx-auto">
-      Get notified when Kursal launches it's first beta. As soon as this
+      Get notified when Kursal launches its first beta. As soon as this
       notification is sent, your email will be removed from our records.
     </p>
 
@@ -118,14 +118,22 @@
           <button
             type="submit"
             disabled={status === "loading"}
-            class="font-mono px-6 py-3 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-kursal-950 font-semibold rounded-sm transition-colors flex items-center justify-center gap-2"
+            class="group font-mono px-6 py-3 bg-accent-500 hover:bg-accent-400 disabled:opacity-50 disabled:cursor-not-allowed text-kursal-950 font-semibold rounded-sm transition-colors flex items-center justify-center gap-2"
           >
             {#if status === "loading"}
               <div
                 class="w-5 h-5 border-2 border-kursal-950/30 border-t-kursal-950 rounded-full animate-spin"
               ></div>
             {:else}
-              <span>[ Notify Me ]</span>
+              <span
+                class="text-kursal-950/50 transition-transform group-hover:-translate-x-0.5"
+                >[</span
+              >
+              <span>Notify Me</span>
+              <span
+                class="text-kursal-950/50 transition-transform group-hover:translate-x-0.5"
+                >]</span
+              >
               <ArrowRight size={18} />
             {/if}
           </button>
