@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
     FileText,
-    Bell,
+    Download,
     Shield,
     Lock,
     Scale,
@@ -12,7 +12,6 @@
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { page } from "$app/state";
-  import { scrollTo } from "$lib/util";
   import { repository, PAPER_URL } from "$lib/const";
 
   import { slide } from "svelte/transition";
@@ -27,12 +26,6 @@
     mobileMenuOpen = false;
   }
 
-  function getNotified() {
-    closeMobileMenu();
-    if (location.pathname == "/") scrollTo("notify");
-    else location.href = "/#notify";
-  }
-
   const navLinks = [
     { href: "/compare", label: "compare", icon: GitCompare },
     { href: "/progress", label: "progress", icon: Activity },
@@ -42,36 +35,36 @@
 </script>
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 bg-kursal-900/95 backdrop-blur-sm border-b border-kursal-700 font-mono"
+  class="fixed top-0 right-0 left-0 z-50 border-b border-kursal-700 bg-kursal-900/95 font-mono backdrop-blur-sm"
 >
   <div
-    class="max-w-6xl mx-auto px-4 md:px-6 py-3.5 flex items-center justify-between"
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-6"
   >
     <div class="flex items-center gap-4 md:gap-8">
       <a
         href="/"
-        class="flex items-center gap-2 md:gap-2.5 hover:opacity-80 transition-opacity"
+        class="flex items-center gap-2 transition-opacity hover:opacity-80 md:gap-2.5"
       >
         <img
           fetchpriority="high"
           src="/icon.png"
           alt="Kursal"
-          class="w-7 h-7"
+          class="h-7 w-7"
         />
-        <span class="text-lg font-semibold text-kursal-50 tracking-tight"
+        <span class="text-lg font-semibold tracking-tight text-kursal-50"
           >kursal<span class="text-accent-500">:~$</span></span
         >
       </a>
 
-      <div class="hidden md:flex items-center gap-0.5 text-sm">
+      <div class="hidden items-center gap-0.5 text-sm md:flex">
         {#each navLinks as link}
           {@const active = page.url.pathname === link.href}
           <a
             href={link.href}
             aria-current={active ? "page" : undefined}
-            class="group flex items-center gap-1.5 transition-colors px-3 py-1.5 rounded-sm {active
-              ? 'text-accent-400 bg-kursal-800'
-              : 'text-kursal-300 hover:text-accent-400 hover:bg-kursal-800'}"
+            class="group flex items-center gap-1.5 rounded-sm px-3 py-1.5 transition-colors {active
+              ? 'bg-kursal-800 text-accent-400'
+              : 'text-kursal-300 hover:bg-kursal-800 hover:text-accent-400'}"
           >
             <span
               class="text-kursal-500 transition-colors group-hover:text-accent-500/70"
@@ -84,11 +77,11 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-3 md:gap-5 text-sm">
+    <div class="flex items-center gap-3 text-sm md:gap-5">
       <a
         href={PAPER_URL}
         target="_blank"
-        class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors"
+        class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-kursal-50"
       >
         <FileText size={17} />
         <span class="hidden sm:inline">paper</span>
@@ -98,31 +91,31 @@
         href={repository}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2 text-kursal-300 hover:text-kursal-50 transition-colors"
+        class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-kursal-50"
       >
         <SiGithub size={17} />
         <span class="hidden sm:inline">github</span>
       </a>
 
-      <button
-        onclick={getNotified}
-        class="group flex items-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-3 md:px-3.5 py-1.5 rounded-sm font-medium transition-colors"
+      <a
+        href="/download"
+        class="group flex items-center gap-2 rounded-sm border border-accent-500/70 px-3 py-1.5 font-medium text-accent-400 transition-colors hover:bg-accent-500 hover:text-kursal-950 md:px-3.5"
       >
         <span
-          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:-translate-x-0.5"
+          class="text-kursal-500 transition group-hover:-translate-x-0.5 group-hover:text-kursal-950/60"
           >[</span
         >
-        <span class="hidden sm:inline">get notified</span>
-        <Bell size={15} class="sm:hidden" />
+        <span class="hidden sm:inline">download beta</span>
+        <Download size={15} class="sm:hidden" />
         <span
-          class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:translate-x-0.5"
+          class="text-kursal-500 transition group-hover:translate-x-0.5 group-hover:text-kursal-950/60"
           >]</span
         >
-      </button>
+      </a>
 
       <button
         type="button"
-        class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-sm hover:bg-kursal-800 text-kursal-200 hover:text-kursal-50 transition-colors"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-sm text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50 md:hidden"
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-nav"
@@ -140,10 +133,10 @@
   {#if mobileMenuOpen}
     <div
       id="mobile-nav"
-      class="md:hidden border-t border-kursal-700 bg-kursal-900 text-sm"
+      class="border-t border-kursal-700 bg-kursal-900 text-sm md:hidden"
       transition:slide={{ duration: 160 }}
     >
-      <div class="max-w-6xl mx-auto px-4 md:px-6 py-3">
+      <div class="mx-auto max-w-6xl px-4 py-3 md:px-6">
         <div class="flex flex-col gap-0.5">
           {#each navLinks as link}
             {@const active = page.url.pathname === link.href}
@@ -151,9 +144,9 @@
               href={link.href}
               onclick={closeMobileMenu}
               aria-current={active ? "page" : undefined}
-              class="group flex items-center gap-2 transition-colors px-3 py-2 rounded-sm {active
-                ? 'text-accent-400 bg-kursal-800'
-                : 'text-kursal-300 hover:text-accent-400 hover:bg-kursal-800'}"
+              class="group flex items-center gap-2 rounded-sm px-3 py-2 transition-colors {active
+                ? 'bg-kursal-800 text-accent-400'
+                : 'text-kursal-300 hover:bg-kursal-800 hover:text-accent-400'}"
             >
               <link.icon
                 size={16}
@@ -166,13 +159,13 @@
             </a>
           {/each}
 
-          <div class="h-px bg-kursal-700 my-2"></div>
+          <div class="my-2 h-px bg-kursal-700"></div>
 
           <a
             href={PAPER_URL}
             target="_blank"
             onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
+            class="flex items-center gap-2 rounded-sm px-3 py-2 text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50"
           >
             <FileText size={18} />
             <span>paper</span>
@@ -182,27 +175,27 @@
             target="_blank"
             rel="noopener noreferrer"
             onclick={closeMobileMenu}
-            class="flex items-center gap-2 text-kursal-200 hover:text-kursal-50 transition-colors px-3 py-2 rounded-sm hover:bg-kursal-800"
+            class="flex items-center gap-2 rounded-sm px-3 py-2 text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50"
           >
             <SiGithub size={18} />
             <span>github</span>
           </a>
 
-          <button
-            type="button"
-            onclick={getNotified}
-            class="group mt-2 flex items-center justify-center gap-2 border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2.5 rounded-sm font-medium transition-colors"
+          <a
+            href="/download"
+            onclick={closeMobileMenu}
+            class="group mt-2 flex items-center justify-center gap-2 rounded-sm border border-accent-500/70 px-4 py-2.5 font-medium text-accent-400 transition-colors hover:bg-accent-500 hover:text-kursal-950"
           >
             <span
-              class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:-translate-x-0.5"
+              class="text-kursal-500 transition group-hover:-translate-x-0.5 group-hover:text-kursal-950/60"
               >[</span
             >
-            <span>get notified</span>
+            <span>download beta</span>
             <span
-              class="text-kursal-500 transition group-hover:text-kursal-950/60 group-hover:translate-x-0.5"
+              class="text-kursal-500 transition group-hover:translate-x-0.5 group-hover:text-kursal-950/60"
               >]</span
             >
-          </button>
+          </a>
         </div>
       </div>
     </div>

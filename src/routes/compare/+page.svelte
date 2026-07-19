@@ -200,7 +200,7 @@
 {#snippet row(feature: Feature, isLast: boolean)}
   <tr>
     <td
-      class="sticky left-0 z-10 bg-kursal-850 py-3 pr-3 text-left text-kursal-200 border-b border-kursal-700/70"
+      class="sticky left-0 z-10 border-b border-kursal-700/70 bg-kursal-850 py-3 pr-3 text-left text-kursal-200"
     >
       {#if feature.note}
         <button
@@ -231,8 +231,8 @@
     </td>
     {#each apps as app}
       <td
-        class="py-3 px-2 border-b border-kursal-700/70 {app.highlight
-          ? `bg-accent-500/[0.08] border-x border-x-accent-500/40 ${isLast ? 'rounded-b-md border-b-accent-500/40' : ''}`
+        class="border-b border-kursal-700/70 px-2 py-3 {app.highlight
+          ? `border-x border-x-accent-500/40 bg-accent-500/[0.08] ${isLast ? 'rounded-b-md border-b-accent-500/40' : ''}`
           : ''}"
       >
         <span class="inline-flex justify-center">
@@ -264,15 +264,15 @@
 >
   <div class="overflow-x-auto">
     <table
-      class="w-full min-w-[640px] border-separate border-spacing-0 font-mono text-sm text-center"
+      class="w-full min-w-[640px] border-separate border-spacing-0 text-center font-mono text-sm"
     >
       <thead>
         <tr>
-          <th class="w-[34%] sticky left-0 z-20 bg-kursal-850"></th>
+          <th class="sticky left-0 z-20 w-[34%] bg-kursal-850"></th>
           {#each apps as app}
             <th
-              class="py-3 px-2 font-semibold border-b border-kursal-700 {app.highlight
-                ? 'text-accent-400 bg-accent-500/[0.08] border-t border-x border-t-accent-500/40 border-x-accent-500/40 rounded-t-md'
+              class="border-b border-kursal-700 px-2 py-3 font-semibold {app.highlight
+                ? 'rounded-t-md border-x border-t border-x-accent-500/40 border-t-accent-500/40 bg-accent-500/[0.08] text-accent-400'
                 : 'text-kursal-300'}"
             >
               {app.name}
@@ -287,16 +287,16 @@
 
         <tr>
           <td
-            class="sticky left-0 z-10 bg-kursal-850 pt-8 pb-3 pr-3 align-middle text-left"
+            class="sticky left-0 z-10 bg-kursal-850 pt-8 pr-3 pb-3 text-left align-middle"
           >
             <span
-              class="font-mono text-xs uppercase tracking-widest text-kursal-500"
+              class="font-mono text-xs tracking-widest text-kursal-500 uppercase"
             >
               also worth knowing
             </span>
           </td>
           <td
-            class="pt-8 pb-3 bg-accent-500/[0.08] border-x border-x-accent-500/40"
+            class="border-x border-x-accent-500/40 bg-accent-500/[0.08] pt-8 pb-3"
           ></td>
           <td colspan={apps.length - 1} class="pt-8 pb-3 align-middle">
             <div class="h-px bg-kursal-700"></div>
@@ -311,7 +311,7 @@
   </div>
 
   <div
-    class="flex items-center justify-center gap-5 mt-6 font-mono text-xs text-kursal-400"
+    class="mt-6 flex items-center justify-center gap-5 font-mono text-xs text-kursal-400"
   >
     <span class="flex items-center gap-1.5"
       >{@render mark(true, false)} yes</span

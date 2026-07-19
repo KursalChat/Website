@@ -1,6 +1,6 @@
 <script lang="ts">
   import {
-    Clock,
+    Rocket,
     Bell,
     TriangleAlert,
     Download,
@@ -11,21 +11,31 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { EXPECTEDTIME, SITE_OG, SITE_URL } from "$lib/const";
+  import { RELEASE_STATUS, SITE_OG, SITE_URL } from "$lib/const";
   import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
   let latestVersion = $state<string | null>(null);
   let copiedState = $state<Record<string, boolean>>({});
-  let activeTerminalTab = $state<"mac-linux" | "windows">("mac-linux");
 
-  let activeTerminalCmd = $derived(
+  const terminalTabs = [
+    { id: "mac-linux", label: "Mac / Linux" },
+    { id: "windows", label: "Windows" },
+    { id: "homebrew", label: "Homebrew" },
+  ] as const;
+  type TerminalTabId = (typeof terminalTabs)[number]["id"];
+
+  let activeTerminalTab = $state<TerminalTabId>("mac-linux");
+
+  let activeTerminalCmds = $derived(
     activeTerminalTab === "mac-linux"
-      ? "curl -fsSL https://kursal.chat | bash"
-      : 'powershell -c "irm kursal.chat | iex"',
+      ? ["curl -fsSL https://kursal.chat | bash"]
+      : activeTerminalTab === "homebrew"
+        ? ["brew trust KursalChat/Kursal", "brew install KursalChat/Kursal/kursal"]
+        : ['powershell -c "irm kursal.chat | iex"'],
   );
   let activeTerminalPrompt = $derived(
-    activeTerminalTab === "mac-linux" ? "$" : ">",
+    activeTerminalTab === "windows" ? ">" : "$",
   );
 
   let detectedOS = $state<OSId | null>(null);
@@ -107,14 +117,14 @@
   <title>Download Kursal | Private Messaging App</title>
   <meta
     name="description"
-    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
   />
   <link rel="canonical" href={pageUrl} />
 
   <meta property="og:title" content="Download Kursal | Private Messaging App" />
   <meta
     property="og:description"
-    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
   />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_OG} />
@@ -126,131 +136,107 @@
   />
   <meta
     name="twitter:description"
-    content="Download Kursal for macOS, Windows, and Linux. Get notified as soon as releases are available."
+    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
   />
   <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
 <Navbar />
 
-<main class="min-h-screen pt-24 pb-16 bg-kursal-900">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12">
+<main class="min-h-screen bg-kursal-900 pt-24 pb-16">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="mb-12 text-center">
       <div
-        class="inline-flex items-center gap-2 font-mono text-sm text-kursal-300 mb-6"
+        class="mb-6 inline-flex items-center gap-2 font-mono text-sm text-kursal-300"
       >
-        <Clock size={15} class="text-accent-400" />
-        {EXPECTEDTIME}
+        <Rocket size={15} class="text-accent-400" />
+        {RELEASE_STATUS}
       </div>
 
-      <h1 class="font-mono text-4xl md:text-5xl font-bold text-kursal-50 mb-4">
-        Download Kursal
-        {#if latestVersion}
-          <span
-            class="inline-flex items-center font-mono text-xs font-bold tracking-wide text-accent-400 border border-accent-500/30 px-2.5 py-0.5 rounded-sm align-middle ml-2 -mt-2"
-            >{latestVersion}</span
-          >
-        {/if}
+      <h1 class="mb-4 font-mono text-4xl font-bold text-kursal-50 md:text-5xl">
+        <span class="relative inline-block">
+          Download Kursal
+          {#if latestVersion}
+            <span
+              class="absolute top-0 left-full ml-2 hidden -translate-y-1/3 items-center rounded-sm border border-accent-500/30 px-2 py-0.5 font-mono text-xs font-bold tracking-wide whitespace-nowrap text-accent-400 md:inline-flex"
+              >{latestVersion}</span
+            >
+          {/if}
+        </span>
       </h1>
-      <p class="text-lg text-kursal-200 max-w-xl mx-auto leading-relaxed">
-        Kursal is currently in a <strong class="text-kursal-50"
-          >very early prototype stage</strong
-        >. Expect bugs, missing features, and instability! Download below or
-        sign up for a future stable release.
+      <p class="mx-auto max-w-xl text-lg leading-relaxed text-kursal-200">
+        Kursal is currently in <strong class="text-kursal-50"
+          >public beta</strong
+        >. Expect bugs, missing features, and some instability! Download below
+        or sign up to hear about the stable release.
       </p>
     </div>
 
     <div
-      class="mb-12 p-7 bg-kursal-800 rounded-sm border border-accent-500/30 text-center"
+      class="mb-6 flex items-start gap-3 rounded-sm border-l-2 border-party-500 bg-party-500/[0.08] p-4 md:items-center"
     >
-      <h3 class="font-mono text-lg font-semibold text-kursal-50 mb-2">
-        Get notified when beta launches
-      </h3>
-      <p class="text-kursal-300 mb-6">
-        Be the first to download Kursal when it's ready.
-      </p>
-      <a
-        href="/#notify"
-        class="inline-flex items-center gap-2 font-mono bg-accent-500 hover:bg-accent-400 text-kursal-950 px-6 py-3 rounded-sm font-semibold transition-colors"
-      >
-        <Bell size={18} />
-        Sign up for updates
-      </a>
-    </div>
-
-    <div
-      class="mb-6 bg-party-500/[0.08] border-l-2 border-party-500 rounded-sm p-4 flex gap-3 items-start md:items-center"
-    >
-      <TriangleAlert class="text-party-400 shrink-0 mt-0.5 md:mt-0" size={20} />
-      <p class="text-kursal-200 text-sm leading-relaxed">
-        <strong class="font-mono text-party-400">Early Prototype:</strong> This
-        release is highly experimental and meant for testing purposes. You will
-        encounter bugs, missing features, and potential data loss. Please report
-        any issues on the
+      <TriangleAlert class="mt-0.5 shrink-0 text-party-400 md:mt-0" size={20} />
+      <p class="text-sm leading-relaxed text-kursal-200">
+        <strong class="font-mono text-party-400">Beta Release:</strong> This
+        release is still experimental. You may encounter bugs, missing features,
+        and potential data loss. Please report any issues on the
         <a
           href="https://github.com/KursalChat/Kursal-Prototype/issues"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1 underline underline-offset-2 hover:text-kursal-50 font-medium transition-colors"
-          >prototype GitHub <ExternalLink size={12} class="opacity-80" /></a
+          class="inline-flex items-center gap-1 font-medium underline underline-offset-2 transition-colors hover:text-kursal-50"
+          >GitHub <ExternalLink size={12} class="opacity-80" /></a
         >.
       </p>
     </div>
 
     <div class="mb-12">
-      <h2 class="font-mono text-2xl font-bold text-kursal-50 mb-4">
+      <h2 class="mb-4 font-mono text-2xl font-bold text-kursal-50">
         <span class="text-accent-500">$</span> Install via Terminal
-        <span class="text-kursal-400 text-base font-normal">(Recommended)</span>
+        <span class="text-base font-normal text-kursal-400">(Recommended)</span>
       </h2>
 
       <div
-        class="bg-kursal-800 rounded-sm border border-kursal-700 overflow-hidden"
+        class="overflow-hidden rounded-sm border border-kursal-700 bg-kursal-800"
       >
-        <div class="flex bg-kursal-950 border-b border-kursal-700 font-mono">
-          <button
-            onclick={() => (activeTerminalTab = "mac-linux")}
-            class="px-6 py-3.5 text-sm font-medium transition-all relative {activeTerminalTab ===
-            'mac-linux'
-              ? 'text-kursal-50 bg-kursal-800'
-              : 'text-kursal-400 hover:text-kursal-200 hover:bg-kursal-800/50'}"
-          >
-            Mac / Linux
-            {#if activeTerminalTab === "mac-linux"}
-              <div
-                class="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-500"
-              ></div>
-            {/if}
-          </button>
-          <button
-            onclick={() => (activeTerminalTab = "windows")}
-            class="px-6 py-3.5 text-sm font-medium transition-all relative {activeTerminalTab ===
-            'windows'
-              ? 'text-kursal-50 bg-kursal-800'
-              : 'text-kursal-400 hover:text-kursal-200 hover:bg-kursal-800/50'}"
-          >
-            Windows
-            {#if activeTerminalTab === "windows"}
-              <div
-                class="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-500"
-              ></div>
-            {/if}
-          </button>
+        <div class="flex border-b border-kursal-700 bg-kursal-950 font-mono">
+          {#each terminalTabs as tab (tab.id)}
+            <button
+              onclick={() => (activeTerminalTab = tab.id)}
+              class="relative px-6 py-3.5 text-sm font-medium transition-all {activeTerminalTab ===
+              tab.id
+                ? 'bg-kursal-800 text-kursal-50'
+                : 'text-kursal-400 hover:bg-kursal-800/50 hover:text-kursal-200'}"
+            >
+              {tab.label}
+              {#if activeTerminalTab === tab.id}
+                <div
+                  class="absolute right-0 bottom-0 left-0 h-0.5 bg-accent-500"
+                ></div>
+              {/if}
+            </button>
+          {/each}
         </div>
 
         <div class="p-5">
           <div
-            class="flex items-center gap-3 bg-kursal-950 border border-kursal-700 rounded-sm p-3"
+            class="flex items-center gap-3 rounded-sm border border-kursal-700 bg-kursal-950 p-3"
           >
             <code
-              class="text-kursal-50 text-sm flex-1 font-mono overflow-x-auto whitespace-nowrap"
+              class="flex-1 overflow-x-auto font-mono text-sm whitespace-nowrap text-kursal-50"
             >
-              <span class="text-accent-500 select-none mr-2"
-                >{activeTerminalPrompt}</span
-              >{activeTerminalCmd}
+              {#each activeTerminalCmds as cmd}
+                <div>
+                  <span class="mr-2 text-accent-500 select-none"
+                    >{activeTerminalPrompt}</span
+                  >{cmd}
+                </div>
+              {/each}
             </code>
             <button
-              onclick={() => handleCopy(activeTerminalCmd, activeTerminalTab)}
-              class="p-2 text-kursal-300 hover:bg-kursal-700 hover:text-kursal-50 rounded-sm transition-colors shrink-0"
+              onclick={() =>
+                handleCopy(activeTerminalCmds.join("\n"), activeTerminalTab)}
+              class="shrink-0 rounded-sm p-2 text-kursal-300 transition-colors hover:bg-kursal-700 hover:text-kursal-50"
               title="Copy command"
             >
               {#if copiedState[activeTerminalTab]}
@@ -274,48 +260,48 @@
       </p>
     </div>
 
-    <div class="grid gap-6 mb-12">
+    <div class="mb-12 grid gap-6">
       {#each sortedPlatforms as platform (platform.id)}
         {@const detected = platform.id === detectedOS}
         <div
-          class="flex flex-col md:flex-row md:items-center gap-6 p-6 bg-kursal-800 rounded-sm border transition-colors {detected
+          class="flex flex-col gap-6 rounded-sm border bg-kursal-800 p-6 transition-colors md:flex-row md:items-center {detected
             ? 'border-accent-500/60'
             : 'border-kursal-700 hover:border-accent-500/50'}"
         >
-          <div class="flex items-center gap-6 flex-1">
+          <div class="flex flex-1 items-center gap-6">
             <div
-              class="w-16 h-16 bg-kursal-700 rounded-sm flex items-center justify-center shrink-0"
+              class="flex h-16 w-16 shrink-0 items-center justify-center rounded-sm bg-kursal-700"
             >
               <platform.icon size={32} class="text-accent-400" />
             </div>
 
             <div>
               <h2
-                class="font-mono text-lg font-semibold text-kursal-50 flex items-center gap-2.5"
+                class="flex items-center gap-2.5 font-mono text-lg font-semibold text-kursal-50"
               >
                 {platform.name}
                 {#if detected}
                   <span
-                    class="font-mono text-[0.65rem] font-medium tracking-wide text-accent-400 border border-accent-500/40 rounded-sm px-1.5 py-0.5"
+                    class="rounded-sm border border-accent-500/40 px-1.5 py-0.5 font-mono text-[0.65rem] font-medium tracking-wide text-accent-400"
                     >detected</span
                   >
                 {/if}
               </h2>
-              <p class="text-kursal-300 text-sm mt-1">{platform.description}</p>
+              <p class="mt-1 text-sm text-kursal-300">{platform.description}</p>
             </div>
           </div>
 
-          <div class="w-full md:w-auto relative">
+          <div class="relative w-full md:w-auto">
             {#if platform.id === "linux"}
-              <div class="flex flex-col gap-3 items-stretch md:items-end">
-                <div class="relative w-full md:w-auto linux-dropdown-container">
+              <div class="flex flex-col items-stretch gap-3 md:items-end">
+                <div class="linux-dropdown-container relative w-full md:w-auto">
                   <button
                     onclick={(e) => toggleDropdown("linux-x64", e)}
-                    class="relative w-full md:w-[220px] inline-flex items-center justify-center gap-2 px-4 py-2 pr-10 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-sm font-mono text-sm text-kursal-50 font-medium transition-colors"
+                    class="relative inline-flex w-full items-center justify-center gap-2 rounded-sm border border-kursal-600 bg-kursal-700 px-4 py-2 pr-10 font-mono text-sm font-medium text-kursal-50 transition-colors hover:bg-kursal-600 md:w-[220px]"
                   >
                     <Download
                       size={14}
-                      class="text-accent-400 text-opacity-80 shrink-0"
+                      class="text-opacity-80 shrink-0 text-accent-400"
                     />
                     <span>x64 / AMD64</span>
                     <ChevronDown
@@ -328,18 +314,18 @@
                   </button>
                   {#if openDropdown === "linux-x64"}
                     <div
-                      class="absolute right-0 mt-2 w-full md:w-[220px] bg-kursal-800 border border-kursal-600 rounded-sm overflow-hidden z-10"
+                      class="absolute right-0 z-10 mt-2 w-full overflow-hidden rounded-sm border border-kursal-600 bg-kursal-800 md:w-[220px]"
                     >
                       {#each platform.links.slice(0, 3) as link}
                         <a
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="flex w-full items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 font-mono text-sm text-kursal-50 transition-colors"
+                          class="flex w-full items-center justify-center gap-2 px-4 py-3 font-mono text-sm text-kursal-50 transition-colors hover:bg-kursal-700"
                         >
                           <Download
                             size={14}
-                            class="text-accent-400 text-opacity-80 shrink-0"
+                            class="text-opacity-80 shrink-0 text-accent-400"
                           />
                           {link.label}
                         </a>
@@ -348,14 +334,14 @@
                   {/if}
                 </div>
 
-                <div class="relative w-full md:w-auto linux-dropdown-container">
+                <div class="linux-dropdown-container relative w-full md:w-auto">
                   <button
                     onclick={(e) => toggleDropdown("linux-arm64", e)}
-                    class="relative w-full md:w-[220px] inline-flex items-center justify-center gap-2 px-4 py-2 pr-10 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-sm font-mono text-sm text-kursal-50 font-medium transition-colors"
+                    class="relative inline-flex w-full items-center justify-center gap-2 rounded-sm border border-kursal-600 bg-kursal-700 px-4 py-2 pr-10 font-mono text-sm font-medium text-kursal-50 transition-colors hover:bg-kursal-600 md:w-[220px]"
                   >
                     <Download
                       size={14}
-                      class="text-accent-400 text-opacity-80 shrink-0"
+                      class="text-opacity-80 shrink-0 text-accent-400"
                     />
                     <span>arm64</span>
                     <ChevronDown
@@ -368,18 +354,18 @@
                   </button>
                   {#if openDropdown === "linux-arm64"}
                     <div
-                      class="absolute right-0 mt-2 w-full md:w-[220px] bg-kursal-800 border border-kursal-600 rounded-sm overflow-hidden z-10"
+                      class="absolute right-0 z-10 mt-2 w-full overflow-hidden rounded-sm border border-kursal-600 bg-kursal-800 md:w-[220px]"
                     >
                       {#each platform.links.slice(3, 6) as link}
                         <a
                           href={link.url}
                           onclick={(e) =>
                             handleDownloadClick(platform.id, link.id, e)}
-                          class="flex w-full items-center justify-center gap-2 px-4 py-3 hover:bg-kursal-700 font-mono text-sm text-kursal-50 transition-colors"
+                          class="flex w-full items-center justify-center gap-2 px-4 py-3 font-mono text-sm text-kursal-50 transition-colors hover:bg-kursal-700"
                         >
                           <Download
                             size={14}
-                            class="text-accent-400 text-opacity-80 shrink-0"
+                            class="text-opacity-80 shrink-0 text-accent-400"
                           />
                           {link.label}
                         </a>
@@ -389,17 +375,17 @@
                 </div>
               </div>
             {:else}
-              <div class="flex flex-col gap-3 items-stretch md:items-end">
+              <div class="flex flex-col items-stretch gap-3 md:items-end">
                 {#each platform.links as link}
                   <a
                     href={link.url}
                     onclick={(e) =>
                       handleDownloadClick(platform.id, link.id, e)}
-                    class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-kursal-700 hover:bg-kursal-600 border border-kursal-600 rounded-sm font-mono text-sm text-kursal-50 font-medium transition-colors w-full md:w-[220px]"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-sm border border-kursal-600 bg-kursal-700 px-4 py-2 font-mono text-sm font-medium text-kursal-50 transition-colors hover:bg-kursal-600 md:w-[220px]"
                   >
                     <Download
                       size={14}
-                      class="text-accent-400 text-opacity-80"
+                      class="text-opacity-80 text-accent-400"
                     />
                     {link.label}
                   </a>
@@ -409,6 +395,24 @@
           </div>
         </div>
       {/each}
+    </div>
+
+    <div
+      class="rounded-sm border border-accent-500/30 bg-kursal-800 p-7 text-center"
+    >
+      <h3 class="mb-2 font-mono text-lg font-semibold text-kursal-50">
+        Prefer to wait for stable?
+      </h3>
+      <p class="mb-6 text-kursal-300">
+        Get one email when the first stable release ships. Nothing else.
+      </p>
+      <a
+        href="/#notify"
+        class="inline-flex items-center gap-2 rounded-sm bg-accent-500 px-6 py-3 font-mono font-semibold text-kursal-950 transition-colors hover:bg-accent-400"
+      >
+        <Bell size={18} />
+        Sign up for updates
+      </a>
     </div>
   </div>
 </main>

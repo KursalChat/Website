@@ -54,12 +54,12 @@
     </p>
 
     <div
-      class="mt-2 border border-kursal-700 rounded-sm bg-kursal-900/60 overflow-hidden font-mono text-sm"
+      class="mt-2 overflow-hidden rounded-sm border border-kursal-700 bg-kursal-900/60 font-mono text-sm"
     >
       <div
-        class="flex items-center gap-2 px-4 py-2.5 border-b border-kursal-700 bg-kursal-800/60 text-kursal-400"
+        class="flex items-center gap-2 border-b border-kursal-700 bg-kursal-800/60 px-4 py-2.5 text-kursal-400"
       >
-        <span class="text-accent-500 shrink-0">$</span>
+        <span class="shrink-0 text-accent-500">$</span>
         <span class="truncate">ls ~/credits</span>
       </div>
 
@@ -71,18 +71,18 @@
             {#each researchers as r}
               <li>
                 <div
-                  class="flex items-baseline justify-between gap-3 flex-wrap"
+                  class="flex flex-wrap items-baseline justify-between gap-3"
                 >
                   <span
-                    class="font-semibold text-kursal-50 flex items-baseline gap-2.5 min-w-0"
+                    class="flex min-w-0 items-baseline gap-2.5 font-semibold text-kursal-50"
                   >
-                    <span class="text-accent-500 shrink-0">▸</span>
+                    <span class="shrink-0 text-accent-500">▸</span>
                     {#if r.url}
                       <a
                         href={r.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-accent-400 hover:text-accent-300 truncate"
+                        class="truncate text-accent-400 hover:text-accent-300"
                         >{r.name}</a
                       >
                     {:else}
@@ -90,14 +90,14 @@
                     {/if}
                   </span>
                   {#if r.date}
-                    <span class="text-xs text-kursal-500 shrink-0"
+                    <span class="shrink-0 text-xs text-kursal-500"
                       >{r.date}</span
                     >
                   {/if}
                 </div>
                 {#if r.finding}
                   <p
-                    class="text-kursal-300 leading-relaxed mt-1.5 pl-[1.375rem]"
+                    class="mt-1.5 pl-[1.375rem] leading-relaxed text-kursal-300"
                   >
                     {r.finding}
                   </p>
@@ -116,36 +116,36 @@
       report it to us privately. With your consent, we'll add your name once a
       fix has shipped.
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1 text-kursal-300">
+    <ul class="mt-1 space-y-2 font-mono text-sm text-kursal-300">
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span>Disclose privately and give us 90 days before going public.</span>
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span
           >Include clear steps so we can reproduce and verify the issue.</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span>Tell us how you'd like to be credited (or stay anonymous).</span>
       </li>
     </ul>
 
-    <div class="flex flex-wrap gap-3 mt-5">
+    <div class="mt-5 flex flex-wrap gap-3">
       <a
         href="/vulnerability"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 font-mono text-sm bg-party-500/10 hover:bg-party-500/20 text-party-400 border border-party-500/40 px-4 py-2 rounded-sm transition-colors"
+        class="inline-flex items-center gap-2 rounded-sm border border-party-500/40 bg-party-500/10 px-4 py-2 font-mono text-sm text-party-400 transition-colors hover:bg-party-500/20"
       >
         <Bug size={16} />
         Submit Vulnerability Report
       </a>
       <a
         href="/security"
-        class="inline-flex items-center gap-2 font-mono text-sm border border-kursal-600 hover:border-accent-500 bg-kursal-800 hover:bg-kursal-700 text-kursal-100 px-4 py-2 rounded-sm transition-colors"
+        class="inline-flex items-center gap-2 rounded-sm border border-kursal-600 bg-kursal-800 px-4 py-2 font-mono text-sm text-kursal-100 transition-colors hover:border-accent-500 hover:bg-kursal-700"
       >
         <ShieldCheck size={16} />
         Read our Security policy
@@ -154,7 +154,7 @@
   </DocSection>
 
   <p
-    class="mt-9 pt-6 border-t border-kursal-700 font-mono text-sm text-kursal-400"
+    class="mt-9 border-t border-kursal-700 pt-6 font-mono text-sm text-kursal-400"
   >
     <span class="text-kursal-500">#&nbsp;</span>We try keeping Kursal as secure
     as possible. If you find a vulnerability, please reach out!

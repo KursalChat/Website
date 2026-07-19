@@ -51,27 +51,27 @@
     <p>
       By design, Kursal operates without central servers or control. This means:
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200"
           >We cannot moderate, filter, or censor messages</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200"
           >We cannot recover lost accounts or encryption keys</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200"
           >We cannot access or read your communications</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200">We cannot delete or modify your data</span
         >
       </li>
@@ -84,27 +84,27 @@
 
   <DocSection n="03" title="Your Responsibilities">
     <p>When using Kursal, you agree to:</p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Comply with all applicable laws in your jurisdiction</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Not use the software for illegal activities</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Safeguard your encryption keys and credentials</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Understand that lost keys cannot be recovered</span
         >
@@ -122,10 +122,10 @@
 
   <DocSection n="05" title="No Warranty">
     <div
-      class="bg-party-500/[0.07] border-l-2 border-party-500 rounded-sm p-4 flex gap-3 items-start"
+      class="flex items-start gap-3 rounded-sm border-l-2 border-party-500 bg-party-500/[0.07] p-4"
     >
-      <TriangleAlert size={20} class="text-party-400 shrink-0 mt-0.5" />
-      <p class="font-mono text-xs text-kursal-300 leading-relaxed">
+      <TriangleAlert size={20} class="mt-0.5 shrink-0 text-party-400" />
+      <p class="font-mono text-xs leading-relaxed text-kursal-300">
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
         OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
         MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -140,32 +140,32 @@
       Because Kursal is decentralized and we have no control over the network or
       user activities, we cannot be held liable for:
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Any content transmitted through the network</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200">Loss of data or encryption keys</span>
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Service interruptions or unavailability</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200">Any actions taken by other users</span>
       </li>
     </ul>
   </DocSection>
 
   <p
-    class="mt-9 pt-6 border-t border-kursal-700 font-mono text-sm text-kursal-400"
+    class="mt-9 border-t border-kursal-700 pt-6 font-mono text-sm text-kursal-400"
   >
     <span class="text-kursal-500">#&nbsp;</span>For questions about these terms,
     please open an issue on our

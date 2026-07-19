@@ -40,38 +40,38 @@
   subtitle="Our mission is to protect your privacy through proven cryptographic protocols and transparent security practices."
 >
   <DocSection n="01" title="Cryptographic Protocols">
-    <div class="grid md:grid-cols-2 gap-6 mt-1">
-      <div class="border border-kursal-700 rounded-sm p-5 bg-kursal-800/40">
+    <div class="mt-1 grid gap-6 md:grid-cols-2">
+      <div class="rounded-sm border border-kursal-700 bg-kursal-800/40 p-5">
         <h3
-          class="font-mono text-base font-semibold text-kursal-50 mb-2 flex items-center gap-2"
+          class="mb-2 flex items-center gap-2 font-mono text-base font-semibold text-kursal-50"
         >
-          <Key size={18} class="text-accent-400 shrink-0" />
+          <Key size={18} class="shrink-0 text-accent-400" />
           PQXDH Key Agreement
           <a
             href="https://signal.org/docs/specifications/pqxdh/"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-kursal-400 hover:text-accent-400 transition-colors"
+            class="text-kursal-400 transition-colors hover:text-accent-400"
           >
             <ExternalLink size={15} />
           </a>
         </h3>
-        <p class="text-kursal-300 text-sm leading-relaxed">
+        <p class="text-sm leading-relaxed text-kursal-300">
           Kursal uses the Post-Quantum Extended Diffie-Hellman (PQXDH) protocol
           to establish shared secrets when initiating conversations.
         </p>
       </div>
-      <div class="border border-kursal-700 rounded-sm p-5 bg-kursal-800/40">
+      <div class="rounded-sm border border-kursal-700 bg-kursal-800/40 p-5">
         <h3
-          class="font-mono text-base font-semibold text-kursal-50 mb-2 flex items-center gap-2 flex-wrap"
+          class="mb-2 flex flex-wrap items-center gap-2 font-mono text-base font-semibold text-kursal-50"
         >
-          <RefreshCw size={18} class="text-accent-400 shrink-0" />
+          <RefreshCw size={18} class="shrink-0 text-accent-400" />
           Double Ratchet
           <a
             href="https://signal.org/docs/specifications/doubleratchet/"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-kursal-400 hover:text-accent-400 transition-colors"
+            class="text-kursal-400 transition-colors hover:text-accent-400"
           >
             <ExternalLink size={15} />
           </a>
@@ -80,12 +80,12 @@
             href="https://signal.org/docs/specifications/mlkembraid/"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-kursal-400 hover:text-accent-400 transition-colors"
+            class="text-kursal-400 transition-colors hover:text-accent-400"
           >
             <ExternalLink size={15} />
           </a>
         </h3>
-        <p class="text-kursal-300 text-sm leading-relaxed">
+        <p class="text-sm leading-relaxed text-kursal-300">
           All message exchanges use the Double Ratchet algorithm, providing both
           forward secrecy and post-compromise security.
         </p>
@@ -101,12 +101,12 @@
 
     <div class="mt-2">
       <h3
-        class="font-mono text-base font-semibold text-kursal-50 mb-3 flex items-center gap-2"
+        class="mb-3 flex items-center gap-2 font-mono text-base font-semibold text-kursal-50"
       >
         <SiGithub size={18} />
         General Issues
       </h3>
-      <p class="text-kursal-300 mb-4 text-sm leading-relaxed">
+      <p class="mb-4 text-sm leading-relaxed text-kursal-300">
         For bugs, feature requests, and non-security issues, please open an
         issue on GitHub:
       </p>
@@ -114,7 +114,7 @@
         href="/issues"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 font-mono text-sm border border-kursal-600 hover:border-accent-500 bg-kursal-800 hover:bg-kursal-700 text-kursal-100 px-4 py-2 rounded-sm transition-colors"
+        class="inline-flex items-center gap-2 rounded-sm border border-kursal-600 bg-kursal-800 px-4 py-2 font-mono text-sm text-kursal-100 transition-colors hover:border-accent-500 hover:bg-kursal-700"
       >
         <SiGithub size={16} />
         Open GitHub Issue
@@ -123,12 +123,12 @@
 
     <div class="mt-6">
       <h3
-        class="font-mono text-base font-semibold text-kursal-50 mb-3 flex items-center gap-2"
+        class="mb-3 flex items-center gap-2 font-mono text-base font-semibold text-kursal-50"
       >
         <Bug size={18} class="text-party-400" />
         Found a Vulnerability?
       </h3>
-      <p class="text-kursal-300 mb-4 text-sm leading-relaxed">
+      <p class="mb-4 text-sm leading-relaxed text-kursal-300">
         If you've discovered a security issue that might impact user privacy or
         safety, we'd greatly appreciate your help in reporting it.
       </p>
@@ -136,28 +136,28 @@
         href="/vulnerability"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 font-mono text-sm bg-party-500/10 hover:bg-party-500/20 text-party-400 border border-party-500/40 px-4 py-2 rounded-sm transition-colors"
+        class="inline-flex items-center gap-2 rounded-sm border border-party-500/40 bg-party-500/10 px-4 py-2 font-mono text-sm text-party-400 transition-colors hover:bg-party-500/20"
       >
         <Bug size={16} />
         Submit Vulnerability Report
       </a>
-      <ul class="font-mono text-sm space-y-2 mt-5 text-kursal-300">
+      <ul class="mt-5 space-y-2 font-mono text-sm text-kursal-300">
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span
             >Please provide detailed steps so we can reproduce and verify the
             issue.</span
           >
         </li>
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span
             >We kindly ask for 90 days to release a fix before public
             disclosure.</span
           >
         </li>
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span
             >We're a small team, but we'll try our best to acknowledge your
             report within 48 hours.</span
@@ -167,12 +167,12 @@
     </div>
 
     <div class="mt-6">
-      <h3 class="font-mono text-base font-semibold text-kursal-50 mb-3">
+      <h3 class="mb-3 font-mono text-base font-semibold text-kursal-50">
         Our Commitment
       </h3>
-      <ul class="font-mono text-sm space-y-2 text-kursal-300">
+      <ul class="space-y-2 font-mono text-sm text-kursal-300">
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span
             >Credit in our
             <a
@@ -183,11 +183,11 @@
           >
         </li>
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span>Regular updates on our progress addressing the issue</span>
         </li>
         <li class="flex gap-2.5">
-          <span class="text-accent-500 shrink-0">▸</span>
+          <span class="shrink-0 text-accent-500">▸</span>
           <span>Transparent communication throughout the process</span>
         </li>
       </ul>
@@ -195,33 +195,33 @@
   </DocSection>
 
   <DocSection n="03" title="Security Practices">
-    <div class="grid md:grid-cols-2 gap-6 mt-1">
+    <div class="mt-1 grid gap-6 md:grid-cols-2">
       <div>
-        <h3 class="font-mono text-base font-semibold text-kursal-50 mb-3">
+        <h3 class="mb-3 font-mono text-base font-semibold text-kursal-50">
           Code Security
         </h3>
-        <ul class="font-mono text-sm space-y-2 text-kursal-300">
+        <ul class="space-y-2 font-mono text-sm text-kursal-300">
           <li class="flex gap-2.5">
-            <span class="text-accent-500 shrink-0">▸</span>
+            <span class="shrink-0 text-accent-500">▸</span>
             <span>All code is open source and publicly auditable</span>
           </li>
           <li class="flex gap-2.5">
-            <span class="text-accent-500 shrink-0">▸</span>
+            <span class="shrink-0 text-accent-500">▸</span>
             <span>Continuous dependency vulnerability monitoring</span>
           </li>
         </ul>
       </div>
       <div>
-        <h3 class="font-mono text-base font-semibold text-kursal-50 mb-3">
+        <h3 class="mb-3 font-mono text-base font-semibold text-kursal-50">
           Infrastructure
         </h3>
-        <ul class="font-mono text-sm space-y-2 text-kursal-300">
+        <ul class="space-y-2 font-mono text-sm text-kursal-300">
           <li class="flex gap-2.5">
-            <span class="text-accent-500 shrink-0">▸</span>
+            <span class="shrink-0 text-accent-500">▸</span>
             <span>All communications are end-to-end encrypted</span>
           </li>
           <li class="flex gap-2.5">
-            <span class="text-accent-500 shrink-0">▸</span>
+            <span class="shrink-0 text-accent-500">▸</span>
             <span>Resistant decentralized network</span>
           </li>
         </ul>
@@ -230,7 +230,7 @@
   </DocSection>
 
   <p
-    class="mt-9 pt-6 border-t border-kursal-700 font-mono text-sm text-kursal-400"
+    class="mt-9 border-t border-kursal-700 pt-6 font-mono text-sm text-kursal-400"
   >
     <span class="text-kursal-500">#&nbsp;</span>For more details on our
     cryptographic implementation, read our

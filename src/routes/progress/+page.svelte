@@ -57,9 +57,15 @@
       status: "in-progress",
     },
     {
-      title: "First Public Release",
+      title: "Public Beta",
       description:
-        "First v0.1 release of Kursal! Planned to be August 20th 2026! Public beta will be available before this date :)",
+        "The Kursal public beta is out! Download it from the website.",
+      status: "completed",
+      date: "July 15th, 2026",
+    },
+    {
+      title: "First Public Release",
+      description: "First stable v0.1 release of Kursal! Planned to be August 20th 2026!",
       status: "in-progress",
     },
     {
@@ -142,13 +148,13 @@
   subtitle="Follow along as we build Kursal: from paper to production."
 >
   <div class="mb-10">
-    <div class="flex justify-between font-mono text-sm text-kursal-300 mb-2">
+    <div class="mb-2 flex justify-between font-mono text-sm text-kursal-300">
       <span>{completedCount} of {totalCount} milestones completed</span>
       <span class="text-accent-400"
         >{Math.round((completedCount / totalCount) * 100)}%</span
       >
     </div>
-    <div class="h-2 bg-kursal-700 overflow-hidden rounded-sm">
+    <div class="h-2 overflow-hidden rounded-sm bg-kursal-700">
       <div
         class="h-full bg-gradient-to-r from-green-400 to-accent-400 transition-all duration-700"
         style="width: {(completedCount / totalCount) * 100}%"
@@ -157,7 +163,7 @@
   </div>
 
   <div
-    class="font-mono text-sm bg-kursal-950/60 border border-kursal-700 rounded-sm p-5 md:p-6 space-y-5"
+    class="space-y-5 rounded-sm border border-kursal-700 bg-kursal-950/60 p-5 font-mono text-sm md:p-6"
   >
     {#each milestones as milestone}
       {@const future = milestone.status === "future"}
@@ -179,13 +185,13 @@
         </div>
 
         {#if milestone.description}
-          <p class="pl-6 mt-1 text-kursal-400 leading-relaxed">
+          <p class="mt-1 pl-6 leading-relaxed text-kursal-400">
             {milestone.description}
           </p>
         {/if}
 
         {#if milestone.subtasks}
-          <div class="pl-6 mt-2 space-y-1">
+          <div class="mt-2 space-y-1 pl-6">
             {#each milestone.subtasks as sub, i}
               <div class="flex items-baseline gap-2">
                 <span class="text-kursal-600 select-none"

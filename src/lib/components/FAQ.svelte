@@ -39,14 +39,14 @@
   }
 </script>
 
-<section id="faq" class="py-24 bg-kursal-900">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12" use:reveal>
-      <p class="font-mono text-sm text-accent-400 mb-4">~/faq</p>
-      <h2 class="font-mono text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
+<section id="faq" class="bg-kursal-900 py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mb-12 text-center" use:reveal>
+      <p class="mb-4 font-mono text-sm text-accent-400">~/faq</p>
+      <h2 class="mb-4 font-mono text-3xl font-bold text-kursal-50 md:text-4xl">
         Frequently Asked Questions
       </h2>
-      <p class="text-kursal-300 text-lg max-w-2xl mx-auto">
+      <p class="mx-auto max-w-2xl text-lg text-kursal-300">
         Got questions? We've got answers. If you don't find what you're looking
         for, feel free to reach out.
       </p>
@@ -56,19 +56,19 @@
       {#each faqs as faq, index}
         <div
           use:reveal={{ delay: index * 50 }}
-          class="bg-kursal-800 rounded-sm border border-kursal-700 overflow-hidden transition-colors duration-200 hover:border-kursal-600"
+          class="overflow-hidden rounded-sm border border-kursal-700 bg-kursal-800 transition-colors duration-200 hover:border-kursal-600"
           class:border-accent-500={openIndex === index}
         >
           <button
             onclick={() => toggle(index)}
-            class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer"
+            class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
           >
-            <span class="flex items-baseline gap-2.5 min-w-0">
-              <span class="font-mono text-accent-400 shrink-0">Q:</span>
-              <span class="text-kursal-50 font-medium">{faq.question}</span>
+            <span class="flex min-w-0 items-baseline gap-2.5">
+              <span class="shrink-0 font-mono text-accent-400">Q:</span>
+              <span class="font-medium text-kursal-50">{faq.question}</span>
             </span>
             <span
-              class="font-mono text-lg text-accent-400 shrink-0 select-none w-6 text-center"
+              class="w-6 shrink-0 text-center font-mono text-lg text-accent-400 select-none"
               aria-hidden="true">{openIndex === index ? "−" : "+"}</span
             >
           </button>
@@ -76,9 +76,9 @@
           {#if openIndex === index}
             <div transition:slide={{ duration: 200 }} class="px-5 pb-5">
               <p
-                class="answer text-kursal-300 leading-relaxed pl-[1.9rem] border-l border-kursal-700 ml-[0.1rem]"
+                class="answer ml-[0.1rem] border-l border-kursal-700 pl-[1.9rem] leading-relaxed text-kursal-300"
               >
-                <span class="font-mono text-accent-400/70 -ml-[1.9rem] pr-2"
+                <span class="-ml-[1.9rem] pr-2 font-mono text-accent-400/70"
                   >A:</span
                 >{@html faq.answer}
               </p>

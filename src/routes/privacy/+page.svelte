@@ -51,17 +51,17 @@
       Because the Kursal app is peer-to-peer and fully decentralized and we do
       not want to invade your privacy:
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200">No access to encryption keys</span>
       </li>
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200">No analytics or usage tracking</span>
       </li>
       <li class="flex gap-2.5">
-        <span class="text-party-400 shrink-0">✗</span>
+        <span class="shrink-0 text-party-400">✗</span>
         <span class="text-kursal-200">No conversation metadata</span>
       </li>
     </ul>
@@ -72,16 +72,16 @@
       The Kursal app itself collects nothing. The only data we ever hold is what
       you explicitly hand us:
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">+</span>
+        <span class="shrink-0 text-accent-500">+</span>
         <span class="text-kursal-200"
           >Email addresses, only if you subscribe to our newsletter on this
           website</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">+</span>
+        <span class="shrink-0 text-accent-500">+</span>
         <span class="text-kursal-200"
           >Crash reports, only if you send one from the pop-up after a crash</span
         >
@@ -100,19 +100,19 @@
       Your encrypted messages go through public relays. Those relays can track
       some limited informations about you:
     </p>
-    <ul class="font-mono text-sm space-y-2 mt-1">
+    <ul class="mt-1 space-y-2 font-mono text-sm">
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Your IP address (can be changed with a VPN)</span
         >
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200">When you send messages</span>
       </li>
       <li class="flex gap-2.5">
-        <span class="text-accent-500 shrink-0">▸</span>
+        <span class="shrink-0 text-accent-500">▸</span>
         <span class="text-kursal-200"
           >Your Peer ID and the destination Peer ID (which periodically rotates
           and makes the 'when' harder to track)</span
@@ -152,7 +152,7 @@
       href={repository}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 font-mono text-sm border border-accent-500/70 text-accent-400 hover:bg-accent-500 hover:text-kursal-950 px-4 py-2 rounded-sm transition-colors"
+      class="inline-flex items-center gap-2 rounded-sm border border-accent-500/70 px-4 py-2 font-mono text-sm text-accent-400 transition-colors hover:bg-accent-500 hover:text-kursal-950"
     >
       <SiGithub size={16} />
       view source on GitHub
@@ -160,7 +160,7 @@
   </DocSection>
 
   <p
-    class="mt-9 pt-6 border-t border-kursal-700 font-mono text-sm text-kursal-400"
+    class="mt-9 border-t border-kursal-700 pt-6 font-mono text-sm text-kursal-400"
   >
     <span class="text-kursal-500">#&nbsp;</span>This privacy policy is
     intentionally simple because our approach to privacy is simple: we don't

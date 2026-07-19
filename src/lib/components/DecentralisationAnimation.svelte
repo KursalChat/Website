@@ -186,7 +186,7 @@
   class="relative h-[300vh]"
 >
   <div
-    class="sticky top-0 h-screen flex items-center justify-center overflow-hidden transition-colors duration-700 pt-16 bg-kursal-900"
+    class="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-kursal-900 pt-16 transition-colors duration-700"
   >
     <!-- CRT lines -->
     <div
@@ -194,10 +194,10 @@
       style="background-image: repeating-linear-gradient(to bottom, var(--color-kursal-50) 0px, var(--color-kursal-50) 1px, transparent 1px, transparent 3px);"
     ></div>
 
-    <div class="max-w-6xl w-full px-4 md:px-6 relative z-10">
-      <div class="text-center mb-2 md:mb-4" use:reveal>
+    <div class="relative z-10 w-full max-w-6xl px-4 md:px-6">
+      <div class="mb-2 text-center md:mb-4" use:reveal>
         <div
-          class="inline-flex items-center gap-2 font-mono text-sm mb-4 transition-colors duration-500 {phase ===
+          class="mb-4 inline-flex items-center gap-2 font-mono text-sm transition-colors duration-500 {phase ===
           'failure'
             ? 'text-party-400'
             : 'text-accent-400'}"
@@ -212,7 +212,7 @@
         </div>
 
         <h2
-          class="font-mono text-2xl md:text-4xl font-bold text-kursal-50 mb-3"
+          class="mb-3 font-mono text-2xl font-bold text-kursal-50 md:text-4xl"
         >
           {#if phase === "healthy"}
             Decentralized Network
@@ -224,7 +224,7 @@
             <span class="text-accent-400">Network Still Up</span>
           {/if}
         </h2>
-        <p class="text-kursal-300 text-sm md:text-lg max-w-xl mx-auto">
+        <p class="mx-auto max-w-xl text-sm text-kursal-300 md:text-lg">
           {#if phase === "healthy"}
             Data flows encrypted through a resilient mesh
           {:else if phase === "failure"}
@@ -237,9 +237,9 @@
         </p>
       </div>
 
-      <div class="relative w-full aspect-[16/10] max-w-3xl mx-auto">
+      <div class="relative mx-auto aspect-[16/10] w-full max-w-3xl">
         <svg
-          class="absolute inset-0 w-full h-full"
+          class="absolute inset-0 h-full w-full"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
@@ -271,7 +271,7 @@
 
         {#each nodes as node (node.id)}
           <div
-            class="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
+            class="absolute -translate-x-1/2 -translate-y-1/2 transform transition-all duration-700"
             style="left: {node.x}%; top: {node.y}%; opacity: {node.status ===
             'dead'
               ? 0.5
@@ -280,18 +280,18 @@
                 : 1}; scale: {node.status === 'joining' ? 0.8 : 1}"
           >
             <div
-              class="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-sm flex items-center justify-center transition-all duration-500 {node.status ===
+              class="relative flex h-10 w-10 items-center justify-center rounded-sm transition-all duration-500 sm:h-12 sm:w-12 lg:h-16 lg:w-16 {node.status ===
               'failing'
-                ? 'bg-party-500/20 border-2 border-party-500 animate-pulse'
+                ? 'animate-pulse border-2 border-party-500 bg-party-500/20'
                 : node.status === 'dead'
-                  ? 'bg-kursal-800 border-2 border-party-600/40'
+                  ? 'border-2 border-party-600/40 bg-kursal-800'
                   : node.status === 'joining'
-                    ? 'bg-accent-500/20 border-2 border-accent-500'
-                    : 'bg-kursal-800 border-2 border-accent-500/50'}"
+                    ? 'border-2 border-accent-500 bg-accent-500/20'
+                    : 'border-2 border-accent-500/50 bg-kursal-800'}"
             >
               {#if node.icon === "server"}
                 <Server
-                  class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
+                  class="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 {node.status ===
                   'dead'
                     ? 'text-kursal-500'
                     : node.status === 'failing'
@@ -300,7 +300,7 @@
                 />
               {:else if node.icon === "phone"}
                 <Smartphone
-                  class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
+                  class="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 {node.status ===
                   'dead'
                     ? 'text-kursal-500'
                     : node.status === 'joining'
@@ -309,14 +309,14 @@
                 />
               {:else if node.icon === "laptop"}
                 <Laptop
-                  class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
+                  class="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 {node.status ===
                   'dead'
                     ? 'text-kursal-500'
                     : 'text-accent-400'}"
                 />
               {:else if node.icon === "monitor"}
                 <Monitor
-                  class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 {node.status ===
+                  class="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 {node.status ===
                   'dead'
                     ? 'text-kursal-500'
                     : 'text-accent-400'}"
@@ -326,14 +326,14 @@
               {#if node.status === "dead"}
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div
-                    class="w-full h-0.5 bg-party-500 rotate-45 absolute"
+                    class="absolute h-0.5 w-full rotate-45 bg-party-500"
                   ></div>
                   <div
-                    class="w-full h-0.5 bg-party-500 -rotate-45 absolute"
+                    class="absolute h-0.5 w-full -rotate-45 bg-party-500"
                   ></div>
                 </div>
                 <span
-                  class="stamp text-party-500 text-[0.5rem] absolute -bottom-5 left-1/2 -translate-x-1/2 -rotate-6 whitespace-nowrap"
+                  class="stamp absolute -bottom-5 left-1/2 -translate-x-1/2 -rotate-6 text-[0.5rem] whitespace-nowrap text-party-500"
                   >Seized</span
                 >
               {/if}
@@ -342,13 +342,13 @@
         {/each}
 
         <div
-          class="absolute -translate-x-1/2 z-10 transition-transform duration-300 {delivered
+          class="absolute z-10 -translate-x-1/2 transition-transform duration-300 {delivered
             ? '-translate-y-[170%]'
             : '-translate-y-1/2'}"
           style="left: {packet.x}%; top: {packet.y}%"
         >
           <div
-            class="flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[0.65rem] sm:text-xs bg-kursal-950 border whitespace-nowrap {delivered
+            class="flex items-center gap-1.5 rounded-md border bg-kursal-950 px-2 py-1 font-mono text-[0.65rem] whitespace-nowrap sm:text-xs {delivered
               ? 'border-accent-500 text-accent-400'
               : rerouting
                 ? 'border-party-500/70 text-party-400 shadow-[0_0_18px_-4px] shadow-party-500/50'
@@ -365,8 +365,8 @@
         </div>
       </div>
 
-      <div class="flex justify-center mt-8">
-        <div class="w-48 h-1 bg-kursal-700 overflow-hidden">
+      <div class="mt-8 flex justify-center">
+        <div class="h-1 w-48 overflow-hidden bg-kursal-700">
           <div
             class="h-full transition-colors duration-300 {phase === 'failure'
               ? 'bg-party-500'

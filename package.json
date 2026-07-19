@@ -8,32 +8,33 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "bun run format && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "paper": "typst compile paper/kursal.typ static/kursal.pdf && echo 'Compiled paper!'",
-    "generate-og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=static/og.png assets/og.html"
+    "generate-og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=static/og.png assets/og.html",
+    "generate-dmg": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=820,500 --screenshot=mac-dmg-background.png assets/dmg.html && sips -s format jpeg mac-dmg-background.png --out mac-dmg-background.jpg && rm mac-dmg-background.png && mv mac-dmg-background.jpg ../Kursal/assets"
   },
   "dependencies": {
     "@icons-pack/svelte-simple-icons": "^7.2.0",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.69.3",
+    "@sveltejs/kit": "^2.70.1",
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
-    "@tailwindcss/vite": "^4.3.2",
+    "@tailwindcss/vite": "^4.3.3",
     "@tsconfig/svelte": "^5.0.8",
     "lucide-svelte": "^1.0.1",
-    "svelte": "^5.56.4",
-    "svelte-check": "^4.7.2",
-    "tailwindcss": "^4.3.2",
-    "typescript": "~6.0.3",
-    "vite": "^8.1.4"
+    "svelte": "^5.56.6",
+    "svelte-check": "^4.7.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~7.0.2",
+    "vite": "^8.1.5"
   },
   "private": true,
   "type": "module",
   "devDependencies": {
     "prettier": "^3.9.5",
     "prettier-plugin-svelte": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.8.0"
+    "prettier-plugin-tailwindcss": "^0.8.1"
   }
 }

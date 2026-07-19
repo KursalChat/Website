@@ -98,66 +98,66 @@
   });
 </script>
 
-<section id="animation" class="py-20 md:py-28 bg-kursal-900">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12" use:reveal>
+<section id="animation" class="bg-kursal-900 py-20 md:py-28">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mb-12 text-center" use:reveal>
       <div
-        class="inline-flex items-center gap-2 font-mono text-sm text-accent-400 mb-4"
+        class="mb-4 inline-flex items-center gap-2 font-mono text-sm text-accent-400"
       >
         <ShieldCheck size={18} />
-        <span>End-to-End Encrypted</span>
+        <span>Quantum-Resistant</span>
       </div>
-      <h2 class="font-mono text-2xl md:text-4xl font-bold text-kursal-50 mb-3">
-        Locked end to end
+      <h2 class="mb-3 font-mono text-2xl font-bold text-kursal-50 md:text-4xl">
+        End-to-End Encrypted
       </h2>
-      <p class="text-kursal-300 text-sm md:text-lg max-w-lg mx-auto">
+      <p class="mx-auto max-w-lg text-sm text-kursal-300 md:text-lg">
         Readable on your device and theirs. Everything in between only ever
-        carries a sealed packet.
+        sees ciphertext.
       </p>
     </div>
 
     <div
       bind:this={stage}
-      class="relative h-72 sm:h-64 rounded-sm border border-kursal-700 bg-kursal-950/40 overflow-hidden"
+      class="relative h-72 overflow-hidden rounded-sm border border-kursal-700 bg-kursal-950/40 sm:h-64"
     >
       <div
-        class="channel pointer-events-none absolute left-[22%] right-[22%] top-1/2 -translate-y-1/2 h-px"
+        class="channel pointer-events-none absolute top-1/2 right-[22%] left-[22%] h-px -translate-y-1/2"
       ></div>
 
       <div
-        class="absolute left-1/2 -translate-x-1/2 top-3 z-20 flex flex-col items-center gap-1.5"
+        class="absolute top-3 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1.5"
       >
         <div
-          class="flex items-center gap-2 font-mono text-[0.65rem] text-kursal-400 border border-kursal-700 bg-kursal-800 rounded-sm px-2.5 py-1.5 whitespace-nowrap"
+          class="flex items-center gap-2 rounded-sm border border-kursal-700 bg-kursal-800 px-2.5 py-1.5 font-mono text-[0.65rem] whitespace-nowrap text-kursal-400"
         >
           <Eye size={13} class="text-kursal-500" /> relay sees
           <span class="flex items-center gap-1 text-kursal-300">
             <Lock size={11} /> sealed
           </span>
         </div>
-        <div class="w-px h-5 bg-kursal-700"></div>
+        <div class="h-5 w-px bg-kursal-700"></div>
       </div>
 
       {#each [{ side: "left", name: "you", icon: Laptop, own: fromYou, shown: fromYou ? senderShown : receiverShown, text: fromYou ? typedText : msg.text, caret: fromYou && typing }, { side: "right", name: "recipient", icon: Smartphone, own: !fromYou, shown: fromYou ? receiverShown : senderShown, text: fromYou ? msg.text : typedText, caret: !fromYou && typing }] as d}
         <div
-          class="absolute top-1/2 -translate-y-1/2 w-24 sm:w-32 {d.side ===
+          class="absolute top-1/2 w-24 -translate-y-1/2 sm:w-32 {d.side ===
           'left'
             ? 'left-2 sm:left-4'
             : 'right-2 sm:right-4'}"
         >
           <div
-            class="rounded-lg border border-kursal-700 bg-kursal-800 overflow-hidden"
+            class="overflow-hidden rounded-lg border border-kursal-700 bg-kursal-800"
           >
             <div
-              class="flex items-center gap-1.5 px-2.5 py-1.5 border-b border-kursal-700"
+              class="flex items-center gap-1.5 border-b border-kursal-700 px-2.5 py-1.5"
             >
               <d.icon size={12} class="text-accent-400" />
               <span class="font-mono text-[0.6rem] text-kursal-300"
                 >{d.name}</span
               >
-              <KeyRound size={10} class="text-accent-400/70 ml-auto" />
+              <KeyRound size={10} class="ml-auto text-accent-400/70" />
             </div>
-            <div class="h-20 p-2 flex flex-col justify-end">
+            <div class="flex h-20 flex-col justify-end p-2">
               {#if d.shown}
                 <div
                   in:fly={{ y: 8, duration: 220 }}
@@ -166,7 +166,7 @@
                 >
                   <span
                     class="max-w-[92%] rounded-md px-2 py-1 font-mono text-[0.7rem] leading-snug {d.own
-                      ? 'bg-accent-500/20 text-kursal-50 border border-accent-500/30'
+                      ? 'border border-accent-500/30 bg-accent-500/20 text-kursal-50'
                       : 'bg-kursal-700 text-kursal-100'}"
                   >
                     {d.text}{#if d.caret}<span class="tcaret"></span>{/if}
@@ -180,17 +180,17 @@
 
       {#if packetShown}
         <div
-          class="pkt-glow pointer-events-none absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-24 h-24 z-0"
+          class="pkt-glow pointer-events-none absolute top-1/2 z-0 h-24 w-24 -translate-x-1/2 -translate-y-1/2"
           style="left: {pos}%"
         ></div>
         <div
           in:fade={{ duration: 160 }}
           out:fade={{ duration: 160 }}
-          class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
+          class="absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
           style="left: {pos}%"
         >
           <div
-            class="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-mono text-xs bg-kursal-950 border border-accent-500/60 text-accent-400 shadow-[0_0_22px_-4px] shadow-accent-500/50"
+            class="flex items-center gap-1.5 rounded-md border border-accent-500/60 bg-kursal-950 px-2.5 py-1.5 font-mono text-xs text-accent-400 shadow-[0_0_22px_-4px] shadow-accent-500/50"
           >
             <Lock size={12} />
             {cipher}
@@ -199,7 +199,7 @@
       {/if}
     </div>
 
-    <p class="font-mono text-xs text-kursal-500 text-center mt-5">
+    <p class="mt-5 text-center font-mono text-xs text-kursal-500">
       // keys live only on these two devices: relays just carry a sealed packet
     </p>
   </div>

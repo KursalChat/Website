@@ -11,4 +11,4 @@ export const LISTMONK_LIST_UUID = "51120ca8-96d6-424f-aef0-011cf505d351";
 
 export const DOWNLOAD_PREFIX = "https://app.kursal.chat";
 
-export const EXPECTEDTIME = "Expected Summer 2026";
+export const RELEASE_STATUS = "Public Beta Out Now";

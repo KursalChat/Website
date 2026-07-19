@@ -13,29 +13,29 @@
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
 </script>
 
-<footer class="bg-kursal-950 border-t border-kursal-700">
-  <div class="max-w-6xl mx-auto px-6 py-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<footer class="border-t border-kursal-700 bg-kursal-950">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
       <div class="col-span-2 md:col-span-2">
-        <div class="flex items-center gap-2.5 mb-4">
+        <div class="mb-4 flex items-center gap-2.5">
           <img
             fetchpriority="high"
             src="/icon.png"
             alt="Kursal"
-            class="w-7 h-7"
+            class="h-7 w-7"
           />
           <span class="font-mono text-lg font-semibold text-kursal-50"
             >kursal<span class="text-accent-500">:~$</span></span
           >
         </div>
-        <p class="text-kursal-300 max-w-md leading-relaxed">
+        <p class="max-w-md leading-relaxed text-kursal-300">
           Peer-to-peer, end-to-end encrypted messaging. Your conversations
           belong to you, not to servers.
         </p>
         <div class="mt-4 font-mono text-sm">
           <a
             href={"mailto:" + email}
-            class="text-kursal-400 hover:text-accent-400 transition-colors"
+            class="text-kursal-400 transition-colors hover:text-accent-400"
           >
             {email}
           </a>
@@ -44,7 +44,7 @@
 
       <div>
         <h3
-          class="font-mono text-xs uppercase tracking-widest text-kursal-500 mb-4"
+          class="mb-4 font-mono text-xs tracking-widest text-kursal-500 uppercase"
         >
           Resources
         </h3>
@@ -54,7 +54,7 @@
               href={repository}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <SiGithub size={15} />
               GitHub
@@ -64,7 +64,7 @@
             <a
               href={PAPER_URL}
               target="_blank"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <FileText size={15} />
               Whitepaper
@@ -73,7 +73,7 @@
           <li>
             <a
               href="/compare"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <GitCompare size={15} />
               Compare
@@ -82,7 +82,7 @@
           <li>
             <a
               href="/progress"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Activity size={15} />
               Progress
@@ -91,7 +91,7 @@
           <li>
             <a
               href="/credits"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Award size={15} />
               Credits
@@ -102,7 +102,7 @@
 
       <div>
         <h3
-          class="font-mono text-xs uppercase tracking-widest text-kursal-500 mb-4"
+          class="mb-4 font-mono text-xs tracking-widest text-kursal-500 uppercase"
         >
           Legal
         </h3>
@@ -110,7 +110,7 @@
           <li>
             <a
               href="/security"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Shield size={15} />
               Security
@@ -119,7 +119,7 @@
           <li>
             <a
               href="/privacy"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Lock size={15} />
               Privacy Policy
@@ -128,7 +128,7 @@
           <li>
             <a
               href="/terms"
-              class="text-kursal-300 hover:text-accent-400 transition-colors flex items-center gap-2"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Scale size={15} />
               Terms of Service
@@ -139,7 +139,7 @@
     </div>
 
     <div
-      class="mt-12 pt-8 border-t border-kursal-700 text-center font-mono text-sm text-kursal-400"
+      class="mt-12 border-t border-kursal-700 pt-8 text-center font-mono text-sm text-kursal-400"
     >
       <p>
         © {new Date().getFullYear()} Kursal Chat — AGPL-3.0 License
@@ -149,10 +149,16 @@
         <a
           href="https://github.com/KodeurKubik"
           target="_blank"
-          class="text-kursal-300 hover:text-accent-400 transition-colors underline underline-offset-2"
+          class="text-kursal-300 underline underline-offset-2 transition-colors hover:text-accent-400"
           >Kodeur_Kubik</a
         >
-        & Arlo
+        &
+        <a
+          href="https://github.com/Arlo-real"
+          target="_blank"
+          class="text-kursal-300 underline underline-offset-2 transition-colors hover:text-accent-400"
+          >Arlo</a
+        >
       </p>
     </div>
   </div>

@@ -11,20 +11,20 @@
 </script>
 
 <section
-  class="py-7 border-t border-kursal-700/60 [header+&]:border-t-0 [header+&]:pt-1"
+  class="border-t border-kursal-700/60 py-7 [header+&]:border-t-0 [header+&]:pt-1"
 >
   <div class="flex gap-4 md:gap-6">
     <span
-      class="font-mono text-accent-500 text-sm pt-1.5 select-none shrink-0 w-7 text-right"
+      class="w-7 shrink-0 pt-1.5 text-right font-mono text-sm text-accent-500 select-none"
       aria-hidden="true">{n}</span
     >
     <div class="min-w-0 flex-1">
       <h2
-        class="font-mono text-xl md:text-2xl font-semibold text-kursal-50 mb-4"
+        class="mb-4 font-mono text-xl font-semibold text-kursal-50 md:text-2xl"
       >
         {title}
       </h2>
-      <div class="space-y-4 text-kursal-200 leading-relaxed">
+      <div class="space-y-4 leading-relaxed text-kursal-200">
         {@render children?.()}
       </div>
     </div>

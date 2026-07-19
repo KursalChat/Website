@@ -43,14 +43,14 @@
   ];
 </script>
 
-<section id="features" class="py-24 bg-kursal-900">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-12" use:reveal>
-      <p class="font-mono text-sm text-accent-400 mb-4">~/features</p>
-      <h2 class="font-mono text-3xl md:text-4xl font-bold text-kursal-50 mb-4">
+<section id="features" class="bg-kursal-900 py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-12 text-center" use:reveal>
+      <p class="mb-4 font-mono text-sm text-accent-400">~/features</p>
+      <h2 class="mb-4 font-mono text-3xl font-bold text-kursal-50 md:text-4xl">
         Privacy by Design
       </h2>
-      <p class="text-kursal-300 text-lg max-w-2xl mx-auto">
+      <p class="mx-auto max-w-2xl text-lg text-kursal-300">
         Kursal is built from the ground up with privacy and security as the core
         principles. No compromises.
       </p>
@@ -58,7 +58,7 @@
 
     <div class="mb-10 overflow-x-auto" use:reveal={{ delay: 80 }}>
       <code
-        class="font-mono text-xs sm:text-sm text-kursal-400 flex flex-wrap justify-center gap-x-3 gap-y-1 px-4"
+        class="flex flex-wrap justify-center gap-x-3 gap-y-1 px-4 font-mono text-xs text-kursal-400 sm:text-sm"
       >
         <span><span class="text-kursal-500">$</span> kursal</span>
         {#each features as feature}
@@ -67,18 +67,18 @@
       </code>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       {#each features as feature, i}
         <a
           href={feature.link}
           target={feature.external ? "_blank" : undefined}
           rel={feature.external ? "noopener noreferrer" : undefined}
           use:reveal={{ delay: i * 70 }}
-          class="group flex flex-col p-6 bg-kursal-800 rounded-sm border border-kursal-700 hover:border-accent-500/50 hover:-translate-y-0.5 transition-all duration-200"
+          class="group flex flex-col rounded-sm border border-kursal-700 bg-kursal-800 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-500/50"
         >
-          <div class="flex items-center justify-between mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <div
-              class="w-10 h-10 bg-kursal-700 group-hover:bg-accent-500/15 rounded-sm flex items-center justify-center transition-colors"
+              class="flex h-10 w-10 items-center justify-center rounded-sm bg-kursal-700 transition-colors group-hover:bg-accent-500/15"
             >
               <feature.icon size={20} class="text-accent-400" />
             </div>
@@ -86,18 +86,18 @@
               >{feature.flag}</span
             >
           </div>
-          <h3 class="font-mono text-xl font-semibold text-kursal-50 mb-2">
+          <h3 class="mb-2 font-mono text-xl font-semibold text-kursal-50">
             {feature.title}
           </h3>
-          <p class="text-kursal-300 leading-relaxed flex-1">
+          <p class="flex-1 leading-relaxed text-kursal-300">
             {feature.description}
           </p>
           <span
-            class="mt-4 inline-flex items-center gap-1 font-mono text-xs text-kursal-400 group-hover:text-accent-400 transition-colors"
+            class="mt-4 inline-flex items-center gap-1 font-mono text-xs text-kursal-400 transition-colors group-hover:text-accent-400"
           >
             learn more <ArrowUpRight
               size={13}
-              class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </span>
         </a>

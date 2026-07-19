@@ -22,12 +22,12 @@
 
 <Navbar />
 
-<main class="min-h-screen pt-24 pb-16 bg-kursal-900">
-  <div class="max-w-4xl mx-auto px-6">
+<main class="min-h-screen bg-kursal-900 pt-24 pb-16">
+  <div class="mx-auto max-w-4xl px-6">
     <a
       href="/"
       onclick={() => window.scrollTo(0, 0)}
-      class="group inline-flex items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors mb-6"
+      class="group mb-6 inline-flex items-center gap-2 font-mono text-sm text-kursal-400 transition-colors hover:text-accent-400"
     >
       <ArrowLeft
         size={16}
@@ -37,33 +37,33 @@
     </a>
 
     <article
-      class="border border-kursal-700 rounded-sm bg-kursal-800/30 overflow-hidden"
+      class="overflow-hidden rounded-sm border border-kursal-700 bg-kursal-800/30"
     >
       <!-- File header bar -->
       <div
-        class="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-kursal-700 bg-kursal-800 font-mono text-xs text-kursal-400"
+        class="flex items-center justify-between gap-3 border-b border-kursal-700 bg-kursal-800 px-4 py-2.5 font-mono text-xs text-kursal-400"
       >
-        <span class="flex items-center gap-2 min-w-0">
-          <span class="text-accent-500 shrink-0">$</span>
+        <span class="flex min-w-0 items-center gap-2">
+          <span class="shrink-0 text-accent-500">$</span>
           <span class="truncate">{command} ~/{file}</span>
         </span>
         {#if stamp}
           <span
-            class="stamp text-[0.6rem] -rotate-2 text-accent-400/80 shrink-0"
+            class="stamp shrink-0 -rotate-2 text-[0.6rem] text-accent-400/80"
             >{stamp}</span
           >
         {/if}
       </div>
 
       <div class="p-6 md:p-10">
-        <header class="mb-9 pb-8 border-b border-kursal-700">
+        <header class="mb-9 border-b border-kursal-700 pb-8">
           <h1
-            class="font-mono text-3xl md:text-4xl font-bold text-kursal-50 mb-3"
+            class="mb-3 font-mono text-3xl font-bold text-kursal-50 md:text-4xl"
           >
             {title}
           </h1>
           {#if subtitle}
-            <p class="text-kursal-300 text-lg leading-relaxed max-w-2xl">
+            <p class="max-w-2xl text-lg leading-relaxed text-kursal-300">
               {subtitle}
             </p>
           {/if}

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { Bell, FileText, ArrowDown } from "lucide-svelte";
+  import { Download, FileText, ArrowDown } from "lucide-svelte";
   import { scrollTo } from "$lib/util";
-  import { PAPER_URL, EXPECTEDTIME } from "$lib/const";
+  import { PAPER_URL, RELEASE_STATUS } from "$lib/const";
 
   const SCRAMBLE_CHARS = "#$%&@/<>=+0123456789ABCDEFabcdef";
   const TARGET = "was watching you";
@@ -53,34 +53,34 @@
 </script>
 
 <section
-  class="relative min-h-screen flex flex-col pt-20 pb-12 overflow-hidden bg-kursal-900"
+  class="relative flex min-h-screen flex-col overflow-hidden bg-kursal-900 pt-20 pb-12"
 >
-  <div class="flex-1 flex items-center justify-center relative z-10">
-    <div class="max-w-3xl mx-auto px-6 text-center">
+  <div class="relative z-10 flex flex-1 items-center justify-center">
+    <div class="mx-auto max-w-3xl px-6 text-center">
       <div
-        class="inline-flex items-center gap-2 font-mono text-sm text-kursal-300 mb-10"
+        class="mb-10 inline-flex items-center gap-2 font-mono text-sm text-kursal-300"
       >
         <span class="relative flex h-2 w-2">
           <span
-            class="absolute inline-flex h-full w-full rounded-full bg-accent-500/70 animate-ping"
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-500/70"
           ></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-500"
           ></span>
         </span>
-        {EXPECTEDTIME}
+        {RELEASE_STATUS}
       </div>
 
-      <div class="flex items-center justify-center gap-3 md:gap-4 mb-8">
-        <img src="/icon.png" alt="Kursal" class="w-12 h-12 md:w-16 md:h-16" />
+      <div class="mb-8 flex items-center justify-center gap-3 md:gap-4">
+        <img src="/icon.png" alt="Kursal" class="h-12 w-12 md:h-16 md:w-16" />
         <h1
-          class="font-mono text-4xl md:text-6xl font-bold text-kursal-50 tracking-tight"
+          class="font-mono text-4xl font-bold tracking-tight text-kursal-50 md:text-6xl"
         >
           kursal
         </h1>
       </div>
 
       <p
-        class="font-mono text-2xl md:text-4xl lg:text-5xl font-semibold text-kursal-50 mb-6 tracking-tight"
+        class="mb-6 font-mono text-2xl font-semibold tracking-tight text-kursal-50 md:text-4xl lg:text-5xl"
         aria-label="Big Brother was watching you."
       >
         <span class="text-kursal-400">&gt;</span> Big Brother
@@ -90,35 +90,35 @@
       </p>
 
       <p
-        class="text-base md:text-lg text-kursal-300 max-w-xl mx-auto mb-12 leading-relaxed"
+        class="mx-auto mb-12 max-w-xl text-base leading-relaxed text-kursal-300 md:text-lg"
       >
         Peer-to-peer, end-to-end encrypted messaging that puts you in control.
         No servers. No tracking. Just your private conversations.
       </p>
 
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center mb-16 font-mono"
+        class="mb-16 flex flex-col justify-center gap-4 font-mono sm:flex-row"
       >
-        <button
-          onclick={() => scrollTo("notify")}
-          class="group inline-flex items-center justify-center gap-2.5 bg-accent-500 hover:bg-accent-400 text-kursal-950 px-7 py-3.5 rounded-sm font-semibold text-base transition-colors"
+        <a
+          href="/download"
+          class="group inline-flex items-center justify-center gap-2.5 rounded-sm bg-accent-500 px-7 py-3.5 text-base font-semibold text-kursal-950 transition-colors hover:bg-accent-400"
         >
           <span
             class="text-kursal-950/50 transition-transform group-hover:-translate-x-0.5"
             >[</span
           >
-          <Bell size={18} class="group-hover:animate-wiggle" />
-          Get Notified at Launch
+          <Download size={18} class="group-hover:animate-wiggle" />
+          Download the Beta
           <span
             class="text-kursal-950/50 transition-transform group-hover:translate-x-0.5"
             >]</span
           >
-        </button>
+        </a>
 
         <a
           href={PAPER_URL}
           target="_blank"
-          class="group inline-flex items-center justify-center gap-2.5 border border-kursal-600 hover:border-accent-500 bg-kursal-800/60 hover:bg-kursal-800 text-kursal-100 px-7 py-3.5 rounded-sm font-semibold text-base transition-colors"
+          class="group inline-flex items-center justify-center gap-2.5 rounded-sm border border-kursal-600 bg-kursal-800/60 px-7 py-3.5 text-base font-semibold text-kursal-100 transition-colors hover:border-accent-500 hover:bg-kursal-800"
         >
           <span
             class="text-accent-500 transition-transform group-hover:-translate-x-0.5"
@@ -136,7 +136,7 @@
       <div class="mt-16">
         <button
           onclick={() => scrollTo("animation")}
-          class="inline-flex flex-col items-center gap-2 font-mono text-sm text-kursal-400 hover:text-accent-400 transition-colors cursor-pointer"
+          class="inline-flex cursor-pointer flex-col items-center gap-2 font-mono text-sm text-kursal-400 transition-colors hover:text-accent-400"
         >
           <span>learn more</span>
           <span class="tick"><ArrowDown size={18} /></span>
