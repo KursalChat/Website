@@ -17,6 +17,8 @@
   import { slide } from "svelte/transition";
 
   let mobileMenuOpen = $state(false);
+  let menuElement = $state<HTMLElement | null>(null);
+  let toggleButton = $state<HTMLButtonElement | null>(null);
 
   function toggleMobileMenu() {
     mobileMenuOpen = !mobileMenuOpen;
@@ -26,15 +28,63 @@
     mobileMenuOpen = false;
   }
 
+  $effect(() => {
+    if (!mobileMenuOpen) return;
+
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  });
+
+  $effect(() => {
+    if (!mobileMenuOpen || !menuElement) return;
+    menuElement.querySelector<HTMLElement>("a[href]")?.focus();
+  });
+
+  function focusableItems() {
+    const inMenu = menuElement
+      ? [...menuElement.querySelectorAll<HTMLElement>("a[href]")]
+      : [];
+    return toggleButton ? [toggleButton, ...inMenu] : inMenu;
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (!mobileMenuOpen) return;
+
+    if (event.key === "Escape") {
+      closeMobileMenu();
+      toggleButton?.focus();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const items = focusableItems();
+    if (items.length === 0) return;
+
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   const navLinks = [
     { href: "/compare", label: "compare", icon: GitCompare },
     { href: "/progress", label: "progress", icon: Activity },
-    { href: "/security", label: "security", icon: Shield },
-    { href: "/privacy", label: "privacy", icon: Lock },
   ];
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
+
 <nav
+  style:view-transition-name="kursal-nav"
   class="fixed top-0 right-0 left-0 z-50 border-b border-kursal-700 bg-kursal-900/95 font-mono backdrop-blur-sm"
 >
   <div
@@ -49,6 +99,8 @@
           fetchpriority="high"
           src="/icon.png"
           alt="Kursal"
+          width="28"
+          height="28"
           class="h-7 w-7"
         />
         <span class="text-lg font-semibold tracking-tight text-kursal-50"
@@ -81,6 +133,7 @@
       <a
         href={PAPER_URL}
         target="_blank"
+        rel="noopener noreferrer"
         class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-kursal-50"
       >
         <FileText size={17} />
@@ -114,6 +167,7 @@
       </a>
 
       <button
+        bind:this={toggleButton}
         type="button"
         class="inline-flex h-9 w-9 items-center justify-center rounded-sm text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50 md:hidden"
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -132,6 +186,7 @@
 
   {#if mobileMenuOpen}
     <div
+      bind:this={menuElement}
       id="mobile-nav"
       class="border-t border-kursal-700 bg-kursal-900 text-sm md:hidden"
       transition:slide={{ duration: 160 }}
@@ -164,6 +219,7 @@
           <a
             href={PAPER_URL}
             target="_blank"
+            rel="noopener noreferrer"
             onclick={closeMobileMenu}
             class="flex items-center gap-2 rounded-sm px-3 py-2 text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50"
           >

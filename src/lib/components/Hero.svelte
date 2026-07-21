@@ -43,7 +43,6 @@
       }
     };
 
-    revealed = "";
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   });
@@ -71,7 +70,14 @@
       </div>
 
       <div class="mb-8 flex items-center justify-center gap-3 md:gap-4">
-        <img src="/icon.png" alt="Kursal" class="h-12 w-12 md:h-16 md:w-16" />
+        <img
+          src="/icon.png"
+          alt="Kursal"
+          width="64"
+          height="64"
+          fetchpriority="high"
+          class="h-12 w-12 md:h-16 md:w-16"
+        />
         <h1
           class="font-mono text-4xl font-bold tracking-tight text-kursal-50 md:text-6xl"
         >
@@ -81,12 +87,14 @@
 
       <p
         class="mb-6 font-mono text-2xl font-semibold tracking-tight text-kursal-50 md:text-4xl lg:text-5xl"
-        aria-label="Big Brother was watching you."
       >
-        <span class="text-kursal-400">&gt;</span> Big Brother
-        <span aria-hidden="true"
-          ><span class="text-accent-400">{wasPart}</span>{restPart}.</span
-        ><span class="caret" aria-hidden="true"></span>
+        <span class="sr-only">Big Brother was watching you.</span>
+        <span aria-hidden="true">
+          <span class="text-kursal-400">&gt;</span> Big Brother
+          <span class="text-accent-400">{wasPart}</span>{restPart}.<span
+            class="caret"
+          ></span>
+        </span>
       </p>
 
       <p
@@ -118,6 +126,7 @@
         <a
           href={PAPER_URL}
           target="_blank"
+          rel="noopener noreferrer"
           class="group inline-flex items-center justify-center gap-2.5 rounded-sm border border-kursal-600 bg-kursal-800/60 px-7 py-3.5 text-base font-semibold text-kursal-100 transition-colors hover:border-accent-500 hover:bg-kursal-800"
         >
           <span

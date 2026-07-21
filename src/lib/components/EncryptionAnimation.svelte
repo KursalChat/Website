@@ -111,8 +111,8 @@
         End-to-End Encrypted
       </h2>
       <p class="mx-auto max-w-lg text-sm text-kursal-300 md:text-lg">
-        Readable on your device and theirs. Everything in between only ever
-        sees ciphertext.
+        Readable on your device and theirs. Everything in between only ever sees
+        ciphertext.
       </p>
     </div>
 

@@ -7,6 +7,18 @@ param()
 $ErrorActionPreference = 'Stop'
 
 $KURSAL_BASE_URL = "https://app.kursal.chat"
+$KURSAL_REPO = "KursalChat/Kursal"
+
+function Get-ExpectedSha256($name) {
+  try {
+    $release = Invoke-RestMethod -Uri "https://api.github.com/repos/$KURSAL_REPO/releases/latest" -UseBasicParsing
+    $asset = $release.assets | Where-Object { $_.name -eq $name } | Select-Object -First 1
+    if ($asset -and $asset.digest -match '^sha256:([0-9a-fA-F]{64})$') {
+      return $Matches[1]
+    }
+  } catch {}
+  return $null
+}
 
 function ok($msg)   { Write-Host "  " -NoNewline; Write-Host "v" -NoNewline -ForegroundColor Green;  Write-Host "  $msg" }
 function warn($msg) { Write-Host "  " -NoNewline; Write-Host "!" -NoNewline -ForegroundColor Yellow; Write-Host "  $msg" }
@@ -53,6 +65,21 @@ try {
 }
 
 ok "Download complete"
+
+dim "> Verifying integrity"
+$expected = Get-ExpectedSha256 $FILENAME
+$actual = (Get-FileHash -Path $TMP_FILE -Algorithm SHA256).Hash.ToLower()
+
+if (-not $expected) {
+  warn "Could not fetch the expected checksum from GitHub"
+  dim "Proceeding, but this download could not be verified."
+} elseif ($expected -eq $actual) {
+  ok "Checksum verified"
+} else {
+  Remove-Item -Recurse -Force $TMP_DIR -ErrorAction SilentlyContinue
+  err "Checksum mismatch, refusing to install. The file may be corrupt or tampered with."
+}
+
 dim "> Running installer"
 
 $proc = Start-Process -FilePath $TMP_FILE -ArgumentList "/S" -Wait -PassThru

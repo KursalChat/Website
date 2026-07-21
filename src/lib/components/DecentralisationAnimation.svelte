@@ -13,6 +13,7 @@
   import { reveal } from "$lib/reveal";
 
   let scrollProgress = $state(0);
+  let reduceMotion = $state(false);
   let containerElement: HTMLElement;
 
   type Node = {
@@ -166,6 +167,10 @@
   let delivered = $derived(scrollProgress > 0.88);
 
   onMount(() => {
+    reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const handleScroll = () => {
       if (!containerElement) return;
       const rect = containerElement.getBoundingClientRect();
@@ -257,12 +262,19 @@
                 class="transition-all duration-500"
               />
               {#if conn.opacity > 0.5}
-                <circle r="0.8" fill="rgba(77, 141, 255, {conn.opacity})">
-                  <animateMotion
-                    dur="2s"
-                    repeatCount="indefinite"
-                    path="M{fromPos.x},{fromPos.y} L{toPos.x},{toPos.y}"
-                  />
+                <circle
+                  r="0.8"
+                  fill="rgba(77, 141, 255, {conn.opacity})"
+                  cx={reduceMotion ? (fromPos.x + toPos.x) / 2 : undefined}
+                  cy={reduceMotion ? (fromPos.y + toPos.y) / 2 : undefined}
+                >
+                  {#if !reduceMotion}
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      path="M{fromPos.x},{fromPos.y} L{toPos.x},{toPos.y}"
+                    />
+                  {/if}
                 </circle>
               {/if}
             {/if}

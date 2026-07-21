@@ -1,10 +1,13 @@
-/repository https://github.com/KursalChat/Kursal-Prototype 307
+/repository https://github.com/KursalChat/Kursal 301
 /mirror https://codeberg.org/Kursal/Kursal 301
+/trademark https://github.com/KursalChat/Kursal/blob/main/TRADEMARK.md 301
 
-/issues https://github.com/KursalChat/Kursal-Prototype/issues 307
+/issues https://github.com/KursalChat/Kursal/issues 301
 /vulnerability https://github.com/KursalChat/Kursal/security/advisories/new 301
 
 /donate https://ko-fi.com/kursal 301
 
 /x https://x.com/KursalChat 301
 /mastodon https://mastodon.social/@kursal 301
+
+/api https://api.kursal.chat 301

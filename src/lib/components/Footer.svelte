@@ -8,6 +8,7 @@
     Activity,
     Award,
     GitCompare,
+    Landmark,
   } from "lucide-svelte";
   import { repository, email, PAPER_URL } from "$lib/const";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
@@ -19,9 +20,11 @@
       <div class="col-span-2 md:col-span-2">
         <div class="mb-4 flex items-center gap-2.5">
           <img
-            fetchpriority="high"
             src="/icon.png"
             alt="Kursal"
+            width="28"
+            height="28"
+            loading="lazy"
             class="h-7 w-7"
           />
           <span class="font-mono text-lg font-semibold text-kursal-50"
@@ -64,6 +67,7 @@
             <a
               href={PAPER_URL}
               target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <FileText size={15} />
@@ -134,6 +138,15 @@
               Terms of Service
             </a>
           </li>
+          <li>
+            <a
+              href="/legal"
+              class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
+            >
+              <Landmark size={15} />
+              Legal Notice
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -149,6 +162,7 @@
         <a
           href="https://github.com/KodeurKubik"
           target="_blank"
+          rel="noopener noreferrer"
           class="text-kursal-300 underline underline-offset-2 transition-colors hover:text-accent-400"
           >Kodeur_Kubik</a
         >
@@ -156,6 +170,7 @@
         <a
           href="https://github.com/Arlo-real"
           target="_blank"
+          rel="noopener noreferrer"
           class="text-kursal-300 underline underline-offset-2 transition-colors hover:text-accent-400"
           >Arlo</a
         >

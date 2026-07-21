@@ -16,19 +16,19 @@
     {
       question: "What's the business model?",
       answer:
-        'Nothing! Kursal isn\'t designed to make money as it is a personal project. We just wanted to experiment with decentralization and Rust and it is amazing! So nope, free forever! If you want to financially support us, you could check out <a href="https://ko-fi.com/kursal" target="_blank" class="underline">our Ko-Fi</a>.',
+        'Nothing! Kursal isn\'t designed to make money as it is a personal project. We just wanted to experiment with decentralization and Rust and it is amazing! So nope, free forever! If you want to financially support us, you could check out <a href="https://ko-fi.com/kursal" target="_blank" rel="noopener noreferrer" class="underline">our Ko-Fi</a>.',
     },
     {
       question: "What data do you collect?",
       answer:
-        'We collect absolutely nothing. No analytics and no metadata about who you talk to or when. We literally can\'t see your messages even if we wanted to: that\'s the whole point.<br />The only things we can see are the crash and bug reports you optionally decide to send to help improve the app. Check out our <a href="/privacy" class="underline">Privacy Policy</a> for more infos!',
+        'The app sends us nothing on its own: no analytics, no usage tracking, and no record of your messages. We literally can\'t see your messages even if we wanted to: that\'s the whole point.<br />There are three exceptions, and all of them are things you hand us on purpose: crash and bug reports you choose to send, your email address if you subscribe to the newsletter on this site, and this website\'s visitor counts through our self-hosted Plausible. Separately, relays (including the ones we run) see IP addresses and rotating peer IDs, but never message content. Check out our <a href="/privacy" class="underline">Privacy Policy</a> for more infos!',
     },
     {
       question: "Why Kursal? and technical infos",
       answer:
-        'Kursal started as an idea on January 2024, a bit like <a href="https://matrix.org" target="_blank" class="underline">Matrix</a> does by hosting your own server, but it changed into a new plan: full decentralization. We finally started coding mid-2025, with the goal of learning Rust, desktop application and decentralization. More importantly, Kursal aims to demonstrate that full decentralization can achieve usability.' +
+        'Kursal started as an idea on January 2024, a bit like <a href="https://matrix.org" target="_blank" rel="noopener noreferrer" class="underline">Matrix</a> does by hosting your own server, but it changed into a new plan: full decentralization. We finally started coding mid-2025, with the goal of learning Rust, desktop application and decentralization. More importantly, Kursal aims to demonstrate that full decentralization can achieve usability.' +
         "<br /><br />" +
-        'Kursal is built with Rust using <a href="https://tauri.app" target="_blank" class="underline">Tauri</a> for the application. It uses Signal\'s <a href="https://github.com/signalapp/libsignal" target="_blank" class="underline">libsignal</a> library for the encryption and Libp2p\'s <a href="https://github.com/libp2p/rust-libp2p" target="_blank" class="underline">rust-libp2p</a> for the networking. Check out those amazing open source libraries!',
+        'Kursal is built with Rust using <a href="https://tauri.app" target="_blank" rel="noopener noreferrer" class="underline">Tauri</a> for the application. It uses Signal\'s <a href="https://github.com/signalapp/libsignal" target="_blank" rel="noopener noreferrer" class="underline">libsignal</a> library for the encryption and Libp2p\'s <a href="https://github.com/libp2p/rust-libp2p" target="_blank" rel="noopener noreferrer" class="underline">rust-libp2p</a> for the networking. Check out those amazing open source libraries!',
     },
   ] as { question: string; answer: string }[];
 
@@ -60,6 +60,9 @@
           class:border-accent-500={openIndex === index}
         >
           <button
+            id="faq-trigger-{index}"
+            aria-expanded={openIndex === index}
+            aria-controls="faq-panel-{index}"
             onclick={() => toggle(index)}
             class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
           >
@@ -74,7 +77,13 @@
           </button>
 
           {#if openIndex === index}
-            <div transition:slide={{ duration: 200 }} class="px-5 pb-5">
+            <div
+              id="faq-panel-{index}"
+              role="region"
+              aria-labelledby="faq-trigger-{index}"
+              transition:slide={{ duration: 200 }}
+              class="px-5 pb-5"
+            >
               <p
                 class="answer ml-[0.1rem] border-l border-kursal-700 pl-[1.9rem] leading-relaxed text-kursal-300"
               >

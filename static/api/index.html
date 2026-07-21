@@ -41,13 +41,156 @@
         }
       }
     </script>
+
+    <style>
+      .local-node-toggle {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .local-node-toggle:checked ~ .local-node {
+        display: none;
+      }
+
+      .local-node {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 1000;
+        width: min(23rem, calc(100vw - 2rem));
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          monospace;
+        padding: 1.125rem 1.25rem;
+        border: 1px solid #bcc7da;
+        border-left: 3px solid #4d8dff;
+        border-radius: 0.5rem;
+        background: #eef3fa;
+        color: #121723;
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        box-shadow: 0 8px 28px rgb(18 23 35 / 0.16);
+      }
+
+      .local-node h2 {
+        margin: 0 0 0.5rem;
+        padding-right: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .local-node-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.625rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.25rem;
+        color: #3e4a60;
+        font-size: 1.125rem;
+        line-height: 1;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .local-node-close:hover {
+        background: #d8e0ec;
+        color: #121723;
+      }
+
+      .local-node-toggle:focus-visible ~ .local-node .local-node-close {
+        outline: 2px solid #4d8dff;
+        outline-offset: 2px;
+      }
+
+      .local-node p {
+        margin: 0 0 0.75rem;
+      }
+
+      .local-node ol {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .local-node li {
+        margin-bottom: 0.25rem;
+      }
+
+      .local-node a {
+        color: #4d8dff;
+      }
+
+      .local-node-note {
+        margin: 0.75rem 0 0;
+        color: #3e4a60;
+        font-size: 0.8125rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .local-node {
+          border-color: #2b3445;
+          background: #0d1118;
+          color: #d8e0ec;
+          box-shadow: 0 8px 28px rgb(6 8 12 / 0.5);
+        }
+
+        .local-node a {
+          color: #79a8ff;
+        }
+
+        .local-node-note {
+          color: #93a1ba;
+        }
+
+        .local-node-close {
+          color: #93a1ba;
+        }
+
+        .local-node-close:hover {
+          background: #1d2433;
+          color: #eef3fa;
+        }
+      }
+    </style>
   </head>
   <body>
+    <input type="checkbox" id="local-node-dismiss" class="local-node-toggle" />
+    <script src="local-node.js"></script>
+    <aside class="local-node">
+      <label
+        for="local-node-dismiss"
+        class="local-node-close"
+        title="Dismiss"
+        aria-label="Dismiss"
+        >&times;</label
+      >
+      <h2>Want to try these interactively?</h2>
+      <p>
+        This page is reference-only. Kursal serves a runnable copy of these docs
+        that executes requests against your own instance.
+      </p>
+      <ol>
+        <li>In Kursal, open <strong>Settings &rsaquo; Advanced &rsaquo; Local API Server</strong> and enable it.</li>
+        <li>Restart Kursal for the change to take effect.</li>
+        <li>Visit <a href="http://127.0.0.1:4892">http://127.0.0.1:4892</a></li>
+      </ol>
+      <p class="local-node-note">
+        Disabled by default. Port 4892 unless you changed it.
+      </p>
+    </aside>
+
     <script
       id="api-reference"
       data-url="openapi.json"
-      data-configuration='{"hideClientButton": true}'
-      src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"
+      data-configuration='{"hideClientButton": true, "showDeveloperTools": "never"}'
+      src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.62.9"
+      integrity="sha384-oBiNNPts22DP4xagXD0sZE4A/PyTMc+sYcxwx+v692dheBqr5zHQTp58ufiOqJH2"
+      crossorigin="anonymous"
     ></script>
   </body>
 </html>

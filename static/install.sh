@@ -15,6 +15,27 @@ fi
 
 KURSAL_BASE_URL="https://app.kursal.chat"
 KURSAL_BIN_DIR="$HOME/.local/bin"
+KURSAL_REPO="KursalChat/Kursal"
+
+sha256_of() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 "$1" | awk '{print $1}'
+  else
+    return 1
+  fi
+}
+
+fetch_expected_sha256() {
+  curl -fsSL "https://api.github.com/repos/$KURSAL_REPO/releases/latest" 2>/dev/null \
+    | awk -v want="$1" '
+        /"name":/ { v=$0; sub(/.*"name": *"/, "", v); sub(/".*/, "", v); cur=v }
+        /"digest": *"sha256:/ {
+          v=$0; sub(/.*"digest": *"sha256:/, "", v); sub(/".*/, "", v)
+          if (cur == want) { print v; exit }
+        }'
+}
 
 printf "\x1b[2J\x1b[H" # clear screen
 
@@ -95,6 +116,25 @@ curl -fSL --progress-bar "$DOWNLOAD_URL" -o "$TMP_FILE" || {
 }
 
 print_ok "Download complete"
+
+print_dim "▸ Verifying integrity"
+EXPECTED_SHA="$(fetch_expected_sha256 "$FILENAME")"
+ACTUAL_SHA="$(sha256_of "$TMP_FILE" || true)"
+
+if [ -z "$ACTUAL_SHA" ]; then
+  print_warn "No SHA-256 tool available, skipping integrity check"
+elif [ -z "$EXPECTED_SHA" ]; then
+  print_warn "Could not fetch the expected checksum from GitHub"
+  print_dim "Proceeding, but this download could not be verified."
+elif [ "$EXPECTED_SHA" = "$ACTUAL_SHA" ]; then
+  print_ok "Checksum verified"
+else
+  print_err "Checksum mismatch, refusing to install"
+  print_dim "expected: $EXPECTED_SHA"
+  print_dim "actual:   $ACTUAL_SHA"
+  print_dim "The file may be corrupt or tampered with. Aborting."
+  exit 1
+fi
 
 _sudo() { command -v sudo >/dev/null 2>&1 && sudo "$@" || "$@"; }
 

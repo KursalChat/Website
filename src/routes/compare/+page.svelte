@@ -29,7 +29,7 @@
     {
       key: "noMetadata",
       label: "No metadata harvested",
-      note: "Signal minimizes metadata, but its central servers still exist; Matrix homeservers can see it.",
+      note: "Kursal has no accounts, so there is nothing to tie metadata to, but relays still see IP addresses and rotating peer IDs. Signal minimizes metadata, but its central servers still exist; Matrix homeservers can see it.",
     },
     { key: "independent", label: "Not owned by Big Tech" },
   ] as const;
@@ -69,7 +69,7 @@
       openSource: true,
       noServers: true,
       noAccount: true,
-      noMetadata: true,
+      noMetadata: "partial",
       independent: true,
       selfHost: true,
       postQuantum: true,

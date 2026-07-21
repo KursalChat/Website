@@ -65,7 +65,8 @@
     },
     {
       title: "First Public Release",
-      description: "First stable v0.1 release of Kursal! Planned to be August 20th 2026!",
+      description:
+        "First stable v0.1 release of Kursal! Targeting August 2026.",
       status: "in-progress",
     },
     {

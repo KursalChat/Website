@@ -8,6 +8,7 @@ const pages = [
   { path: "/compare", changefreq: "monthly", priority: 0.8 },
   { path: "/credits", changefreq: "monthly", priority: 0.5 },
   { path: "/download", changefreq: "weekly", priority: 0.9 },
+  { path: "/legal", changefreq: "monthly", priority: 0.5 },
   { path: "/privacy", changefreq: "monthly", priority: 0.7 },
   { path: "/progress", changefreq: "weekly", priority: 0.9 },
   { path: "/security", changefreq: "monthly", priority: 0.7 },

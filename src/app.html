@@ -18,30 +18,20 @@
     <meta property="og:site_name" content="Kursal" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image:alt" content="Kursal logo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
 
     %sveltekit.head%
   </head>
 
-  <body>
+  <body data-sveltekit-preload-data="hover">
     <div id="app">%sveltekit.body%</div>
-  </body>
 
-  <script
-    async
-    src="https://stats.openvoxel.studio/js/pa-INLiRP-ljoQ6PVytveRc2.js"
-  ></script>
-  <script>
-    // Privacy-friendly analytics by Plausible
-    ((window.plausible =
-      window.plausible ||
-      function () {
-        (plausible.q = plausible.q || []).push(arguments);
-      }),
-      (plausible.init =
-        plausible.init ||
-        function (i) {
-          plausible.o = i || {};
-        }));
-    plausible.init();
-  </script>
+    <script
+      async
+      src="https://stats.openvoxel.studio/js/pa-INLiRP-ljoQ6PVytveRc2.js"
+    ></script>
+    <script defer src="/js/analytics.js"></script>
+  </body>
 </html>

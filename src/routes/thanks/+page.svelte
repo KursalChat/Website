@@ -128,6 +128,7 @@
       <a
         href={PAPER_URL}
         target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 rounded-sm border border-kursal-600 bg-kursal-800 px-6 py-3 font-medium text-kursal-100 transition-colors hover:border-accent-500 hover:bg-kursal-700"
       >
         <BookOpen size={18} />

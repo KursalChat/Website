@@ -1,0 +1,7 @@
+Contact: https://kursal.chat/vulnerability
+Contact: mailto:hello@kursal.chat
+Expires: 2027-07-20T00:00:00.000Z
+Preferred-Languages: en, fr
+Canonical: https://kursal.chat/.well-known/security.txt
+Policy: https://kursal.chat/security
+Acknowledgments: https://kursal.chat/credits

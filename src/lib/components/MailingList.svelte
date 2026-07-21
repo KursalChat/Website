@@ -37,9 +37,9 @@
       } else {
         status = "error";
         errorMessage =
-          "Something went wrong. Please try again. (" +
-          (await response.text()) +
-          ")";
+          response.status === 429
+            ? "Too many attempts. Please wait a moment and try again."
+            : "Something went wrong. Please try again, or email us.";
       }
     } catch {
       status = "error";
@@ -84,7 +84,7 @@
 
     {#if status === "success"}
       <div
-        class="mx-auto max-w-md rounded-sm border border-accent-500/40 bg-kursal-900 p-6 text-left font-mono"
+        class="mx-auto max-w-lg rounded-sm border border-accent-500/40 bg-kursal-900 p-6 text-left font-mono"
       >
         <div class="flex items-center gap-3 text-accent-400">
           <Check size={22} />
@@ -94,12 +94,11 @@
           Please click the confirmation email you've received. Check your spam
           :p
           <br /><br />
-          We'll email you when the stable release is ready. Thank you for your
-          interest!
+          We'll email you when the stable release is ready. Thank you for your interest!
         </p>
       </div>
     {:else}
-      <form onsubmit={handleSubmit} class="mx-auto max-w-md">
+      <form onsubmit={handleSubmit} class="mx-auto max-w-lg">
         <div class="flex flex-col gap-3 sm:flex-row">
           <div class="relative flex-1 font-mono">
             <span
@@ -147,7 +146,13 @@
       </form>
 
       <p class="mt-4 font-mono text-xs text-kursal-400">
-        Unsubscribe anytime via the confirmation email.
+        One email, then we delete your address. Unsubscribe anytime via the link
+        in any email we send. We use it for nothing else, as set out in our
+        <a
+          href="/privacy"
+          class="text-accent-400 underline underline-offset-2 hover:text-accent-300"
+          >Privacy Policy</a
+        >.
       </p>
     {/if}
   </div>
