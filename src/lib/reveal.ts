@@ -1,10 +1,15 @@
+export function prefersReducedMotion() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 export function reveal(
   node: HTMLElement,
   params: { delay?: number; y?: number } = {},
 ) {
-  const reduce =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce = prefersReducedMotion();
 
   if (reduce) return {};
 
@@ -36,6 +41,47 @@ export function reveal(
       }
     },
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+  );
+
+  io.observe(node);
+
+  return {
+    destroy() {
+      io.disconnect();
+      if (cleanup) clearTimeout(cleanup);
+    },
+  };
+}
+
+export function growBar(node: HTMLElement, params: { delay?: number } = {}) {
+  const reduce = prefersReducedMotion();
+
+  if (reduce) return {};
+
+  const delay = params.delay ?? 0;
+
+  node.style.transformOrigin = "left";
+  node.style.transform = "scaleX(0)";
+
+  let cleanup: ReturnType<typeof setTimeout> | undefined;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          node.style.transition = `transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1) ${delay}ms`;
+          node.style.transform = "scaleX(1)";
+          io.unobserve(node);
+
+          cleanup = setTimeout(() => {
+            node.style.transition = "";
+            node.style.transform = "";
+            node.style.transformOrigin = "";
+          }, delay + 800);
+        }
+      }
+    },
+    { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
   );
 
   io.observe(node);

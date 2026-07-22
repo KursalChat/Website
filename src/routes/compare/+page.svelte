@@ -2,6 +2,7 @@
   import { Check, Minus, X, Info } from "lucide-svelte";
   import { slide } from "svelte/transition";
   import DocPage from "$lib/components/DocPage.svelte";
+  import Footprint from "$lib/components/Footprint.svelte";
   import { SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/compare`;
@@ -323,4 +324,6 @@
       >{@render mark(false, false)} no</span
     >
   </div>
+
+  <Footprint />
 </DocPage>
