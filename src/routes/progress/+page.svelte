@@ -54,19 +54,20 @@
       title: "Offline messaging",
       description:
         "Send and receive messages when contacts are offline. Prototype worked the first time on May 13th!!",
-      status: "in-progress",
+      status: "completed",
+      date: "July 22nd, 2026",
     },
     {
       title: "Public Beta",
       description:
         "The Kursal public beta is out! Download it from the website.",
       status: "completed",
-      date: "July 15th, 2026",
+      date: "July 27th, 2026",
     },
     {
       title: "First Public Release",
       description:
-        "First stable v0.1 release of Kursal! Targeting August 2026.",
+        "First stable v0.1 release of Kursal! Targeting August 2026. (after the 20th)",
       status: "in-progress",
     },
     {

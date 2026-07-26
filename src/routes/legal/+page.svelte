@@ -4,7 +4,7 @@
   import { email, SITE_OG, SITE_URL } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/legal`;
-  const lastUpdated = "21 July 2026";
+  const lastUpdated = "27 July 2026";
 </script>
 
 <svelte:head>

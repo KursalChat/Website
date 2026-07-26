@@ -6,7 +6,7 @@
   import { repository, email, SITE_URL, SITE_OG } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/terms`;
-  const lastUpdated = "21 July 2026";
+  const lastUpdated = "27 July 2026";
 </script>
 
 <svelte:head>

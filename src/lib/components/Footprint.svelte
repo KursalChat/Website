@@ -3,33 +3,14 @@
   import { flip } from "svelte/animate";
   import { cubicOut } from "svelte/easing";
   import { reveal, growBar, prefersReducedMotion } from "$lib/reveal";
-
-  type MetricKey = "ram" | "disk";
-
-  const metrics = [
-    {
-      key: "ram",
-      flag: "--idle-ram",
-      title: "Idle RAM usage",
-      caption:
-        "Each desktop app left open and idle, averaged over 30 samples per app.",
-      noun: "memory",
-    },
-    {
-      key: "disk",
-      flag: "--install-size",
-      title: "Install size",
-      caption: "Each desktop app as it sits on disk once installed.",
-      noun: "disk space",
-    },
-  ] as const;
-
-  const apps = [
-    { name: "Kursal", ram: 105.67, disk: 25, highlight: true },
-    { name: "Signal", ram: 603.87, disk: 344 },
-    { name: "Discord", ram: 737.35, disk: 445 },
-    { name: "WhatsApp", ram: 379.77, disk: 612 },
-  ];
+  import {
+    apps,
+    metrics,
+    mb,
+    lighterFactor,
+    MEASURED_ON,
+    type MetricKey,
+  } from "$lib/footprint";
 
   let active = $state<MetricKey>("ram");
 
@@ -49,20 +30,10 @@
   let metric = $derived(metrics.find((m) => m.key === active)!);
   let rows = $derived([...apps].sort((a, b) => a[active] - b[active]));
   let max = $derived(Math.max(...apps.map((app) => app[active])));
-  let kursal = $derived(apps.find((app) => app.highlight)!);
-  let others = $derived(apps.filter((app) => !app.highlight));
-  let factor = $derived(
-    others.reduce((sum, app) => sum + app[active], 0) /
-      others.length /
-      kursal[active],
-  );
+  let factor = $derived(lighterFactor(active));
 
   function width(app: (typeof apps)[number]) {
     return Math.max((app[active] / max) * 100, 2.5);
-  }
-
-  function mb(value: number) {
-    return Math.round(value).toLocaleString("en-US");
   }
 </script>
 
@@ -144,11 +115,8 @@
       <span class="text-accent-500/80 select-none">↳</span>
       <span>
         Kursal uses
-        <span class="text-accent-400"
-          >{factor >= 10 ? Math.round(factor) : Math.round(factor * 10) / 10}×
-          less {metric.noun}</span
-        >
-        than the other three, on average. Measured on macOS.
+        <span class="text-accent-400">{factor}× less {metric.noun}</span>
+        than the other three, on average. Measured on macOS, {MEASURED_ON}.
       </span>
     </div>
   </div>

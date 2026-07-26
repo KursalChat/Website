@@ -5,7 +5,7 @@
   import { repository, email, SITE_OG, SITE_URL } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/privacy`;
-  const lastUpdated = "21 July 2026";
+  const lastUpdated = "27 July 2026";
 </script>
 
 <svelte:head>
@@ -149,6 +149,14 @@
       mailing lists are separate from each other, and you can leave either at
       any time using the link in every email we send, or by writing to us.
     </p>
+    <p>
+      One technical note for completeness: whenever you hand us any of this,
+      subscribing or sending a crash report, the request itself carries your IP
+      address to our server in Germany, as every request on the web does. We use
+      it only to receive and answer that request, and do not log or keep it. The
+      legal basis is our legitimate interest under Article 6(1)(f) GDPR in
+      operating the endpoint securely.
+    </p>
   </DocSection>
 
   <DocSection n="05" title="What Relays Can See">
@@ -249,7 +257,10 @@
 
   <DocSection n="08" title="This Website">
     <p>
-      This website does not use cookies. We count visitors using
+      This website sets no tracking or advertising cookies. The only cookies
+      that may be set are the strictly necessary security cookies Cloudflare
+      uses to tell humans apart from bots, which need no consent. We count
+      visitors using
       <a
         href="https://plausible.io/"
         target="_blank"
@@ -269,9 +280,10 @@
         rel="noopener noreferrer"
         class="text-accent-400 underline underline-offset-2 hover:text-accent-300"
         >Ko-Fi</a
-      >, that donation is handled entirely by Ko-Fi under their own privacy
-      policy. We never see your payment details, only the name and message you
-      choose to leave.
+      >, that donation is handled entirely by Ko-Fi as its own data controller,
+      under their own privacy policy, and processed in the United States outside
+      the EU under the safeguards Ko-Fi puts in place. We never see your payment
+      details, only the name and message you choose to leave.
     </p>
   </DocSection>
 

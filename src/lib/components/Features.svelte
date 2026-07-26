@@ -1,9 +1,28 @@
 <script lang="ts">
-  import { Shield, Server, Eye, Code, ArrowUpRight } from "lucide-svelte";
+  import {
+    Shield,
+    Server,
+    Eye,
+    Code,
+    Feather,
+    ArrowUpRight,
+  } from "lucide-svelte";
   import { reveal } from "$lib/reveal";
   import { repository, PAPER_URL } from "$lib/const";
+  import { kursal, mb } from "$lib/footprint";
 
-  const features = [
+  type Feature = {
+    icon: typeof Shield;
+    flag: string;
+    title: string;
+    description: string;
+    link: string;
+    external: boolean;
+    wide?: boolean;
+    stats?: { value: string; label: string }[];
+  };
+
+  const features: Feature[] = [
     {
       icon: Shield,
       flag: "--encrypted",
@@ -40,6 +59,20 @@
       link: repository,
       external: true,
     },
+    {
+      icon: Feather,
+      flag: "--lightweight",
+      title: "Lightweight",
+      description:
+        "A fraction of what other chat apps reserve just to sit in your dock, measured against the ones you already have installed.",
+      link: "/compare",
+      external: false,
+      wide: true,
+      stats: [
+        { value: `${mb(kursal.disk)} MB`, label: "installed" },
+        { value: `${mb(kursal.ram)} MB`, label: "idle RAM" },
+      ],
+    },
   ];
 </script>
 
@@ -74,7 +107,9 @@
           target={feature.external ? "_blank" : undefined}
           rel={feature.external ? "noopener noreferrer" : undefined}
           use:reveal={{ delay: i * 70 }}
-          class="group flex flex-col rounded-sm border border-kursal-700 bg-kursal-800 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-500/50"
+          class="group flex flex-col rounded-sm border border-kursal-700 bg-kursal-800 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent-500/50 {feature.wide
+            ? 'md:col-span-2'
+            : ''}"
         >
           <div class="mb-4 flex items-center justify-between">
             <div
@@ -92,6 +127,22 @@
           <p class="flex-1 leading-relaxed text-kursal-300">
             {feature.description}
           </p>
+          {#if feature.stats}
+            <div class="mt-5 flex gap-8 border-t border-kursal-700 pt-5">
+              {#each feature.stats as stat}
+                <div>
+                  <div
+                    class="font-mono text-2xl font-bold text-accent-400 tabular-nums md:text-3xl"
+                  >
+                    {stat.value}
+                  </div>
+                  <div class="mt-0.5 font-mono text-xs text-kursal-400">
+                    {stat.label}
+                  </div>
+                </div>
+              {/each}
+            </div>
+          {/if}
           <span
             class="mt-4 inline-flex items-center gap-1 font-mono text-xs text-kursal-400 transition-colors group-hover:text-accent-400"
           >

@@ -3,9 +3,11 @@
   import { slide } from "svelte/transition";
   import DocPage from "$lib/components/DocPage.svelte";
   import Footprint from "$lib/components/Footprint.svelte";
-  import { SITE_URL, SITE_OG } from "$lib/const";
+  import { SITE_URL, SITE_OG_COMPARE } from "$lib/const";
 
   const pageUrl = `${SITE_URL}/compare`;
+  const pageDescription =
+    "How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy, plus measured RAM and install size for each.";
 
   type Mark = true | false | "partial";
   type Feature = { key: FeatureKey; label: string; note?: string };
@@ -55,7 +57,7 @@
     {
       key: "calls",
       label: "Voice & video calls",
-      note: "Only audio calls are supported. Video and screenshares are planned.",
+      note: "Audio and video calls are supported. Screenshares are planned.",
     },
   ] as const;
 
@@ -74,9 +76,9 @@
       independent: true,
       selfHost: true,
       postQuantum: true,
-      offline: "partial",
+      offline: true,
       groupChats: false,
-      calls: "partial",
+      calls: true,
     },
     {
       name: "Signal",
@@ -159,27 +161,18 @@
 
 <svelte:head>
   <title>Compare | Kursal</title>
-  <meta
-    name="description"
-    content="How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy."
-  />
+  <meta name="description" content={pageDescription} />
   <link rel="canonical" href={pageUrl} />
 
   <meta property="og:title" content="Compare | Kursal" />
-  <meta
-    property="og:description"
-    content="How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy."
-  />
+  <meta property="og:description" content={pageDescription} />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:image" content={SITE_OG} />
+  <meta property="og:image" content={SITE_OG_COMPARE} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Compare | Kursal" />
-  <meta
-    name="twitter:description"
-    content="How Kursal compares to Signal, WhatsApp, Discord and Matrix on encryption, decentralization and privacy."
-  />
-  <meta name="twitter:image" content={SITE_OG} />
+  <meta name="twitter:description" content={pageDescription} />
+  <meta name="twitter:image" content={SITE_OG_COMPARE} />
 </svelte:head>
 
 {#snippet mark(v: Mark, strong: boolean)}
@@ -260,6 +253,7 @@
 
 <DocPage
   file="compare.md"
+  stamp="Measured"
   title="How Kursal compares"
   subtitle="Same goal as the best private messengers. Without the servers, accounts, or trust in a company."
 >

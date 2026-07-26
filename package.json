@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "paper": "typst compile paper/kursal.typ static/kursal.pdf && echo 'Compiled paper!'",
-    "generate-og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=static/og.png assets/og.html",
+    "generate-og": "mkdir -p static/og && for f in assets/og/*.html; do \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --default-background-color=00000000 --window-size=1200,630 --screenshot=static/og/$(basename \"$f\" .html).png \"$f\" || exit 1; done && echo 'Generated OG images!'",
     "generate-dmg": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=820,500 --screenshot=mac-dmg-background.png assets/dmg.html && sips -s format jpeg mac-dmg-background.png --out mac-dmg-background.jpg && rm mac-dmg-background.png && mv mac-dmg-background.jpg ../Kursal/assets"
   },
   "dependencies": {
@@ -25,7 +25,7 @@
     "@tsconfig/svelte": "^5.0.8",
     "@types/node": "^26.1.1",
     "lucide-svelte": "^1.0.1",
-    "svelte": "^5.56.7",
+    "svelte": "^5.56.8",
     "svelte-check": "^4.7.3",
     "tailwindcss": "^4.3.3",
     "typescript": "~7.0.2",
