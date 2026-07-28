@@ -106,7 +106,16 @@ DOWNLOAD_URL="$KURSAL_BASE_URL/$FILENAME"
 
 TMP_DIR="$(mktemp -d)"
 TMP_FILE="$TMP_DIR/$FILENAME"
-trap 'rm -rf "$TMP_DIR"' EXIT
+MOUNT_POINT=""
+
+cleanup() {
+  if [ -n "$MOUNT_POINT" ]; then
+    hdiutil detach -quiet "$MOUNT_POINT" >/dev/null 2>&1 || true
+  fi
+  rm -rf "$TMP_DIR" ${MOUNT_POINT:+"$MOUNT_POINT"}
+}
+trap cleanup EXIT
+trap 'code=$?; print_err "Installation failed (line $LINENO): $BASH_COMMAND"; exit $code' ERR
 
 print_dim "▸ Downloading $FILENAME"
 
@@ -118,7 +127,7 @@ curl -fSL --progress-bar "$DOWNLOAD_URL" -o "$TMP_FILE" || {
 print_ok "Download complete"
 
 print_dim "▸ Verifying integrity"
-EXPECTED_SHA="$(fetch_expected_sha256 "$FILENAME")"
+EXPECTED_SHA="$(fetch_expected_sha256 "$FILENAME" || true)"
 ACTUAL_SHA="$(sha256_of "$TMP_FILE" || true)"
 
 if [ -z "$ACTUAL_SHA" ]; then
