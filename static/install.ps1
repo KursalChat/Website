@@ -53,6 +53,14 @@ $TMP_DIR = Join-Path $env:TEMP ("kursal-" + [System.IO.Path]::GetRandomFileName(
 New-Item -ItemType Directory -Path $TMP_DIR | Out-Null
 $TMP_FILE = Join-Path $TMP_DIR $FILENAME
 
+function Remove-TmpDir {
+  try {
+    if ($TMP_DIR -and (Test-Path -LiteralPath $TMP_DIR)) {
+      Remove-Item -LiteralPath $TMP_DIR -Recurse -Force -ErrorAction SilentlyContinue
+    }
+  } catch {}
+}
+
 dim "> Downloading $FILENAME"
 
 try {
@@ -76,7 +84,7 @@ if (-not $expected) {
 } elseif ($expected -eq $actual) {
   ok "Checksum verified"
 } else {
-  Remove-Item -Recurse -Force $TMP_DIR -ErrorAction SilentlyContinue
+  Remove-TmpDir
   err "Checksum mismatch, refusing to install. The file may be corrupt or tampered with."
 }
 
@@ -88,7 +96,7 @@ if ($proc.ExitCode -ne 0) {
   err "Installer exited with code $($proc.ExitCode)"
 }
 
-Remove-Item -Recurse -Force $TMP_DIR -ErrorAction SilentlyContinue
+Remove-TmpDir
 
 
 Write-Host ""
