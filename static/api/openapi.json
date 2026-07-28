@@ -11,7 +11,7 @@
       "name": "AGPL-3.0-only",
       "identifier": "AGPL-3.0-only"
     },
-    "version": "0.0.1-alpha.18"
+    "version": "0.1.0-beta"
   },
   "paths": {
     "/contact/{contact_id}": {
@@ -1344,6 +1344,23 @@
           }
         }
       },
+      "CallDetailsDto": {
+        "type": "object",
+        "required": [
+          "outcome",
+          "durationMs"
+        ],
+        "properties": {
+          "durationMs": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "outcome": {
+            "type": "string"
+          }
+        }
+      },
       "ContactResponse": {
         "type": "object",
         "required": [
@@ -1425,10 +1442,23 @@
           "content",
           "status",
           "timestamp",
+          "receivedTimestamp",
           "edited",
-          "reactions"
+          "pinned",
+          "reactions",
+          "viaOffline"
         ],
         "properties": {
+          "callDetails": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CallDetailsDto"
+              }
+            ]
+          },
           "contactId": {
             "type": "string"
           },
@@ -1454,11 +1484,19 @@
           "id": {
             "type": "string"
           },
+          "pinned": {
+            "type": "boolean"
+          },
           "reactions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ReactionResponse"
             }
+          },
+          "receivedTimestamp": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
           },
           "replyTo": {
             "type": [
@@ -1473,6 +1511,9 @@
             "type": "integer",
             "format": "int64",
             "minimum": 0
+          },
+          "viaOffline": {
+            "type": "boolean"
           }
         }
       },
