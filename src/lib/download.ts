@@ -1,13 +1,13 @@
 import {
   SiAndroid,
   SiApple,
-  SiIos,
+  // SiIos,
   SiLinux,
 } from "@icons-pack/svelte-simple-icons";
 import { DOWNLOAD_PREFIX } from "./const";
 import { Monitor } from "lucide-svelte";
 
-export type OSId = "mac" | "windows" | "linux" | "android" | "ios";
+export type OSId = "mac" | "windows" | "linux" | "android"; // | "ios";
 
 export const platforms = [
   {
@@ -75,11 +75,11 @@ export const platforms = [
     description: "Requires Android 8.0 or later",
     links: [{ id: "apk", label: "APK", url: `${DOWNLOAD_PREFIX}/Kursal.apk` }],
   },
-  {
-    id: "ios" as OSId,
-    name: "iOS",
-    icon: SiIos,
-    description: "Requires iOS 15.6 or later",
-    links: [{ id: "ipa", label: "IPA", url: `${DOWNLOAD_PREFIX}/Kursal.ipa` }],
-  },
+  // {
+  //   id: "ios" as OSId,
+  //   name: "iOS",
+  //   icon: SiIos,
+  //   description: "Requires iOS 15.6 or later",
+  //   links: [{ id: "ipa", label: "IPA", url: `${DOWNLOAD_PREFIX}/Kursal.ipa` }],
+  // },
 ];

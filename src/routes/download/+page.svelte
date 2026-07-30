@@ -53,8 +53,8 @@
 
   $effect(() => {
     const ua = window.navigator.userAgent.toLowerCase();
-    if (/iphone|ipad|ipod/.test(ua)) detectedOS = "ios";
-    else if (ua.includes("android")) detectedOS = "android";
+    // if (/iphone|ipad|ipod/.test(ua)) detectedOS = "ios";
+    if (ua.includes("android")) detectedOS = "android";
     else if (ua.includes("win")) detectedOS = "windows";
     else if (ua.includes("mac")) detectedOS = "mac";
     else if (ua.includes("linux")) detectedOS = "linux";
@@ -149,14 +149,14 @@
   <title>Download Kursal | Private Messaging App</title>
   <meta
     name="description"
-    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
+    content="Download the Kursal beta for macOS, Windows, Linux and Android. Free, open source, and end-to-end encrypted."
   />
   <link rel="canonical" href={pageUrl} />
 
   <meta property="og:title" content="Download Kursal | Private Messaging App" />
   <meta
     property="og:description"
-    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
+    content="Download the Kursal beta for macOS, Windows, Linux and Android. Free, open source, and end-to-end encrypted."
   />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:image" content={SITE_OG} />
@@ -168,7 +168,7 @@
   />
   <meta
     name="twitter:description"
-    content="Download the Kursal beta for macOS, Windows, and Linux. Free, open source, and end-to-end encrypted."
+    content="Download the Kursal beta for macOS, Windows, Linux and Android. Free, open source, and end-to-end encrypted."
   />
   <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
