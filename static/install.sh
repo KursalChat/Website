@@ -187,6 +187,38 @@ case "$INSTALL_METHOD" in
     chmod +x "$DEST"
     print_ok "Installed to $DEST"
 
+    APPS_DIR="$HOME/.local/share/applications"
+    DATA_DIR="$HOME/.local/share/kursal"
+    mkdir -p "$APPS_DIR" "$DATA_DIR"
+
+    (cd "$TMP_DIR" && "$DEST" --appimage-extract '*.png' >/dev/null 2>&1) || true
+    ICON_SRC="$(find "$TMP_DIR/squashfs-root" -maxdepth 1 -name '*.png' -type f 2>/dev/null | head -1)"
+
+    if [ -n "$ICON_SRC" ]; then
+      cp "$ICON_SRC" "$DATA_DIR/icon.png"
+      ICON="$DATA_DIR/icon.png"
+    else
+      ICON="application-x-executable"
+    fi
+
+    cat > "$APPS_DIR/kursal.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Kursal
+Comment=Peer-to-peer, end-to-end encrypted messaging that puts you in control.
+Exec=$DEST %u
+Icon=$ICON
+Terminal=false
+Categories=Network;InstantMessaging;
+MimeType=application/octet-stream;x-scheme-handler/kursal;
+StartupWMClass=kursal
+EOF
+    chmod 644 "$APPS_DIR/kursal.desktop"
+
+    command -v update-desktop-database >/dev/null 2>&1 && update-desktop-database "$APPS_DIR" >/dev/null 2>&1 || true
+
+    print_ok "Registered in the application menu"
+
     if ! echo ":$PATH:" | grep -q ":$KURSAL_BIN_DIR:"; then
       printf "\n"
       print_warn "$KURSAL_BIN_DIR is not in your PATH"
@@ -206,7 +238,7 @@ if [ "$PLATFORM" = "macos" ]; then
   print_dim "Launch it from Applications, or:"
   printf "    ${bold}open /Applications/Kursal.app${r}\n"
 else
-  print_dim "Run it with:"
+  print_dim "Launch it from your application menu, or:"
   printf "    ${bold}kursal${r}\n"
 fi
 
