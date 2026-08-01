@@ -14,3 +14,5 @@ export const LISTMONK_LEGAL_LIST_UUID = "3e06915f-7416-43ef-ad93-054e770ac768";
 export const DOWNLOAD_PREFIX = "https://app.kursal.chat";
 
 export const RELEASE_STATUS = "Public Beta Out Now";
+
+export const TERMS_LAST_UPDATED = "2026-07-27";

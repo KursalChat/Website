@@ -3,10 +3,17 @@
   import DocPage from "$lib/components/DocPage.svelte";
   import DocSection from "$lib/components/DocSection.svelte";
   import PolicyUpdates from "$lib/components/PolicyUpdates.svelte";
-  import { repository, email, SITE_URL, SITE_OG } from "$lib/const";
+  import {
+    repository,
+    email,
+    SITE_URL,
+    SITE_OG,
+    TERMS_LAST_UPDATED,
+  } from "$lib/const";
+  import { formatDate } from "$lib/util";
 
   const pageUrl = `${SITE_URL}/terms`;
-  const lastUpdated = "27 July 2026";
+  const lastUpdated = formatDate(TERMS_LAST_UPDATED);
 </script>
 
 <svelte:head>
