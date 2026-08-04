@@ -2,13 +2,11 @@
   import {
     FileText,
     Download,
-    Shield,
-    Lock,
-    Scale,
     Menu,
     X,
     Activity,
     GitCompare,
+    Star,
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { page } from "$app/state";
@@ -144,10 +142,14 @@
         href={repository}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-kursal-50"
+        class="group flex items-center gap-2 text-kursal-300 transition-colors hover:text-kursal-50"
       >
         <SiGithub size={17} />
-        <span class="hidden sm:inline">github</span>
+        <span class="hidden sm:inline">star us</span>
+        <Star
+          size={14}
+          class="hidden fill-transparent text-kursal-500 transition-colors group-hover:fill-accent-400 group-hover:text-accent-400 sm:inline"
+        />
       </a>
 
       <a
@@ -231,10 +233,14 @@
             target="_blank"
             rel="noopener noreferrer"
             onclick={closeMobileMenu}
-            class="flex items-center gap-2 rounded-sm px-3 py-2 text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50"
+            class="group flex items-center gap-2 rounded-sm px-3 py-2 text-kursal-200 transition-colors hover:bg-kursal-800 hover:text-kursal-50"
           >
             <SiGithub size={18} />
-            <span>github</span>
+            <span>star us on github</span>
+            <Star
+              size={15}
+              class="fill-transparent text-kursal-500 transition-colors group-hover:fill-accent-400 group-hover:text-accent-400"
+            />
           </a>
 
           <a

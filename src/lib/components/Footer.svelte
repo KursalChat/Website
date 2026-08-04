@@ -2,7 +2,6 @@
   import {
     FileText,
     Lock,
-    Mail,
     Scale,
     Shield,
     Activity,
