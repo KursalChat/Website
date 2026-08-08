@@ -32,8 +32,8 @@
       ? ["curl -fsSL https://kursal.chat | bash"]
       : activeTerminalTab === "homebrew"
         ? [
-            "brew trust KursalChat/Kursal",
-            "brew install KursalChat/Kursal/kursal",
+            "brew trust KursalChat/tap",
+            "brew install KursalChat/tap/kursal",
           ]
         : ['powershell -c "irm kursal.chat | iex"'],
   );
