@@ -7,7 +7,7 @@ export type FootprintApp = {
   highlight?: boolean;
 };
 
-export const MEASURED_ON = "July 2026";
+export const MEASURED_ON = "August 2026";
 
 export const metrics = [
   {
@@ -28,10 +28,10 @@ export const metrics = [
 ] as const;
 
 export const apps: FootprintApp[] = [
-  { name: "Kursal", ram: 105.67, disk: 25, highlight: true },
-  { name: "Signal", ram: 603.87, disk: 344 },
-  { name: "Discord", ram: 737.35, disk: 445 },
-  { name: "WhatsApp", ram: 379.77, disk: 612 },
+  { name: "Kursal", ram: 179, disk: 28, highlight: true },
+  { name: "Signal", ram: 681, disk: 630 },
+  { name: "Discord", ram: 611, disk: 499 },
+  { name: "WhatsApp", ram: 187, disk: 656 },
 ];
 
 export const kursal = apps.find((app) => app.highlight)!;

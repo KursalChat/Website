@@ -15,6 +15,7 @@
   import { platforms, type OSId } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
+  let downloadCount = $state<string | null>(null);
   let latestVersion = $state<string | null>(null);
   let copiedState = $state<Record<string, boolean>>({});
 
@@ -31,10 +32,7 @@
     activeTerminalTab === "mac-linux"
       ? ["curl -fsSL https://kursal.chat | bash"]
       : activeTerminalTab === "homebrew"
-        ? [
-            "brew trust KursalChat/tap",
-            "brew install KursalChat/tap/kursal",
-          ]
+        ? ["brew trust KursalChat/tap", "brew install KursalChat/tap/kursal"]
         : ['powershell -c "irm kursal.chat | iex"'],
   );
   let activeTerminalPrompt = $derived(
@@ -53,6 +51,7 @@
 
   $effect(() => {
     const ua = window.navigator.userAgent.toLowerCase();
+    // TODO: enable back when IOS available
     // if (/iphone|ipad|ipod/.test(ua)) detectedOS = "ios";
     if (ua.includes("android")) detectedOS = "android";
     else if (ua.includes("win")) detectedOS = "windows";
@@ -61,7 +60,7 @@
 
     activeTerminalTab = detectedOS === "windows" ? "windows" : "mac-linux";
 
-    fetchVersion();
+    fetchRepo();
   });
 
   function toggleDropdown(id: string, event: MouseEvent) {
@@ -133,13 +132,38 @@
 
   const pageUrl = `${SITE_URL}/download`;
 
-  async function fetchVersion() {
+  async function fetchRepo() {
     const res = await fetch(
-      "https://api.github.com/repos/KursalChat/Kursal/releases/latest",
+      "https://api.github.com/repos/KursalChat/Kursal/releases",
     );
 
-    const release = await res.json();
-    latestVersion = release.tag_name;
+    if (!res.ok) return;
+    const release = (await res.json()) as {
+      assets: { name: string; download_count: number }[];
+      prerelease: boolean;
+      draft: boolean;
+      name: string;
+    }[];
+
+    // find latest tag
+    latestVersion =
+      release.find((r) => r.prerelease == false && r.draft == false)?.name ||
+      null;
+
+    // count downloads
+    let tempDownloads = 0;
+    for (let r of release) {
+      for (let asset of r.assets) {
+        if (asset.name.toLowerCase().startsWith("kursal")) {
+          tempDownloads += asset.download_count;
+        }
+      }
+    }
+
+    downloadCount =
+      tempDownloads >= 1000
+        ? (tempDownloads / 1000).toFixed(1).replace(/\.0$/, "") + "k"
+        : String(tempDownloads);
   }
 </script>
 
@@ -233,17 +257,40 @@
         {RELEASE_STATUS}
       </div>
 
-      <h1
-        class="mb-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-4xl font-bold text-kursal-50 md:text-5xl"
-      >
-        <span>Download Kursal</span>
-        {#if latestVersion}
-          <span
-            class="inline-flex items-center rounded-sm border border-accent-500/30 px-2 py-0.5 font-mono text-xs font-bold tracking-wide whitespace-nowrap text-accent-400"
-            >{latestVersion}</span
-          >
-        {/if}
+      <h1 class="mb-4 font-mono text-4xl font-bold text-kursal-50 md:text-5xl">
+        Download Kursal
       </h1>
+
+      {#if latestVersion || downloadCount}
+        <div
+          class="mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono tracking-wide"
+        >
+          {#if latestVersion}
+            <span
+              class="inline-flex items-center rounded-sm border border-accent-500/30 px-2 py-1 text-xs font-bold whitespace-nowrap text-accent-400"
+              >{latestVersion}</span
+            >
+          {/if}
+          {#if latestVersion && downloadCount}
+            <span class="text-kursal-500 select-none">/</span>
+          {/if}
+          {#if downloadCount}
+            <span
+              class="inline-flex items-baseline gap-1.5 text-sm whitespace-nowrap text-kursal-300"
+            >
+              <Download
+                size={14}
+                class="translate-y-0.5 self-center text-accent-400"
+              />
+              <span class="text-base font-bold text-kursal-50"
+                >{downloadCount}</span
+              >
+              downloads
+            </span>
+          {/if}
+        </div>
+      {/if}
+
       <p class="mx-auto max-w-xl text-lg leading-relaxed text-kursal-200">
         Kursal is currently in <strong class="text-kursal-50"
           >public beta</strong

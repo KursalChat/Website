@@ -1,0 +1,139 @@
+<div class="window">
+  <div class="titlebar">
+    <span class="dots"><span></span><span></span><span></span></span>
+    <span class="url">kursal.chat</span>
+  </div>
+  <div class="body">
+    <div class="brand">
+      <img src="../../static/icon.png" alt="" />
+      <span>kursal<em>:~$</em></span>
+    </div>
+    <h1>
+      <span class="chevron">&gt;</span> Big Brother
+      <span class="was">was</span> watching you.<span class="caret"></span>
+    </h1>
+    <p class="sub">
+      Peer-to-peer, end-to-end encrypted messaging.<br />
+      <b>No servers. No tracking.</b> Just your private conversations.
+    </p>
+  </div>
+</div>
+
+<style>
+  .window {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #2b3445;
+    border-radius: 12px;
+    background: #0b0e14;
+    overflow: hidden;
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 30px;
+    background: #121723;
+    border-bottom: 1px solid #1d2433;
+    font-size: 21px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 10px;
+  }
+
+  .dots span {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+
+  .dots span:nth-child(1) {
+    background: #ff5f57;
+  }
+
+  .dots span:nth-child(2) {
+    background: #febc2e;
+  }
+
+  .dots span:nth-child(3) {
+    background: #28c840;
+  }
+
+  .titlebar .url {
+    color: #687891;
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 60px 60px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .brand img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand span {
+    font-size: 42px;
+    font-weight: 700;
+    color: #eef3fa;
+    letter-spacing: -0.02em;
+  }
+
+  .brand span em {
+    font-style: normal;
+    color: #4d8dff;
+  }
+
+  h1 {
+    font-size: 57px;
+    font-weight: 700;
+    color: #eef3fa;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 30px;
+  }
+
+  h1 .chevron {
+    color: #687891;
+  }
+
+  h1 .was {
+    color: #79a8ff;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.95em;
+    margin-left: 0.1em;
+    vertical-align: -0.08em;
+    background: #4d8dff;
+  }
+
+  .sub {
+    font-size: 26px;
+    color: #93a1ba;
+    line-height: 1.5;
+  }
+
+  .sub b {
+    font-weight: 600;
+    color: #bcc7da;
+  }
+</style>
