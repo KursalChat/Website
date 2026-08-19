@@ -5,9 +5,10 @@
 /issues https://github.com/KursalChat/Kursal/issues 301
 /vulnerability https://github.com/KursalChat/Kursal/security/advisories/new 301
 
-/donate https://ko-fi.com/kursal 301
+/donate https://opencollective.com/kursal 301
 
 /x https://x.com/KursalChat 301
 /mastodon https://mastodon.social/@kursal 301
 
 /api https://api.kursal.chat 301
+/status https://status.kursal.chat 301

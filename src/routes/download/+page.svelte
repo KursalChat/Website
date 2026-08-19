@@ -30,10 +30,10 @@
 
   let activeTerminalCmds = $derived(
     activeTerminalTab === "mac-linux"
-      ? ["curl -fsSL https://kursal.chat | bash"]
+      ? ["curl -fsSL https://kursal.chat/install.sh | bash"]
       : activeTerminalTab === "homebrew"
         ? ["brew trust KursalChat/tap", "brew install KursalChat/tap/kursal"]
-        : ['powershell -c "irm kursal.chat | iex"'],
+        : ['powershell -c "irm kursal.chat/install.ps1 | iex"'],
   );
   let activeTerminalPrompt = $derived(
     activeTerminalTab === "windows" ? ">" : "$",

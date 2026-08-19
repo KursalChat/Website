@@ -22,16 +22,17 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
 
-    %sveltekit.head%
-  </head>
-
-  <body data-sveltekit-preload-data="hover">
-    <div id="app">%sveltekit.body%</div>
-
+    <!-- Plausible Analytics -->
     <script
       async
       src="https://stats.openvoxel.studio/js/pa-INLiRP-ljoQ6PVytveRc2.js"
     ></script>
     <script defer src="/js/analytics.js"></script>
+
+    %sveltekit.head%
+  </head>
+
+  <body data-sveltekit-preload-data="hover">
+    <div id="app">%sveltekit.body%</div>
   </body>
 </html>

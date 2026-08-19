@@ -1,7 +1,7 @@
-# ──────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #  Kursal installer
-#  Usage: powershell -c "irm kursal.chat | iex"
-# ──────────────────────────────────────────────
+#  Usage: powershell -c "irm kursal.chat/install.ps1 | iex"
+# ───────────────────────────────────────────────────────────
 
 param()
 $ErrorActionPreference = 'Stop'

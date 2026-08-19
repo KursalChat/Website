@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ──────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────
 #  Kursal installer
-#  Usage: curl -fsSL https://kursal.chat | bash
-# ──────────────────────────────────────────────
+#  Usage: curl -fsSL https://kursal.chat/install.sh | bash
+# ──────────────────────────────────────────────────────────
 
 if [[ ${OS:-} = Windows_NT ]]; then
   if [[ $platform != MINGW64* ]]; then
