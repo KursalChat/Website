@@ -11,19 +11,19 @@ export const MEASURED_ON = "August 2026";
 
 export const metrics = [
   {
+    key: "disk",
+    flag: "--install-size",
+    title: "Install size",
+    caption: "Each desktop app as it sits on disk once installed.",
+    noun: "disk space",
+  },
+  {
     key: "ram",
     flag: "--idle-ram",
     title: "Idle RAM usage",
     caption:
       "Each desktop app left open and idle, averaged over 30 samples per app.",
     noun: "memory",
-  },
-  {
-    key: "disk",
-    flag: "--install-size",
-    title: "Install size",
-    caption: "Each desktop app as it sits on disk once installed.",
-    noun: "disk space",
   },
 ] as const;
 

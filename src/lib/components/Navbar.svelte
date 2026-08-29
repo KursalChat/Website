@@ -27,15 +27,6 @@
   }
 
   $effect(() => {
-    if (!mobileMenuOpen) return;
-
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  });
-
-  $effect(() => {
     if (!mobileMenuOpen || !menuElement) return;
     menuElement.querySelector<HTMLElement>("a[href]")?.focus();
   });

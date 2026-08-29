@@ -97,7 +97,7 @@
               class="flex items-center gap-2 text-kursal-300 transition-colors hover:text-accent-400"
             >
               <Award size={15} />
-              Credits
+              Acknowledgments
             </a>
           </li>
         </ul>

@@ -16,7 +16,12 @@ export default {
         "default-src": ["self"],
         "script-src": ["self", "https://stats.openvoxel.studio"],
         "style-src": ["self", "unsafe-inline"],
-        "img-src": ["self", "data:"],
+        "img-src": [
+          "self",
+          "data:",
+          "https://github.com",
+          "https://avatars.githubusercontent.com",
+        ],
         "font-src": ["self"],
         "connect-src": [
           "self",

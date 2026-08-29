@@ -12,14 +12,14 @@
     type MetricKey,
   } from "$lib/footprint";
 
-  let active = $state<MetricKey>("ram");
+  let active = $state<MetricKey>("disk");
 
   const reduce = prefersReducedMotion();
 
   const values = new Map(
     apps.map((app) => [
       app.name,
-      new Tween(app.ram, { duration: reduce ? 0 : 650, easing: cubicOut }),
+      new Tween(app.disk, { duration: reduce ? 0 : 650, easing: cubicOut }),
     ]),
   );
 
