@@ -56,6 +56,7 @@
 }
 
 :root {
+  scroll-behavior: smooth;
   font-family: var(--font-mono);
   line-height: 1.6;
   font-weight: 400;
@@ -190,6 +191,9 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  :root {
+    scroll-behavior: auto;
   }
   .caret {
     opacity: 1;
