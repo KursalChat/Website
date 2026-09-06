@@ -11,6 +11,7 @@
   } from "lucide-svelte";
   import Navbar from "$lib/components/Navbar.svelte";
   import Footer from "$lib/components/Footer.svelte";
+  import DemoPopup from "$lib/components/DemoPopup.svelte";
   import { RELEASE_STATUS, SITE_OG, SITE_URL } from "$lib/const";
   import { platforms, type OSId } from "$lib/download";
 
@@ -492,3 +493,19 @@
 </main>
 
 <Footer />
+
+<DemoPopup
+  src="/demo.mp4"
+  label="Watch the demo"
+  command="kursal --demo"
+  title="Kursal demo video"
+  stack={0}
+/>
+
+<DemoPopup
+  src="/trailer.mp4"
+  label="Watch the trailer"
+  command="kursal --trailer"
+  title="Kursal trailer"
+  stack={1}
+/>
