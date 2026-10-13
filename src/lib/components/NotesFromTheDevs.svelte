@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Heart } from "lucide-svelte";
-  import { reveal } from "$lib/reveal";
+  import { reveal } from "#lib/reveal.ts";
 </script>
 
 <section class="bg-kursal-900 py-12">

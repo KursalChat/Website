@@ -1,16 +1,16 @@
 <script lang="ts">
-  import Navbar from "$lib/components/Navbar.svelte";
-  import { repository, SITE_ICON, SITE_OG, SITE_URL } from "$lib/const";
+  import Navbar from "#lib/components/Navbar.svelte";
+  import { repository, SITE_ICON, SITE_OG, SITE_URL } from "#lib/const.ts";
 
-  import Hero from "$lib/components/Hero.svelte";
-  import EncryptionAnimation from "$lib/components/EncryptionAnimation.svelte";
-  import MailingList from "$lib/components/MailingList.svelte";
-  import DecentralisationAnimation from "$lib/components/DecentralisationAnimation.svelte";
-  import Features from "$lib/components/Features.svelte";
-  import FAQ from "$lib/components/FAQ.svelte";
-  import NotesFromTheDevs from "$lib/components/NotesFromTheDevs.svelte";
+  import Hero from "#lib/components/Hero.svelte";
+  import EncryptionAnimation from "#lib/components/EncryptionAnimation.svelte";
+  import MailingList from "#lib/components/MailingList.svelte";
+  import DecentralisationAnimation from "#lib/components/DecentralisationAnimation.svelte";
+  import Features from "#lib/components/Features.svelte";
+  import FAQ from "#lib/components/FAQ.svelte";
+  import NotesFromTheDevs from "#lib/components/NotesFromTheDevs.svelte";
 
-  import Footer from "$lib/components/Footer.svelte";
+  import Footer from "#lib/components/Footer.svelte";
 
   const organizationSchema = {
     "@context": "https://schema.org",

@@ -10,7 +10,7 @@
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
   import { page } from "$app/state";
-  import { repository, PAPER_URL } from "$lib/const";
+  import { repository, PAPER_URL } from "#lib/const.ts";
 
   import { slide } from "svelte/transition";
 

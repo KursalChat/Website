@@ -1,16 +1,12 @@
 {
-  "extends": "./.svelte-kit/tsconfig.json",
+  "extends": "$app/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "bundler",
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "types": ["svelte", "vite/client", "@sveltejs/kit", "node"],
-    "noEmit": true,
-    "allowJs": true,
-    "checkJs": true,
-    "moduleDetection": "force",
+    "types": ["$app/types", "svelte", "vite/client", "@sveltejs/kit", "node"],
     "noUnusedLocals": true,
     "noUnusedParameters": true
-  }
+  },
+  "include": ["src", "vite.config.ts"]
 }

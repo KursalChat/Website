@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Check, Minus, X, Info } from "lucide-svelte";
   import { slide } from "svelte/transition";
-  import DocPage from "$lib/components/DocPage.svelte";
-  import Footprint from "$lib/components/Footprint.svelte";
-  import { SITE_URL, SITE_OG_COMPARE } from "$lib/const";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import Footprint from "#lib/components/Footprint.svelte";
+  import { SITE_URL, SITE_OG_COMPARE } from "#lib/const.ts";
 
   const pageUrl = `${SITE_URL}/compare`;
   const pageDescription =

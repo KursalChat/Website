@@ -8,9 +8,9 @@
     TriangleAlert,
   } from "lucide-svelte";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
-  import DocPage from "$lib/components/DocPage.svelte";
-  import DocSection from "$lib/components/DocSection.svelte";
-  import { repository, PAPER_URL, SITE_URL, SITE_OG } from "$lib/const";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import DocSection from "#lib/components/DocSection.svelte";
+  import { repository, PAPER_URL, SITE_URL, SITE_OG } from "#lib/const.ts";
 
   const pageUrl = `${SITE_URL}/security`;
   const lastUpdated = "27 July 2026";

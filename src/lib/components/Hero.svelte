@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { Download, FileText, ArrowDown } from "lucide-svelte";
-  import { scrollTo } from "$lib/util";
-  import { PAPER_URL, RELEASE_STATUS } from "$lib/const";
+  import { scrollTo } from "#lib/util.ts";
+  import { PAPER_URL, RELEASE_STATUS } from "#lib/const.ts";
 
   const SCRAMBLE_CHARS = "#$%&@/<>=+0123456789ABCDEFabcdef";
   const TARGET = "was watching you";

@@ -7,9 +7,9 @@
     Feather,
     ArrowUpRight,
   } from "lucide-svelte";
-  import { reveal } from "$lib/reveal";
-  import { repository, PAPER_URL } from "$lib/const";
-  import { kursal, mb } from "$lib/footprint";
+  import { reveal } from "#lib/reveal.ts";
+  import { repository, PAPER_URL } from "#lib/const.ts";
+  import { kursal, mb } from "#lib/footprint.ts";
 
   type Feature = {
     icon: typeof Shield;

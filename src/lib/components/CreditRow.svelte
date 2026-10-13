@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CreditEntry } from "$lib/credits";
+  import type { CreditEntry } from "#lib/credits.ts";
 
   let { entry }: { entry: CreditEntry } = $props();
 

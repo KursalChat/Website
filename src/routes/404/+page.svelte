@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SITE_URL } from "$lib/const";
+  import { SITE_URL } from "#lib/const.ts";
 
   const pageUrl = `${SITE_URL}/404`;
 </script>

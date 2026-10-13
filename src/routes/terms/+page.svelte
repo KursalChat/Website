@@ -1,16 +1,16 @@
 <script lang="ts">
   import { TriangleAlert } from "lucide-svelte";
-  import DocPage from "$lib/components/DocPage.svelte";
-  import DocSection from "$lib/components/DocSection.svelte";
-  import PolicyUpdates from "$lib/components/PolicyUpdates.svelte";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import DocSection from "#lib/components/DocSection.svelte";
+  import PolicyUpdates from "#lib/components/PolicyUpdates.svelte";
   import {
     repository,
     email,
     SITE_URL,
     SITE_OG,
     TERMS_LAST_UPDATED,
-  } from "$lib/const";
-  import { formatDate } from "$lib/util";
+  } from "#lib/const.ts";
+  import { formatDate } from "#lib/util.ts";
 
   const pageUrl = `${SITE_URL}/terms`;
   const lastUpdated = formatDate(TERMS_LAST_UPDATED);

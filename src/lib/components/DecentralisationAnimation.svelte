@@ -10,7 +10,7 @@
     Lock,
     Check,
   } from "lucide-svelte";
-  import { reveal } from "$lib/reveal";
+  import { reveal } from "#lib/reveal.ts";
 
   let scrollProgress = $state(0);
   let reduceMotion = $state(false);

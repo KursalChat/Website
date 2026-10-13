@@ -3,6 +3,7 @@
   import { onNavigate } from "$app/navigation";
 
   onNavigate((navigation) => {
+    if (navigation.shallow && navigation.type === "goto") return;
     if (!document.startViewTransition) return;
     return new Promise((resolve) => {
       document.startViewTransition(async () => {
@@ -13,4 +14,4 @@
   });
 </script>
 
-<slot />
+<slot></slot>

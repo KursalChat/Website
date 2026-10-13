@@ -2,7 +2,7 @@
   import { Tween } from "svelte/motion";
   import { flip } from "svelte/animate";
   import { cubicOut } from "svelte/easing";
-  import { reveal, growBar, prefersReducedMotion } from "$lib/reveal";
+  import { reveal, growBar, prefersReducedMotion } from "#lib/reveal.ts";
   import {
     apps,
     metrics,
@@ -10,7 +10,7 @@
     lighterFactor,
     MEASURED_ON,
     type MetricKey,
-  } from "$lib/footprint";
+  } from "#lib/footprint.ts";
 
   let active = $state<MetricKey>("disk");
 

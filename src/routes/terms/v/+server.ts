@@ -1,4 +1,4 @@
-import { TERMS_LAST_UPDATED } from "$lib/const";
+import { TERMS_LAST_UPDATED } from "#lib/const.ts";
 
 export const prerender = true;
 

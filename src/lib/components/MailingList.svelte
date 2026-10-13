@@ -1,7 +1,11 @@
 <script lang="ts">
   import { ArrowRight, Check } from "lucide-svelte";
-  import { LISTMONK_LIST_UUID, LISTMONK_URL, RELEASE_STATUS } from "$lib/const";
-  import { reveal } from "$lib/reveal";
+  import {
+    LISTMONK_LIST_UUID,
+    LISTMONK_URL,
+    RELEASE_STATUS,
+  } from "#lib/const.ts";
+  import { reveal } from "#lib/reveal.ts";
 
   let email = $state("");
   let status = $state<"idle" | "loading" | "success" | "error">("idle");

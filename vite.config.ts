@@ -1,3 +1,5 @@
+import adapter from "@sveltejs/adapter-static";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { defineConfig, type Plugin } from "vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -46,8 +48,55 @@ function securityTxtExpires(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [sveltekit(), tailwindcss(), securityTxtExpires()],
-  server: {
-    allowedHosts: true,
-  },
+  plugins: [
+    sveltekit({
+      preprocess: vitePreprocess(),
+      adapter: adapter({
+        pages: "build",
+        assets: "build",
+        fallback: undefined,
+      }),
+      csp: {
+        mode: "hash",
+        directives: {
+          "default-src": ["self"],
+          "script-src": ["self", "https://stats.openvoxel.studio"],
+          "style-src": ["self", "unsafe-inline"],
+          "img-src": [
+            "self",
+            "data:",
+            "https://github.com",
+            "https://avatars.githubusercontent.com",
+          ],
+          "font-src": ["self"],
+          "connect-src": [
+            "self",
+            "https://stats.openvoxel.studio",
+            "https://mail.kursal.chat",
+            "https://api.github.com",
+          ],
+          "frame-ancestors": ["none"],
+          "base-uri": ["self"],
+          "form-action": ["self"],
+          "object-src": ["none"],
+        },
+      },
+      prerender: {
+        handleHttpError: ({ path, message }) => {
+          if (
+            path === "/issues" ||
+            path === "/vulnerability" ||
+            path === "/trademark"
+          ) {
+            return;
+          }
+
+          throw new Error(message);
+        },
+      },
+    }),
+    tailwindcss(),
+    securityTxtExpires(),
+  ],
+  server: { allowedHosts: true },
 });

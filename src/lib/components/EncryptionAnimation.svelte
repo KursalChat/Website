@@ -9,7 +9,7 @@
     Smartphone,
     ShieldCheck,
   } from "lucide-svelte";
-  import { reveal } from "$lib/reveal";
+  import { reveal } from "#lib/reveal.ts";
 
   const convo = [
     { from: "you", text: "movie friday?" },

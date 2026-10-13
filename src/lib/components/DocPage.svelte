@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Footer from "$lib/components/Footer.svelte";
+  import Navbar from "#lib/components/Navbar.svelte";
+  import Footer from "#lib/components/Footer.svelte";
   import { ArrowLeft } from "lucide-svelte";
 
   let {

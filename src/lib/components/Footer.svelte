@@ -9,7 +9,7 @@
     GitCompare,
     Landmark,
   } from "lucide-svelte";
-  import { repository, email, PAPER_URL } from "$lib/const";
+  import { repository, email, PAPER_URL } from "#lib/const.ts";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
 </script>
 

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
-  import DocPage from "$lib/components/DocPage.svelte";
-  import DocSection from "$lib/components/DocSection.svelte";
-  import { repository, email, SITE_OG, SITE_URL } from "$lib/const";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import DocSection from "#lib/components/DocSection.svelte";
+  import { repository, email, SITE_OG, SITE_URL } from "#lib/const.ts";
 
   const pageUrl = `${SITE_URL}/privacy`;
   const lastUpdated = "27 July 2026";

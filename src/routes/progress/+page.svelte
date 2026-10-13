@@ -1,6 +1,6 @@
 <script lang="ts">
-  import DocPage from "$lib/components/DocPage.svelte";
-  import { SITE_OG, SITE_URL } from "$lib/const";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import { SITE_OG, SITE_URL } from "#lib/const.ts";
 
   const pageUrl = `${SITE_URL}/progress`;
 

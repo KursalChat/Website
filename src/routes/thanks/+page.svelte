@@ -1,11 +1,11 @@
 <script lang="ts">
   import { CircleCheckBig, ArrowLeft, BookOpen } from "lucide-svelte";
   import { onMount } from "svelte";
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Footer from "$lib/components/Footer.svelte";
-  import { PAPER_URL, repository, SITE_URL } from "$lib/const";
+  import Navbar from "#lib/components/Navbar.svelte";
+  import Footer from "#lib/components/Footer.svelte";
+  import { PAPER_URL, repository, SITE_URL } from "#lib/const.ts";
   import { SiGithub } from "@icons-pack/svelte-simple-icons";
-  import { platforms } from "$lib/download";
+  import { platforms } from "#lib/download.ts";
 
   const pageUrl = `${SITE_URL}/thanks`;
 

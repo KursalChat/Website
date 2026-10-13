@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { slugify } from "$lib/util";
+  import { slugify } from "#lib/util.ts";
 
   let {
     n,

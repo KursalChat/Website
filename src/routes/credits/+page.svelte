@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Bug, ShieldCheck } from "lucide-svelte";
-  import DocPage from "$lib/components/DocPage.svelte";
-  import DocSection from "$lib/components/DocSection.svelte";
-  import CreditsBox from "$lib/components/CreditsBox.svelte";
-  import CreditRow from "$lib/components/CreditRow.svelte";
-  import { SITE_URL, SITE_OG, OPEN_COLLECTIVE_URL } from "$lib/const";
+  import DocPage from "#lib/components/DocPage.svelte";
+  import DocSection from "#lib/components/DocSection.svelte";
+  import CreditsBox from "#lib/components/CreditsBox.svelte";
+  import CreditRow from "#lib/components/CreditRow.svelte";
+  import { SITE_URL, SITE_OG, OPEN_COLLECTIVE_URL } from "#lib/const.ts";
   import {
     contributorOverrides,
     researchers,
@@ -12,7 +12,7 @@
     translators,
     type CreditEntry,
     type TranslatorEntry,
-  } from "$lib/credits";
+  } from "#lib/credits.ts";
 
   const pageUrl = `${SITE_URL}/credits`;
   const description =

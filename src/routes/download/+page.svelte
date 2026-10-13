@@ -9,11 +9,11 @@
     Copy,
     Check,
   } from "lucide-svelte";
-  import Navbar from "$lib/components/Navbar.svelte";
-  import Footer from "$lib/components/Footer.svelte";
-  import DemoPopup from "$lib/components/DemoPopup.svelte";
-  import { RELEASE_STATUS, SITE_OG, SITE_URL } from "$lib/const";
-  import { platforms, type OSId, type DownloadLink } from "$lib/download";
+  import Navbar from "#lib/components/Navbar.svelte";
+  import Footer from "#lib/components/Footer.svelte";
+  import DemoPopup from "#lib/components/DemoPopup.svelte";
+  import { RELEASE_STATUS, SITE_OG, SITE_URL } from "#lib/const.ts";
+  import { platforms, type OSId, type DownloadLink } from "#lib/download.ts";
 
   let openDropdown = $state<string | null>(null);
   let downloadCount = $state<string | null>(null);

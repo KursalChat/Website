@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Check } from "lucide-svelte";
-  import { LISTMONK_LEGAL_LIST_UUID, LISTMONK_URL } from "$lib/const";
+  import { LISTMONK_LEGAL_LIST_UUID, LISTMONK_URL } from "#lib/const.ts";
 
   let email = $state("");
   let status = $state<"idle" | "loading" | "success" | "error">("idle");

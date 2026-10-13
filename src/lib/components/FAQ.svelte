@@ -1,6 +1,6 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
-  import { reveal } from "$lib/reveal";
+  import { reveal } from "#lib/reveal.ts";
 
   const faqs = [
     {
