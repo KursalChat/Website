@@ -13,7 +13,7 @@
   import Footer from "$lib/components/Footer.svelte";
   import DemoPopup from "$lib/components/DemoPopup.svelte";
   import { RELEASE_STATUS, SITE_OG, SITE_URL } from "$lib/const";
-  import { platforms, type OSId } from "$lib/download";
+  import { platforms, type OSId, type DownloadLink } from "$lib/download";
 
   let openDropdown = $state<string | null>(null);
   let downloadCount = $state<string | null>(null);
@@ -198,11 +198,7 @@
   <meta name="twitter:image" content={SITE_OG} />
 </svelte:head>
 
-{#snippet archDropdown(
-  id: string,
-  archLabel: string,
-  links: { id: string; label: string; url: string }[],
-)}
+{#snippet archDropdown(id: string, archLabel: string, links: DownloadLink[])}
   <div class="linux-dropdown-container relative w-full md:w-auto">
     <button
       id="{id}-trigger"
@@ -441,12 +437,12 @@
                 {@render archDropdown(
                   "linux-x64",
                   "x64 / AMD64",
-                  platform.links.slice(0, 3),
+                  platform.links.filter((link) => link.arch === "x64"),
                 )}
                 {@render archDropdown(
                   "linux-arm64",
                   "arm64",
-                  platform.links.slice(3, 6),
+                  platform.links.filter((link) => link.arch === "arm64"),
                 )}
               </div>
             {:else}

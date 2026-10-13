@@ -1,15 +1,29 @@
 import {
   SiAndroid,
   SiApple,
-  // SiIos,
+  SiIos,
   SiLinux,
 } from "@icons-pack/svelte-simple-icons";
 import { DOWNLOAD_PREFIX } from "./const";
 import { Monitor } from "lucide-svelte";
 
-export type OSId = "mac" | "windows" | "linux" | "android"; // | "ios";
+export type OSId = "mac" | "windows" | "linux" | "android" | "ios";
+export type Architecture = "x64" | "arm64";
 
-export const platforms = [
+export type DownloadLink = {
+  id: string;
+  label: string;
+  url: string;
+  arch?: Architecture;
+};
+
+export const platforms: {
+  id: OSId;
+  name: string;
+  icon: typeof SiApple | typeof Monitor;
+  description: string;
+  links: DownloadLink[];
+}[] = [
   {
     id: "mac" as OSId,
     name: "macOS",
@@ -56,16 +70,44 @@ export const platforms = [
         id: "appimage_x64",
         label: "AppImage",
         url: `${DOWNLOAD_PREFIX}/Kursal_x64.AppImage`,
+        arch: "x64",
       },
-      { id: "deb_x64", label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_x64.deb` },
-      { id: "rpm_x64", label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_x64.rpm` },
+      {
+        id: "deb_x64",
+        label: "deb",
+        url: `${DOWNLOAD_PREFIX}/Kursal_x64.deb`,
+        arch: "x64",
+      },
+      {
+        id: "rpm_x64",
+        label: "rpm",
+        url: `${DOWNLOAD_PREFIX}/Kursal_x64.rpm`,
+        arch: "x64",
+      },
+      {
+        id: "arch_x64",
+        label: "arch",
+        url: `${DOWNLOAD_PREFIX}/Kursal_arch.pkg.tar.zst`,
+        arch: "x64",
+      },
       {
         id: "appimage_arm",
         label: "AppImage",
         url: `${DOWNLOAD_PREFIX}/Kursal_arm.AppImage`,
+        arch: "arm64",
       },
-      { id: "deb_arm", label: "deb", url: `${DOWNLOAD_PREFIX}/Kursal_arm.deb` },
-      { id: "rpm_arm", label: "rpm", url: `${DOWNLOAD_PREFIX}/Kursal_arm.rpm` },
+      {
+        id: "deb_arm",
+        label: "deb",
+        url: `${DOWNLOAD_PREFIX}/Kursal_arm.deb`,
+        arch: "arm64",
+      },
+      {
+        id: "rpm_arm",
+        label: "rpm",
+        url: `${DOWNLOAD_PREFIX}/Kursal_arm.rpm`,
+        arch: "arm64",
+      },
     ],
   },
   {
@@ -75,11 +117,11 @@ export const platforms = [
     description: "Requires Android 8.0 or later",
     links: [{ id: "apk", label: "APK", url: `${DOWNLOAD_PREFIX}/Kursal.apk` }],
   },
-  // {
-  //   id: "ios" as OSId,
-  //   name: "iOS",
-  //   icon: SiIos,
-  //   description: "Requires iOS 15.6 or later",
-  //   links: [{ id: "ipa", label: "IPA", url: `${DOWNLOAD_PREFIX}/Kursal.ipa` }],
-  // },
+  {
+    id: "ios" as OSId,
+    name: "iOS",
+    icon: SiIos,
+    description: "Requires iOS 15.6 or later",
+    links: [{ id: "ipa", label: "IPA", url: `${DOWNLOAD_PREFIX}/Kursal.ipa` }],
+  },
 ];

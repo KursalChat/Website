@@ -95,7 +95,11 @@ if [ "$PLATFORM" = "macos" ]; then
   [ "$ARCH_TAG" = "arm" ] && FILENAME="Kursal.dmg" || FILENAME="Kursal_x64.dmg"
   INSTALL_METHOD="dmg"
 else
-  if   command -v dpkg >/dev/null 2>&1; then FILENAME="Kursal_${ARCH_TAG}.deb"; INSTALL_METHOD="deb"
+  . /etc/os-release
+  if [[ ${ID:-} = arch || ${ID_LIKE:-} =~ (^|[[:space:]])arch($|[[:space:]]) ]]; then
+    FILENAME="Kursal_arch.pkg.tar.zst"
+    INSTALL_METHOD="arch"
+  elif command -v dpkg >/dev/null 2>&1; then FILENAME="Kursal_${ARCH_TAG}.deb"; INSTALL_METHOD="deb"
   elif command -v rpm  >/dev/null 2>&1; then FILENAME="Kursal_${ARCH_TAG}.rpm"; INSTALL_METHOD="rpm"
   else                                  FILENAME="Kursal_${ARCH_TAG}.AppImage"; INSTALL_METHOD="appimage"
   fi
@@ -178,6 +182,15 @@ case "$INSTALL_METHOD" in
   rpm)
     _sudo rpm -U --quiet "$TMP_FILE"
     print_ok "Installed via rpm"
+    ;;
+
+  arch)
+    if ! command -v pacman >/dev/null 2>&1; then
+      print_err "pacman is required to install the Arch package"
+      exit 1
+    fi
+    _sudo pacman -U --noconfirm "$TMP_FILE" >/dev/null
+    print_ok "Installed via pacman"
     ;;
 
   appimage)
