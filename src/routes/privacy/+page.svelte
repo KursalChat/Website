@@ -275,14 +275,14 @@
     <p>
       If you support us through
       <a
-        href="https://ko-fi.com/kursal"
+        href="https://opencollective.com/kursal"
         target="_blank"
         rel="noopener noreferrer"
         class="text-accent-400 underline underline-offset-2 hover:text-accent-300"
-        >Ko-Fi</a
-      >, that donation is handled entirely by Ko-Fi as its own data controller,
+        >OpenCollective</a
+      >, that donation is handled entirely by OpenCollective as its own data controller,
       under their own privacy policy, and processed in the United States outside
-      the EU under the safeguards Ko-Fi puts in place. We never see your payment
+      the EU under the safeguards OpenCollective puts in place. We never see your payment
       details, only the name and message you choose to leave.
     </p>
   </DocSection>
